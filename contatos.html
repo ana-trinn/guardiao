@@ -43,6 +43,21 @@
             padding: 20px;
         }
 
+        /* VOLTAR NO TOPO */
+
+        .voltar-topo {
+            display: inline-block;
+            margin-bottom: 18px;
+            color: #0b1f3a;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .voltar-topo:hover {
+            text-decoration: underline;
+        }
+
         .card {
             background: white;
             border-radius: 22px;
@@ -97,6 +112,12 @@
             color: #666;
         }
 
+        .sem-contatos {
+            text-align: center;
+            color: #777;
+            margin-top: 20px;
+        }
+
         /* LIXEIRA */
 
         .lixeira {
@@ -140,261 +161,285 @@
             cursor: pointer;
             font-size: 15px;
             font-weight: bold;
-            margin-top: 15px;
+            margin-top: 12px;
         }
 
         /* FORMULÁRIO */
 
-        #formularioContato {
+        .formulario {
             display: none;
-            margin-top: 20px;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid #e5e5e5;
         }
 
-        label {
+        .campo {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .campo label {
             display: block;
             margin-bottom: 7px;
             font-weight: bold;
+            font-size: 14px;
         }
 
-        input {
+        .campo input {
             width: 100%;
             padding: 13px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            margin-bottom: 18px;
+            border: 1px solid #ccc;
+            border-radius: 12px;
             font-size: 15px;
+            outline: none;
         }
 
-        input:focus {
-            outline: none;
+        .campo input:focus {
             border-color: #0b1f3a;
         }
 
-        /* MENSAGEM */
+        @media (max-width: 600px) {
 
-        .mensagem {
-            display: none;
-            margin-top: 15px;
-            padding: 12px;
-            background: #e8f5e9;
-            color: #1b5e20;
-            border-radius: 10px;
-            text-align: center;
-            font-weight: bold;
-        }
+            .container {
+                margin-top: 15px;
+                padding: 15px;
+            }
 
-        /* VOLTAR */
+            .card {
+                padding: 22px;
+            }
 
-        .voltar-area {
-            text-align: center;
-            margin-top: 25px;
-        }
-
-        .voltar {
-            display: inline-block;
-            background: #0b1f3a;
-            color: white;
-            text-decoration: none;
-            padding: 13px 30px;
-            border-radius: 30px;
         }
 
     </style>
 
 </head>
 
-
 <body>
 
 
-    <!-- CABEÇALHO -->
+<header>
 
-    <header>
+    <h1 class="logo-area">
 
-        <h1 class="logo-area">
+        <img
+            src="imagens/logo.png"
+            height="90"
+            alt="Logo Guardião">
 
-            <img src="imagens/logo.png" height="90" alt="Logo Guardião">
+        <span>Guardião</span>
 
-            <span>Guardião</span>
+    </h1>
 
-        </h1>
-
-    </header>
-
-
-    <!-- CONTEÚDO -->
-
-    <main class="container">
+</header>
 
 
-        <!-- CONTATOS -->
-
-        <div class="card">
-
-            <div class="icone">
-                👥
-            </div>
-
-            <h2>
-                Contatos de confiança
-            </h2>
-
-            <p class="descricao">
-                Pessoas que receberão seu alerta de emergência.
-            </p>
+<main class="container">
 
 
-            <div id="listaContatos"></div>
+    <!-- VOLTAR AGORA FICA NO TOPO -->
+
+    <a
+        href="painel.html"
+        class="voltar-topo">
+
+        ← Voltar
+
+    </a>
 
 
-            <!-- BOTÃO ADICIONAR -->
+    <div class="card">
 
-            <button
-                class="botao"
-                id="botaoAdicionar"
-                onclick="mostrarFormulario()">
+        <div class="icone">
+            👥
+        </div>
 
-                + Adicionar contato
+        <h2>
+            Contatos de confiança
+        </h2>
 
-            </button>
+        <p class="descricao">
+            Cadastre as pessoas que poderão receber seus alertas
+            em uma situação de emergência.
+        </p>
 
 
-            <!-- FORMULÁRIO -->
+        <div id="listaContatos">
+        </div>
 
-            <div id="formularioContato">
 
-                <label for="nome">
+        <button
+            class="botao"
+            id="botaoAdicionar"
+            onclick="mostrarFormulario()">
+
+            + Adicionar contato
+
+        </button>
+
+
+        <div
+            class="formulario"
+            id="formularioContato">
+
+            <div class="campo">
+
+                <label for="nomeContato">
                     Nome
                 </label>
 
                 <input
                     type="text"
-                    id="nome"
-                    placeholder="Digite o nome"
-                >
+                    id="nomeContato"
+                    placeholder="Nome do contato">
+
+            </div>
 
 
-                <label for="telefone">
+            <div class="campo">
+
+                <label for="telefoneContato">
                     Telefone
                 </label>
 
                 <input
                     type="tel"
-                    id="telefone"
-                    placeholder="Digite o telefone"
-                >
-
-
-                <button
-                    class="botao"
-                    onclick="adicionarContato()">
-
-                    Salvar contato
-
-                </button>
-
-
-                <button
-                    class="botao-secundario"
-                    onclick="cancelarCadastro()">
-
-                    Cancelar
-
-                </button>
+                    id="telefoneContato"
+                    placeholder="(11) 99999-9999">
 
             </div>
 
 
-            <!-- MENSAGEM -->
+            <button
+                class="botao"
+                onclick="salvarContato()">
 
-            <div
-                class="mensagem"
-                id="mensagem">
+                Salvar contato
 
-                ✅ Contato adicionado!
-
-            </div>
-
-        </div>
+            </button>
 
 
-        <!-- VOLTAR -->
+            <button
+                class="botao-secundario"
+                onclick="cancelarFormulario()">
 
-        <div class="voltar-area">
+                Cancelar
 
-            <a href="painel.html" class="voltar">
-
-                Voltar
-
-            </a>
+            </button>
 
         </div>
 
+    </div>
 
-    </main>
-
-
-    <!-- JAVASCRIPT -->
-
-    <script>
+</main>
 
 
-        // Recupera os contatos salvos
+<script>
 
-        let contatos = JSON.parse(
-            localStorage.getItem("contatosGuardiao")
+    const chaveContatos =
+        "contatosGuardiao";
+
+
+    function obterContatos() {
+
+        return JSON.parse(
+            localStorage.getItem(
+                chaveContatos
+            )
         ) || [];
 
-
-        // Mostra os contatos
-
-        function mostrarContatos() {
-
-            const lista =
-                document.getElementById("listaContatos");
-
-            const botaoAdicionar =
-                document.getElementById("botaoAdicionar");
+    }
 
 
-            lista.innerHTML = "";
+    function salvarContatos(
+        contatos
+    ) {
+
+        localStorage.setItem(
+
+            chaveContatos,
+
+            JSON.stringify(
+                contatos
+            )
+
+        );
+
+    }
 
 
-            if (contatos.length === 0) {
+    function carregarContatos() {
 
-                lista.innerHTML = `
-                    <p class="descricao">
-                        Nenhum contato cadastrado ainda.
-                    </p>
-                `;
-
-            }
+        const contatos =
+            obterContatos();
 
 
-            contatos.forEach(function(contato, indice) {
+        const lista =
+            document.getElementById(
+                "listaContatos"
+            );
+
+
+        const botaoAdicionar =
+            document.getElementById(
+                "botaoAdicionar"
+            );
+
+
+        lista.innerHTML = "";
+
+
+        if (contatos.length === 0) {
+
+            lista.innerHTML = `
+
+                <p class="sem-contatos">
+                    Nenhum contato cadastrado.
+                </p>
+
+            `;
+
+
+            botaoAdicionar.textContent =
+                "+ Adicionar contato";
+
+
+            return;
+
+        }
+
+
+        contatos.forEach(
+            function(contato, indice) {
 
                 const elemento =
-                    document.createElement("div");
+                    document.createElement(
+                        "div"
+                    );
 
-                elemento.className = "contato";
+
+                elemento.className =
+                    "contato";
+
 
                 elemento.innerHTML = `
 
                     <div class="informacoes-contato">
 
                         <strong>
-                            👤 ${contato.nome}
+                            ${contato.nome}
                         </strong>
 
                         <span>
-                            📱 ${contato.telefone}
+                            ${contato.telefone}
                         </span>
 
                     </div>
 
+
                     <button
                         class="lixeira"
-                        onclick="confirmarExclusao(${indice})"
+                        onclick="removerContato(${indice})"
                         title="Excluir contato">
 
                         🗑️
@@ -403,208 +448,193 @@
 
                 `;
 
-                lista.appendChild(elemento);
 
-            });
-
-
-            // Nome do botão
-
-            if (contatos.length >= 3) {
-
-                botaoAdicionar.textContent =
-                    "+ Adicionar outro contato";
-
-            } else {
-
-                botaoAdicionar.textContent =
-                    "+ Adicionar contato";
+                lista.appendChild(
+                    elemento
+                );
 
             }
+        );
+
+
+        botaoAdicionar.textContent =
+            "+ Adicionar outro contato";
+
+    }
+
+
+    function mostrarFormulario() {
+
+        document.getElementById(
+            "formularioContato"
+        ).style.display =
+            "block";
+
+
+        document.getElementById(
+            "botaoAdicionar"
+        ).style.display =
+            "none";
+
+
+        document.getElementById(
+            "nomeContato"
+        ).focus();
+
+    }
+
+
+    function cancelarFormulario() {
+
+        limparFormulario();
+
+
+        document.getElementById(
+            "formularioContato"
+        ).style.display =
+            "none";
+
+
+        document.getElementById(
+            "botaoAdicionar"
+        ).style.display =
+            "block";
+
+    }
+
+
+    function limparFormulario() {
+
+        document.getElementById(
+            "nomeContato"
+        ).value = "";
+
+
+        document.getElementById(
+            "telefoneContato"
+        ).value = "";
+
+    }
+
+
+    function salvarContato() {
+
+        const nome =
+            document.getElementById(
+                "nomeContato"
+            ).value.trim();
+
+
+        const telefone =
+            document.getElementById(
+                "telefoneContato"
+            ).value.trim();
+
+
+        if (
+            nome === "" ||
+            telefone === ""
+        ) {
+
+            alert(
+                "Preencha o nome e o telefone do contato."
+            );
+
+            return;
 
         }
 
 
-        // Abre o formulário
-
-        function mostrarFormulario() {
-
-            document.getElementById(
-                "formularioContato"
-            ).style.display = "block";
+        const contatos =
+            obterContatos();
 
 
-            document.getElementById(
-                "botaoAdicionar"
-            ).style.display = "none";
+        contatos.push({
+
+            nome: nome,
+            telefone: telefone
+
+        });
+
+
+        salvarContatos(
+            contatos
+        );
+
+
+        limparFormulario();
+
+
+        document.getElementById(
+            "formularioContato"
+        ).style.display =
+            "none";
+
+
+        document.getElementById(
+            "botaoAdicionar"
+        ).style.display =
+            "block";
+
+
+        carregarContatos();
+
+    }
+
+
+    function removerContato(
+        indice
+    ) {
+
+        const contatos =
+            obterContatos();
+
+
+        if (!contatos[indice]) {
+
+            return;
 
         }
 
 
-        // Fecha o formulário
+        const confirmar =
+            confirm(
 
-        function cancelarCadastro() {
+                "Deseja excluir " +
+                contatos[indice].nome +
+                " dos seus contatos de confiança?"
 
-            document.getElementById(
-                "formularioContato"
-            ).style.display = "none";
-
-
-            document.getElementById(
-                "botaoAdicionar"
-            ).style.display = "block";
-
-
-            document.getElementById("nome").value = "";
-
-            document.getElementById("telefone").value = "";
-
-        }
-
-
-        // Adiciona contato
-
-        function adicionarContato() {
-
-            const nome =
-                document.getElementById("nome").value.trim();
-
-            const telefone =
-                document.getElementById("telefone").value.trim();
-
-
-            if (nome === "" || telefone === "") {
-
-                alert("Preencha o nome e o telefone.");
-
-                return;
-
-            }
-
-
-            const novoContato = {
-
-                nome: nome,
-
-                telefone: telefone
-
-            };
-
-
-            contatos.push(novoContato);
-
-
-            localStorage.setItem(
-                "contatosGuardiao",
-                JSON.stringify(contatos)
             );
 
 
-            mostrarContatos();
+        if (!confirmar) {
 
-
-            document.getElementById("nome").value = "";
-
-            document.getElementById("telefone").value = "";
-
-
-            document.getElementById(
-                "formularioContato"
-            ).style.display = "none";
-
-
-            document.getElementById(
-                "botaoAdicionar"
-            ).style.display = "block";
-
-
-            const mensagem =
-                document.getElementById("mensagem");
-
-
-            mensagem.textContent =
-                "✅ Contato adicionado!";
-
-
-            mensagem.style.display = "block";
-
-
-            setTimeout(function() {
-
-                mensagem.style.display = "none";
-
-            }, 2500);
+            return;
 
         }
 
 
-        // Confirma exclusão
-
-        function confirmarExclusao(indice) {
-
-            const contato = contatos[indice];
-
-
-            const confirmar = confirm(
-                "⚠️ Tem certeza que deseja excluir este contato?"
-            );
+        contatos.splice(
+            indice,
+            1
+        );
 
 
-            if (!confirmar) {
-
-                return;
-
-            }
+        salvarContatos(
+            contatos
+        );
 
 
-            // Remove o contato
+        carregarContatos();
 
-            contatos.splice(indice, 1);
-
-
-            // Atualiza o armazenamento
-
-            localStorage.setItem(
-                "contatosGuardiao",
-                JSON.stringify(contatos)
-            );
+    }
 
 
-            // Atualiza a tela
+    carregarContatos();
 
-            mostrarContatos();
-
-
-            // Mostra confirmação
-
-            const mensagem =
-                document.getElementById("mensagem");
-
-
-            mensagem.textContent =
-                "🗑️ Contato excluído!";
-
-
-            mensagem.style.display = "block";
-
-
-            setTimeout(function() {
-
-                mensagem.style.display = "none";
-
-            }, 2500);
-
-        }
-
-
-        // Carrega os contatos ao abrir
-
-        mostrarContatos();
-
-    </script>
+</script>
 
 
 </body>
 
 </html>
-
