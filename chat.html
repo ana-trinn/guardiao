@@ -21,13 +21,14 @@
             background: #f5f7fb;
             color: #0b1f3a;
             min-height: 100vh;
-            padding-bottom: 35px;
+            padding-bottom: 90px;
+            overflow-x: hidden;
         }
 
         header {
             background: #0b1f3a;
             color: white;
-            padding: 18px 15px;
+            padding: 20px;
             text-align: center;
         }
 
@@ -35,83 +36,67 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
-        }
-
-        .logo-area img {
-            height: 68px;
-        }
-
-        .logo-area span {
-            font-size: 27px;
-            font-weight: bold;
+            gap: 5px;
         }
 
         .container {
+            width: 100%;
             max-width: 700px;
-            margin: 18px auto;
-            padding: 15px;
-        }
-
-        .voltar-topo {
-            display: inline-block;
-            margin-bottom: 12px;
-            text-decoration: none;
-            color: #0b1f3a;
-            font-size: 14px;
-            font-weight: bold;
+            margin: 25px auto;
+            padding: 20px;
         }
 
         .chat-card {
+            width: 100%;
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, .07);
+            border-radius: 22px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
             overflow: hidden;
         }
 
         .chat-topo {
-            padding: 16px;
+            padding: 20px;
             border-bottom: 1px solid #eee;
         }
 
         .chat-topo h2 {
-            margin-bottom: 5px;
-            font-size: 20px;
+            margin-bottom: 6px;
         }
 
         .chat-topo p {
             color: #666;
-            font-size: 13px;
+            font-size: 14px;
             margin-bottom: 0;
-            line-height: 1.4;
         }
 
         .status-chat {
             display: inline-block;
-            margin-top: 8px;
-            padding: 5px 10px;
+            margin-top: 10px;
+            padding: 6px 12px;
             border-radius: 20px;
             background: #fff1f1;
             color: #b91c1c;
-            font-size: 11px;
+            font-size: 12px;
             font-weight: bold;
         }
 
+        /* ÁREA DAS MENSAGENS */
+
         .mensagens {
-            height: 360px;
+            height: 420px;
             overflow-y: auto;
-            padding: 14px;
+            overflow-x: hidden;
+            padding: 20px;
             background: #f7f9fc;
         }
 
         .mensagem {
-            max-width: 78%;
-            margin-bottom: 10px;
-            padding: 10px 12px;
-            border-radius: 14px;
+            max-width: 68%;
+            margin-bottom: 14px;
+            padding: 12px 15px;
+            border-radius: 16px;
             line-height: 1.4;
-            word-wrap: break-word;
-            font-size: 13px;
+            overflow-wrap: anywhere;
         }
 
         .mensagem-enviada {
@@ -131,9 +116,9 @@
 
         .nome-remetente {
             display: block;
-            font-size: 11px;
+            font-size: 12px;
             font-weight: bold;
-            margin-bottom: 4px;
+            margin-bottom: 5px;
         }
 
         .mensagem-enviada .nome-remetente {
@@ -146,47 +131,76 @@
 
         .hora {
             display: block;
-            font-size: 10px;
-            margin-top: 5px;
+            font-size: 11px;
+            margin-top: 6px;
             opacity: .7;
         }
 
+        /* ÁREA DE DIGITAÇÃO */
+
         .entrada-wrapper {
             position: relative;
+            width: 100%;
         }
 
         .entrada-area {
             display: flex;
+            align-items: center;
             gap: 8px;
+
+            width: 100%;
+            max-width: 100%;
+
             padding: 12px;
+
             border-top: 1px solid #eee;
             background: white;
-            align-items: center;
+
+            overflow: hidden;
         }
 
         .entrada-area input {
-            flex: 1;
+            flex: 1 1 auto;
+
+            width: 0;
+            min-width: 0;
+
             border: 1px solid #ccc;
             border-radius: 30px;
+
             padding: 11px 14px;
+
             font-size: 14px;
             outline: none;
-            min-width: 0;
         }
 
         .entrada-area input:focus {
             border-color: #0b1f3a;
         }
 
+        /* BOTÕES DO CHAT */
+
         .botao-emoji,
         .botao-enviar {
             border: none;
-            width: 42px;
-            height: 42px;
-            min-width: 42px;
+
+            width: 40px;
+            height: 40px;
+
+            min-width: 40px;
+            max-width: 40px;
+
+            flex: 0 0 40px;
+
             border-radius: 50%;
+
             cursor: pointer;
-            font-size: 18px;
+
+            font-size: 17px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .botao-emoji {
@@ -198,32 +212,43 @@
             color: white;
         }
 
+        /* PAINEL DE EMOJIS */
+
         .painel-emojis {
             display: none;
+
             position: absolute;
-            bottom: 66px;
+
+            bottom: 70px;
             left: 12px;
+
             background: white;
+
             border: 1px solid #ddd;
-            border-radius: 14px;
-            padding: 10px;
+            border-radius: 16px;
+
+            padding: 12px;
+
             box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
-            width: 230px;
+
+            width: 260px;
+            max-width: calc(100% - 24px);
+
             z-index: 10;
         }
 
         .grade-emojis {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
-            gap: 6px;
+            gap: 8px;
         }
 
         .emoji {
             border: none;
             background: transparent;
-            font-size: 21px;
+            font-size: 24px;
             cursor: pointer;
-            padding: 3px;
+            padding: 4px;
             border-radius: 8px;
         }
 
@@ -231,119 +256,150 @@
             background: #f1f4f8;
         }
 
+        /* BOTÕES ABAIXO DO CHAT */
+
         .acoes {
-            margin-top: 14px;
-            display: flex;
-            gap: 8px;
-            justify-content: center;
-            flex-wrap: wrap;
+            margin-top: 20px;
+            text-align: center;
         }
 
-        .botao-simular,
-        .limpar {
+        .botao-voltar,
+        .botao-simular {
+            display: inline-block;
             border: none;
             text-decoration: none;
-            padding: 11px 16px;
+            padding: 12px 22px;
             border-radius: 30px;
             cursor: pointer;
             font-weight: bold;
-            font-size: 12px;
+        }
+
+        .botao-voltar {
+            background: #0b1f3a;
+            color: white;
         }
 
         .botao-simular {
             background: #eef2f7;
             color: #0b1f3a;
+            margin-left: 10px;
         }
 
         .limpar {
+            margin-left: 10px;
+            border: none;
             background: #eee;
             color: #333;
+            padding: 12px 20px;
+            border-radius: 30px;
+            cursor: pointer;
         }
 
         .aviso {
-            margin-top: 12px;
-            font-size: 11px;
+            margin-top: 15px;
+            font-size: 13px;
             color: #777;
             text-align: center;
-            line-height: 1.4;
+            line-height: 1.5;
         }
+
+        /* CELULAR */
 
         @media (max-width: 600px) {
 
+            body {
+                padding-bottom: 40px;
+            }
+
             header {
-                padding: 14px 12px;
+                padding: 18px;
             }
 
             .logo-area img {
-                height: 58px;
-            }
-
-            .logo-area span {
-                font-size: 24px;
+                height: 65px;
             }
 
             .container {
-                margin: 12px auto;
+                width: 100%;
+                margin: 10px auto;
                 padding: 12px;
             }
 
-            .voltar-topo {
-                font-size: 13px;
-                margin-bottom: 9px;
+            .chat-card {
+                width: 100%;
             }
 
             .chat-topo {
-                padding: 13px;
-            }
-
-            .chat-topo h2 {
-                font-size: 18px;
-            }
-
-            .chat-topo p {
-                font-size: 12px;
+                padding: 17px;
             }
 
             .mensagens {
-                height: 330px;
-                padding: 11px;
+                height: 380px;
+                padding: 15px;
             }
 
             .mensagem {
                 max-width: 85%;
-                font-size: 12px;
-                padding: 9px 11px;
             }
 
+            /*
+                Correção principal:
+                mantém emoji, input e enviar
+                dentro da largura do card.
+            */
+
             .entrada-area {
+                width: 100%;
+                max-width: 100%;
+                gap: 7px;
                 padding: 10px;
-                gap: 6px;
+                overflow: hidden;
             }
 
             .entrada-area input {
-                font-size: 13px;
+                flex: 1 1 0;
+                width: 0;
+                min-width: 0;
                 padding: 10px 12px;
+                font-size: 14px;
             }
 
             .botao-emoji,
             .botao-enviar {
                 width: 38px;
                 height: 38px;
+
                 min-width: 38px;
-                font-size: 17px;
+                max-width: 38px;
+
+                flex: 0 0 38px;
+
+                font-size: 16px;
             }
 
             .painel-emojis {
-                width: 215px;
+                width: 230px;
+                max-width: calc(100% - 20px);
+                left: 10px;
             }
 
             .acoes {
+                display: flex;
                 flex-direction: column;
+                gap: 10px;
+
+                width: 100%;
             }
 
+            .botao-voltar,
             .botao-simular,
             .limpar {
                 width: 100%;
+                margin-left: 0;
+            }
+
+            .aviso {
+                padding: 0 10px;
             }
 
         }
@@ -354,15 +410,19 @@
 
 <body>
 
+
 <header>
 
     <h1 class="logo-area">
 
         <img
             src="imagens/logo.png"
+            height="70"
             alt="Logo Guardião">
 
-        <span>Guardião</span>
+        <span>
+            Guardião
+        </span>
 
     </h1>
 
@@ -371,16 +431,9 @@
 
 <main class="container">
 
-    <a
-        href="emergencia.html"
-        class="voltar-topo">
-
-        ← Voltar
-
-    </a>
-
 
     <div class="chat-card">
+
 
         <div class="chat-topo">
 
@@ -399,13 +452,20 @@
         </div>
 
 
+        <!-- MENSAGENS -->
+
         <div
             class="mensagens"
             id="mensagensChat">
         </div>
 
 
+        <!-- ÁREA DE DIGITAÇÃO -->
+
         <div class="entrada-wrapper">
+
+
+            <!-- PAINEL DE EMOJIS -->
 
             <div
                 class="painel-emojis"
@@ -414,24 +474,39 @@
                 <div class="grade-emojis">
 
                     <button class="emoji" onclick="adicionarEmoji('😊')">😊</button>
+
                     <button class="emoji" onclick="adicionarEmoji('❤️')">❤️</button>
+
                     <button class="emoji" onclick="adicionarEmoji('👍')">👍</button>
+
                     <button class="emoji" onclick="adicionarEmoji('🙏')">🙏</button>
+
                     <button class="emoji" onclick="adicionarEmoji('😢')">😢</button>
+
                     <button class="emoji" onclick="adicionarEmoji('😰')">😰</button>
 
                     <button class="emoji" onclick="adicionarEmoji('🚨')">🚨</button>
+
                     <button class="emoji" onclick="adicionarEmoji('📍')">📍</button>
+
                     <button class="emoji" onclick="adicionarEmoji('🆘')">🆘</button>
+
                     <button class="emoji" onclick="adicionarEmoji('👌')">👌</button>
+
                     <button class="emoji" onclick="adicionarEmoji('✅')">✅</button>
+
                     <button class="emoji" onclick="adicionarEmoji('❗')">❗</button>
 
                     <button class="emoji" onclick="adicionarEmoji('🏠')">🏠</button>
+
                     <button class="emoji" onclick="adicionarEmoji('🚗')">🚗</button>
+
                     <button class="emoji" onclick="adicionarEmoji('📞')">📞</button>
+
                     <button class="emoji" onclick="adicionarEmoji('💬')">💬</button>
+
                     <button class="emoji" onclick="adicionarEmoji('👀')">👀</button>
+
                     <button class="emoji" onclick="adicionarEmoji('💙')">💙</button>
 
                 </div>
@@ -439,10 +514,13 @@
             </div>
 
 
+            <!-- BARRA DE MENSAGEM -->
+
             <div class="entrada-area">
 
                 <button
                     class="botao-emoji"
+                    type="button"
                     onclick="abrirEmojis()">
 
                     😊
@@ -460,6 +538,7 @@
 
                 <button
                     class="botao-enviar"
+                    type="button"
                     onclick="enviarMensagem()">
 
                     ➤
@@ -468,12 +547,24 @@
 
             </div>
 
+
         </div>
 
     </div>
 
 
+    <!-- AÇÕES -->
+
     <div class="acoes">
+
+        <a
+            href="emergencia.html"
+            class="botao-voltar">
+
+            Voltar para emergência
+
+        </a>
+
 
         <button
             class="botao-simular"
@@ -496,8 +587,11 @@
 
 
     <div class="aviso">
+
         Modo de demonstração: as respostas dos contatos são simuladas neste navegador.
+
     </div>
+
 
 </main>
 
@@ -516,7 +610,9 @@
 
         const mensagens =
             JSON.parse(
-                localStorage.getItem(chaveChat)
+                localStorage.getItem(
+                    chaveChat
+                )
             ) || [];
 
 
@@ -529,16 +625,23 @@
         area.innerHTML = "";
 
 
-        mensagens.forEach(function(item) {
+        mensagens.forEach(
+            function(item) {
 
-            adicionarMensagemNaTela(
-                item.texto,
-                item.tipo,
-                item.hora,
-                item.nome || nomeUsuario
-            );
+                adicionarMensagemNaTela(
 
-        });
+                    item.texto,
+
+                    item.tipo,
+
+                    item.hora,
+
+                    item.nome || nomeUsuario
+
+                );
+
+            }
+        );
 
 
         area.scrollTop =
@@ -560,7 +663,9 @@
 
 
         if (texto === "") {
+
             return;
+
         }
 
 
@@ -571,29 +676,39 @@
         salvarMensagem({
 
             nome: nomeUsuario,
+
             texto: texto,
+
             tipo: "enviada",
+
             hora: hora
 
         });
 
 
         adicionarMensagemNaTela(
+
             texto,
+
             "enviada",
+
             hora,
+
             nomeUsuario
+
         );
 
 
         campo.value = "";
+
 
         campo.focus();
 
 
         document.getElementById(
             "painelEmojis"
-        ).style.display = "none";
+        ).style.display =
+            "none";
 
 
         rolarChat();
@@ -625,7 +740,8 @@
         const contato =
             contatos[
                 Math.floor(
-                    Math.random() * contatos.length
+                    Math.random() *
+                    contatos.length
                 )
             ];
 
@@ -654,7 +770,8 @@
         const texto =
             respostas[
                 Math.floor(
-                    Math.random() * respostas.length
+                    Math.random() *
+                    respostas.length
                 )
             ];
 
@@ -666,18 +783,26 @@
         salvarMensagem({
 
             nome: contato.nome,
+
             texto: texto,
+
             tipo: "recebida",
+
             hora: hora
 
         });
 
 
         adicionarMensagemNaTela(
+
             texto,
+
             "recebida",
+
             hora,
+
             contato.nome
+
         );
 
 
@@ -686,20 +811,31 @@
     }
 
 
-    function salvarMensagem(mensagem) {
+    function salvarMensagem(
+        mensagem
+    ) {
 
         const mensagens =
             JSON.parse(
-                localStorage.getItem(chaveChat)
+                localStorage.getItem(
+                    chaveChat
+                )
             ) || [];
 
 
-        mensagens.push(mensagem);
+        mensagens.push(
+            mensagem
+        );
 
 
         localStorage.setItem(
+
             chaveChat,
-            JSON.stringify(mensagens)
+
+            JSON.stringify(
+                mensagens
+            )
+
         );
 
     }
@@ -719,20 +855,28 @@
 
 
         const mensagem =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
 
         mensagem.className =
+
             "mensagem " +
+
             (
                 tipo === "recebida"
+
                     ? "mensagem-recebida"
+
                     : "mensagem-enviada"
             );
 
 
         const nomeElemento =
-            document.createElement("span");
+            document.createElement(
+                "span"
+            );
 
 
         nomeElemento.className =
@@ -744,7 +888,9 @@
 
 
         const textoElemento =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
 
         textoElemento.textContent =
@@ -752,7 +898,9 @@
 
 
         const horaElemento =
-            document.createElement("span");
+            document.createElement(
+                "span"
+            );
 
 
         horaElemento.className =
@@ -794,14 +942,19 @@
 
 
         painel.style.display =
+
             painel.style.display === "block"
+
                 ? "none"
+
                 : "block";
 
     }
 
 
-    function adicionarEmoji(emoji) {
+    function adicionarEmoji(
+        emoji
+    ) {
 
         const campo =
             document.getElementById(
@@ -810,7 +963,8 @@
 
 
         campo.value =
-            campo.value + emoji;
+            campo.value +
+            emoji;
 
 
         campo.focus();
@@ -818,7 +972,9 @@
     }
 
 
-    function verificarEnter(event) {
+    function verificarEnter(
+        event
+    ) {
 
         if (event.key === "Enter") {
 
@@ -833,11 +989,17 @@
 
         return new Date()
             .toLocaleTimeString(
+
                 "pt-BR",
+
                 {
+
                     hour: "2-digit",
+
                     minute: "2-digit"
+
                 }
+
             );
 
     }
@@ -866,7 +1028,9 @@
 
 
         if (!confirmar) {
+
             return;
+
         }
 
 
@@ -877,7 +1041,8 @@
 
         document.getElementById(
             "mensagensChat"
-        ).innerHTML = "";
+        ).innerHTML =
+            "";
 
     }
 
