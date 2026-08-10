@@ -20,113 +20,144 @@
             font-family: Arial, Helvetica, sans-serif;
             background: #f5f7fb;
             color: #0b1f3a;
-            padding-bottom: 50px;
+            padding-bottom: 40px;
         }
 
         header {
             background: #0b1f3a;
             color: white;
             text-align: center;
-            padding: 25px;
+            padding: 18px 15px;
         }
 
         .logo-area {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
+        }
+
+        .logo-area img {
+            height: 68px;
+        }
+
+        .logo-area span {
+            font-size: 27px;
+            font-weight: bold;
         }
 
         .container {
             max-width: 700px;
-            margin: 30px auto;
-            padding: 20px;
+            margin: 18px auto;
+            padding: 15px;
+        }
+
+        .voltar-topo {
+            display: inline-block;
+            margin-bottom: 12px;
+            text-decoration: none;
+            color: #0b1f3a;
+            font-size: 14px;
+            font-weight: bold;
         }
 
         .card {
             background: white;
-            border-radius: 22px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+            border-radius: 20px;
+            padding: 22px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, .07);
         }
 
         .titulo-alerta {
             text-align: center;
             color: #d90429;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
+            font-size: 22px;
         }
 
         .status-item {
             background: #f7f9fc;
-            border-radius: 15px;
-            padding: 15px;
-            margin-bottom: 12px;
+            border-radius: 14px;
+            padding: 13px;
+            margin-bottom: 9px;
         }
 
         .status-item strong {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
+            font-size: 14px;
         }
 
         .texto-secundario {
             color: #666;
-            font-size: 14px;
+            font-size: 13px;
+            line-height: 1.4;
         }
 
+        /* MAPA */
+
         .mapa-area {
-            margin-top: 12px;
+            margin-top: 9px;
         }
 
         .botao-mapa {
             display: inline-block;
+            width: 100%;
             text-decoration: none;
             background: #0b1f3a;
             color: white;
-            padding: 11px 20px;
+            padding: 11px 15px;
             border-radius: 25px;
             font-weight: bold;
+            font-size: 13px;
+            text-align: center;
         }
 
+        /* SELEÇÃO */
+
         .selecao-contato {
-            margin-top: 20px;
-            padding: 18px;
+            margin-top: 14px;
+            padding: 14px;
             background: #f7f9fc;
-            border-radius: 15px;
+            border-radius: 14px;
         }
 
         .selecao-contato label {
             display: block;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            font-size: 13px;
         }
 
         .selecao-contato select {
             width: 100%;
             border: 1px solid #ccc;
-            border-radius: 12px;
-            padding: 12px;
-            font-size: 15px;
+            border-radius: 11px;
+            padding: 11px;
+            font-size: 13px;
             background: white;
             color: #0b1f3a;
         }
 
+        /* STATUS DOS CONTATOS */
+
         .ajudas-lista {
-            margin-top: 20px;
+            margin-top: 14px;
         }
 
         .ajuda-item {
             background: #eef8f0;
             border: 1px solid #cde8d3;
-            border-radius: 15px;
-            padding: 15px;
-            margin-bottom: 10px;
+            border-radius: 13px;
+            padding: 12px;
+            margin-bottom: 8px;
         }
 
         .ajuda-item strong {
             display: block;
             color: #1b5e20;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
+            font-size: 13px;
         }
 
         .aguardando {
@@ -138,22 +169,25 @@
             color: #8a6500;
         }
 
+        /* BOTÕES */
+
         .botoes {
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            margin-top: 20px;
+            gap: 8px;
+            margin-top: 14px;
         }
 
         .botao {
             border: none;
             border-radius: 30px;
-            padding: 14px 20px;
-            font-size: 15px;
+            padding: 12px 15px;
+            font-size: 13px;
             font-weight: bold;
             cursor: pointer;
             text-decoration: none;
             text-align: center;
+            width: 100%;
         }
 
         .botao-ajudar {
@@ -177,13 +211,16 @@
             border: 1px solid #e5bcbc;
         }
 
+        /* MENSAGENS */
+
         .mensagem {
             display: none;
-            margin-top: 15px;
-            padding: 14px;
-            border-radius: 15px;
+            margin-top: 10px;
+            padding: 11px;
+            border-radius: 13px;
             text-align: center;
             font-weight: bold;
+            font-size: 12px;
         }
 
         .mensagem-sucesso {
@@ -196,23 +233,70 @@
             color: #555;
         }
 
-        .voltar-area {
-            text-align: center;
-            margin-top: 25px;
-        }
+        @media (max-width: 600px) {
 
-        .voltar {
-            display: inline-block;
-            text-decoration: none;
-            color: #0b1f3a;
-            font-weight: bold;
+            header {
+                padding: 14px 12px;
+            }
+
+            .logo-area img {
+                height: 58px;
+            }
+
+            .logo-area span {
+                font-size: 24px;
+            }
+
+            .container {
+                margin: 12px auto;
+                padding: 12px;
+            }
+
+            .voltar-topo {
+                font-size: 13px;
+                margin-bottom: 9px;
+            }
+
+            .card {
+                padding: 17px;
+                border-radius: 18px;
+            }
+
+            .titulo-alerta {
+                font-size: 19px;
+                margin-bottom: 12px;
+            }
+
+            .status-item {
+                padding: 11px;
+            }
+
+            .status-item strong {
+                font-size: 13px;
+            }
+
+            .texto-secundario {
+                font-size: 12px;
+            }
+
+            .selecao-contato {
+                padding: 11px;
+                margin-top: 11px;
+            }
+
+            .ajuda-item {
+                padding: 10px;
+            }
+
         }
 
     </style>
 
 </head>
 
+
 <body>
+
 
 <header>
 
@@ -220,10 +304,11 @@
 
         <img
             src="imagens/logo.png"
-            height="80"
             alt="Logo Guardião">
 
-        <span>Guardião</span>
+        <span>
+            Guardião
+        </span>
 
     </h1>
 
@@ -231,6 +316,15 @@
 
 
 <main class="container">
+
+    <a
+        href="painel.html"
+        class="voltar-topo">
+
+        ← Voltar
+
+    </a>
+
 
     <div class="card">
 
@@ -265,6 +359,7 @@
                 Carregando localização do alerta...
 
             </span>
+
 
             <div
                 class="mapa-area"
@@ -386,19 +481,6 @@
             Alerta encerrado.
 
         </div>
-
-    </div>
-
-
-    <div class="voltar-area">
-
-        <a
-            href="painel.html"
-            class="voltar">
-
-            ← Voltar ao painel
-
-        </a>
 
     </div>
 
