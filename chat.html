@@ -52,12 +52,12 @@
             width: 100%;
             max-width: 620px;
             margin: 12px auto;
-            padding: 12px;
+            padding: 14px;
         }
 
         .voltar-topo {
             display: inline-block;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             text-decoration: none;
             color: #0b1f3a;
             font-size: 13px;
@@ -73,7 +73,7 @@
         }
 
         .chat-topo {
-            padding: 14px;
+            padding: 16px;
             border-bottom: 1px solid #eee;
         }
 
@@ -103,7 +103,7 @@
             height: 300px;
             overflow-y: auto;
             overflow-x: hidden;
-            padding: 12px;
+            padding: 14px;
             background: #f7f9fc;
         }
 
@@ -162,21 +162,21 @@
         .entrada-area {
             display: flex;
             align-items: center;
-            gap: 7px;
+            justify-content: center;
+            gap: 9px;
             width: 100%;
-            padding: 10px;
+            padding: 12px 16px;
             border-top: 1px solid #eee;
             background: white;
-            overflow: hidden;
         }
 
         .entrada-area input {
-            flex: 1 1 0;
-            width: 0;
+            flex: 1;
+            max-width: 420px;
             min-width: 0;
             border: 1px solid #ccc;
             border-radius: 30px;
-            padding: 10px 12px;
+            padding: 9px 12px;
             font-size: 13px;
             outline: none;
         }
@@ -212,15 +212,15 @@
         .painel-emojis {
             display: none;
             position: absolute;
-            bottom: 58px;
-            left: 10px;
+            bottom: 60px;
+            left: 16px;
             background: white;
             border: 1px solid #ddd;
             border-radius: 14px;
             padding: 10px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
             width: 220px;
-            max-width: calc(100% - 20px);
+            max-width: calc(100% - 32px);
             z-index: 10;
         }
 
@@ -240,10 +240,10 @@
         }
 
         .acoes {
-            margin-top: 12px;
+            margin-top: 14px;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 9px;
         }
 
         .botao-voltar,
@@ -277,11 +277,43 @@
 
         .aviso {
             margin-top: 10px;
-            padding: 0 8px;
+            padding: 0 10px;
             font-size: 11px;
             color: #777;
             text-align: center;
             line-height: 1.4;
+        }
+
+        @media (max-width: 600px) {
+
+            .container {
+                padding: 16px;
+            }
+
+            .chat-card {
+                border-radius: 18px;
+            }
+
+            .entrada-area {
+                padding: 12px 18px;
+                gap: 10px;
+            }
+
+            .entrada-area input {
+                max-width: none;
+                padding: 9px 12px;
+                font-size: 13px;
+            }
+
+            .botao-emoji,
+            .botao-enviar {
+                width: 34px;
+                height: 34px;
+                min-width: 34px;
+                flex: 0 0 34px;
+                font-size: 15px;
+            }
+
         }
 
     </style>
@@ -513,13 +545,11 @@
         );
 
         campo.value = "";
-
         campo.focus();
 
         document.getElementById(
             "painelEmojis"
-        ).style.display =
-            "none";
+        ).style.display = "none";
 
         rolarChat();
 
