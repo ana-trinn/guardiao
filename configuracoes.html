@@ -1,121 +1,195 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
 
-    <meta charset="UFT-8">
-    <meta name="viewport" content="=width=device=width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Gurdião - Configurações</title>
+    <title>Guardião - Configurações</title>
 
     <style>
 
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        body{
-            font-family:Arial, Helvetica, sans-serif;
-            background:#f5f7fb;
-            color:#0b1f3a;
-            padding-bottom:90px;
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fb;
+            color: #0b1f3a;
+            padding-bottom: 85px;
         }
 
-        header{
-            background:#0b1f3a;
-            color:white;
-            text-align:center;
-            padding:20px;
+        header {
+            background: #0b1f3a;
+            color: white;
+            text-align: center;
+            padding: 14px 12px;
         }
 
-        header h1{
-            font-size:28px;
+        .logo-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
         }
 
-        .container{
-            max-width:900px;
-            margin:30px auto;
-            padding:20px;
+        .logo-area img {
+            height: 58px;
         }
 
-        .card{
-
-            background:white;
-            border-radius:20px;
-            padding:20px;
-            margin-bottom:20px;
-            box-shadow:0 8px 20px rgba(0,0,0,.08);
-
+        .logo-area span {
+            font-size: 24px;
+            font-weight: bold;
         }
 
-        .item{
-
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            padding:15px 0;
-            border-bottom:1px solid #eee;
-
+        .container {
+            width: 100%;
+            max-width: 700px;
+            margin: 12px auto;
+            padding: 14px;
         }
 
-        .item:last-child{
-
-            border-bottom:none;
-
+        .voltar-topo {
+            display: inline-block;
+            margin-bottom: 12px;
+            color: #0b1f3a;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
         }
 
-        .titulo{
-
-            font-weight:bold;
-            font-size:17px;
-
+        .titulo-pagina {
+            text-align: center;
+            margin-bottom: 16px;
         }
 
-        .descricao{
-
-            color:#666;
-            font-size:14px;
-            margin-top:4px;
-
+        .titulo-pagina h2 {
+            font-size: 21px;
+            margin-bottom: 5px;
         }
 
-        .status{
-
-            color:#28a745;
-            font-weight:bold;
-
+        .titulo-pagina p {
+            color: #666;
+            font-size: 13px;
         }
 
-        .navbar{
-
-            position:fixed;
-            bottom:0;
-            left:0;
-            width:100%;
-            background:white;
-            display:flex;
-            justify-content:space-around;
-            padding:12px 0;
-            box-shadow:0 -4px 12px rgba(0,0,0,.08);
-
+        .card {
+            background: white;
+            border-radius: 18px;
+            padding: 16px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, .07);
         }
 
-        .navbar a{
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
 
-            text-decoration:none;
-            color:#0b1f3a;
-            text-align:center;
-            font-size:14px;
-            font-weight:bold;
+            padding: 15px 4px;
 
+            border-bottom: 1px solid #eee;
         }
 
-        .navbar span{
+        .item:last-child {
+            border-bottom: none;
+        }
 
-            display:block;
-            font-size:24px;
-            margin-bottom:4px;
+        .item-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .titulo {
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .descricao {
+            color: #666;
+            font-size: 12px;
+            margin-top: 4px;
+            line-height: 1.4;
+        }
+
+        .status {
+            color: #198754;
+            font-weight: bold;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        .seta {
+            color: #0b1f3a;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* BARRA INFERIOR */
+
+        .navbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+
+            width: 100%;
+
+            background: white;
+
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+            padding: 8px 0 7px;
+
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, .08);
+
+            z-index: 1000;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #0b1f3a;
+            text-align: center;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .navbar span {
+            display: block;
+            font-size: 20px;
+            margin-bottom: 3px;
+        }
+
+        @media (max-width: 600px) {
+
+            .container {
+                padding: 12px;
+            }
+
+            .card {
+                padding: 14px;
+            }
+
+            .item {
+                padding: 13px 2px;
+            }
+
+            .titulo {
+                font-size: 14px;
+            }
+
+            .descricao {
+                font-size: 11px;
+            }
+
+            .status {
+                font-size: 12px;
+            }
 
         }
 
@@ -127,20 +201,54 @@
 
 <header>
 
-    <h1>⚙️ Configurações</h1>
+    <div class="logo-area">
+
+        <img
+            src="imagens/logo.png"
+            alt="Logo Guardião">
+
+        <span>
+            Guardião
+        </span>
+
+    </div>
 
 </header>
 
-<div class="container">
+
+<main class="container">
+
+    <a
+        href="painel.html"
+        class="voltar-topo">
+
+        ← Voltar
+
+    </a>
+
+
+    <div class="titulo-pagina">
+
+        <h2>
+            ⚙️ Configurações
+        </h2>
+
+        <p>
+            Ajuste as preferências do Guardião.
+        </p>
+
+    </div>
+
 
     <div class="card">
 
+
         <div class="item">
 
-            <div>
+            <div class="item-info">
 
                 <div class="titulo">
-                    Perfil
+                    👤 Perfil
                 </div>
 
                 <div class="descricao">
@@ -149,8 +257,8 @@
 
             </div>
 
-            <div class="status">
-                >
+            <div class="seta">
+                ›
             </div>
 
         </div>
@@ -158,14 +266,14 @@
 
         <div class="item">
 
-            <div>
+            <div class="item-info">
 
                 <div class="titulo">
-                    Notificações
+                    🔔 Notificações
                 </div>
 
                 <div class="descricao">
-                    Ativar ou desativar alertas.
+                    Alertas e avisos do Guardião.
                 </div>
 
             </div>
@@ -179,14 +287,14 @@
 
         <div class="item">
 
-            <div>
+            <div class="item-info">
 
                 <div class="titulo">
-                    Compartilhar localização
+                    📍 Compartilhar localização
                 </div>
 
                 <div class="descricao">
-                    Enviar localização aos contatos.
+                    Permitir o uso da localização durante um alerta.
                 </div>
 
             </div>
@@ -200,54 +308,69 @@
 
         <div class="item">
 
-            <div>
+            <div class="item-info">
 
                 <div class="titulo">
-                    Sobre o Guardião
+                    🛡️ Sobre o Guardião
                 </div>
 
                 <div class="descricao">
-                    Versão 0.3
+                    Versão 0.3 • Protótipo em desenvolvimento.
                 </div>
 
             </div>
 
-            <div class="status">
-                ℹ️
+            <div class="seta">
+                ›
             </div>
 
         </div>
+
 
     </div>
 
-</div>
+</main>
+
 
 <nav class="navbar">
 
     <a href="painel.html">
+
         <span>🏠</span>
+
         Início
+
     </a>
+
 
     <a href="contatos.html">
+
         <span>👥</span>
+
         Contatos
+
     </a>
+
 
     <a href="emergencia.html">
+
         <span>🚨</span>
+
         Emergência
+
     </a>
 
+
     <a href="configuracoes.html">
+
         <span>⚙️</span>
-        Configurações
+
+        Config.
+
     </a>
 
 </nav>
 
 </body>
 
-</html>
-</head>
 </html>
