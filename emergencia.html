@@ -21,94 +21,126 @@
             background: #f5f7fb;
             color: #0b1f3a;
             text-align: center;
-            padding-bottom: 50px;
+            padding-bottom: 40px;
         }
 
         header {
             background: #0b1f3a;
             color: white;
-            padding: 25px;
+            padding: 18px 15px;
         }
 
         .logo-area {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
+        }
+
+        .logo-area img {
+            height: 68px;
+        }
+
+        .logo-area span {
+            font-size: 27px;
+            font-weight: bold;
         }
 
         .container {
             max-width: 700px;
-            margin: 30px auto;
-            padding: 20px;
+            margin: 18px auto;
+            padding: 15px;
+        }
+
+        .voltar-topo {
+            display: block;
+            text-align: left;
+            margin-bottom: 12px;
+            text-decoration: none;
+            color: #0b1f3a;
+            font-size: 14px;
+            font-weight: bold;
         }
 
         .card {
             background: white;
-            border-radius: 22px;
-            padding: 30px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, .07);
         }
 
         .icone {
-            font-size: 55px;
-            margin-bottom: 15px;
+            font-size: 38px;
+            margin-bottom: 8px;
         }
 
         h2 {
-            margin-bottom: 15px;
+            margin-bottom: 8px;
+            font-size: 23px;
         }
 
         p {
             color: #666;
-            line-height: 1.5;
-            margin-bottom: 25px;
+            line-height: 1.45;
+            margin-bottom: 18px;
+            font-size: 14px;
         }
 
+        /* BOTÃO PRINCIPAL */
+
         .botao-alerta {
-            width: 160px;
-            height: 160px;
+            width: 115px;
+            height: 115px;
             border-radius: 50%;
             border: none;
             background: #d90429;
             color: white;
-            font-size: 18px;
+            font-size: 15px;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 10px 25px rgba(217, 4, 41, .35);
-            transition: .3s;
+            box-shadow: 0 8px 20px rgba(217, 4, 41, .30);
+            transition: .2s;
         }
 
         .botao-alerta:hover {
-            transform: scale(1.05);
+            transform: scale(1.04);
         }
+
+        /* CONFIRMAÇÃO */
 
         .confirmacao {
             display: none;
-            margin-top: 30px;
-            padding: 25px;
+            margin-top: 20px;
+            padding: 18px;
             background: #fff8f8;
             border: 1px solid #f0caca;
-            border-radius: 18px;
+            border-radius: 16px;
         }
 
         .confirmacao h3 {
-            margin-bottom: 15px;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .confirmacao p {
+            margin-bottom: 14px;
+            font-size: 13px;
         }
 
         .botoes-confirmacao {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             justify-content: center;
         }
 
         .botao-cancelar,
         .botao-continuar {
             border: none;
-            padding: 13px 22px;
+            padding: 11px 18px;
             border-radius: 30px;
             cursor: pointer;
             font-weight: bold;
+            font-size: 13px;
         }
 
         .botao-cancelar {
@@ -121,46 +153,53 @@
             color: white;
         }
 
+        /* STATUS */
+
         .status {
             display: none;
-            margin-top: 30px;
-            padding: 20px;
-            border-radius: 18px;
+            margin-top: 20px;
+            padding: 16px;
+            border-radius: 16px;
             background: #f8f8f8;
             text-align: left;
         }
 
         .status p {
-            margin-bottom: 12px;
+            margin-bottom: 9px;
             color: #0b1f3a;
             font-weight: bold;
+            font-size: 13px;
         }
 
         .link-mapa {
             color: #0b1f3a;
             font-weight: bold;
+            font-size: 13px;
         }
 
+        /* CONTATOS */
+
         .lista-contatos {
-            margin-top: 10px;
+            margin-top: 8px;
         }
 
         .contato-alerta {
             background: white;
             border-radius: 12px;
-            padding: 12px;
-            margin-top: 8px;
+            padding: 10px;
+            margin-top: 7px;
             border: 1px solid #ddd;
         }
 
         .contato-alerta strong {
             display: block;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
+            font-size: 13px;
         }
 
         .contato-alerta span {
             color: #666;
-            font-size: 14px;
+            font-size: 12px;
         }
 
         .sem-contatos {
@@ -168,22 +207,26 @@
             font-weight: normal;
         }
 
+        /* AÇÕES */
+
         .acoes-alerta {
             display: none;
-            margin-top: 25px;
-            padding: 20px;
-            border-radius: 18px;
+            margin-top: 16px;
+            padding: 15px;
+            border-radius: 15px;
             background: #eef4ff;
             border: 1px solid #cddaf3;
             text-align: center;
         }
 
         .acoes-alerta h3 {
-            margin-bottom: 10px;
+            margin-bottom: 7px;
+            font-size: 17px;
         }
 
         .acoes-alerta p {
-            margin-bottom: 15px;
+            margin-bottom: 10px;
+            font-size: 12px;
         }
 
         .botao-chat,
@@ -191,10 +234,11 @@
             display: block;
             width: 100%;
             text-decoration: none;
-            padding: 13px 20px;
+            padding: 11px 15px;
             border-radius: 30px;
             font-weight: bold;
-            margin-top: 10px;
+            font-size: 13px;
+            margin-top: 8px;
         }
 
         .botao-chat {
@@ -203,45 +247,52 @@
         }
 
         .botao-acompanhar {
-            background: #e8eef8;
+            background: #e1e9f5;
             color: #0b1f3a;
         }
 
+        /* PRÉVIA */
+
         .previa {
             display: none;
-            margin-top: 25px;
-            padding: 20px;
+            margin-top: 16px;
+            padding: 15px;
             background: white;
-            border-radius: 18px;
+            border-radius: 15px;
             border: 1px solid #ddd;
         }
 
         .previa h3 {
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             text-align: center;
+            font-size: 17px;
         }
 
         .mensagem-emergencia {
             background: #f5f7fb;
             border-radius: 12px;
-            padding: 18px;
-            line-height: 1.6;
+            padding: 14px;
+            line-height: 1.45;
             white-space: pre-line;
             color: #333;
             text-align: left;
+            font-size: 13px;
+            word-break: break-word;
         }
+
+        /* BOTÕES */
 
         .botao-copiar,
         .botao-enviar,
         .botao-engano {
             width: 100%;
             border: none;
-            padding: 13px;
+            padding: 11px;
             border-radius: 30px;
             cursor: pointer;
-            font-size: 15px;
+            font-size: 13px;
             font-weight: bold;
-            margin-top: 15px;
+            margin-top: 10px;
         }
 
         .botao-copiar,
@@ -256,27 +307,30 @@
             border: 1px solid #e0b4b4;
         }
 
+        /* WHATSAPP */
+
         .envios-contatos,
         .envios-engano {
             display: none;
-            margin-top: 25px;
+            margin-top: 15px;
         }
 
         .envios-contatos h3,
         .envios-engano h3 {
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 8px;
+            font-size: 15px;
         }
 
         .botao-whatsapp {
             width: 100%;
             border: none;
-            padding: 13px;
+            padding: 11px;
             border-radius: 30px;
             cursor: pointer;
-            font-size: 15px;
+            font-size: 13px;
             font-weight: bold;
-            margin-top: 10px;
+            margin-top: 7px;
             background: #25d366;
             color: white;
         }
@@ -285,22 +339,73 @@
         .enviado {
             display: none;
             text-align: center;
-            margin-top: 12px;
+            margin-top: 8px;
             color: #1b5e20;
             font-weight: bold;
+            font-size: 12px;
         }
 
-        .voltar-area {
-            margin-top: 25px;
-        }
+        @media (max-width: 600px) {
 
-        .voltar {
-            display: inline-block;
-            background: #0b1f3a;
-            color: white;
-            text-decoration: none;
-            padding: 13px 30px;
-            border-radius: 30px;
+            header {
+                padding: 14px 12px;
+            }
+
+            .logo-area img {
+                height: 58px;
+            }
+
+            .logo-area span {
+                font-size: 24px;
+            }
+
+            .container {
+                margin: 12px auto;
+                padding: 12px;
+            }
+
+            .card {
+                padding: 18px;
+                border-radius: 18px;
+            }
+
+            .icone {
+                font-size: 30px;
+                margin-bottom: 6px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 13px;
+                margin-bottom: 14px;
+            }
+
+            .botao-alerta {
+                width: 95px;
+                height: 95px;
+                font-size: 13px;
+            }
+
+            .confirmacao {
+                padding: 14px;
+            }
+
+            .botoes-confirmacao {
+                flex-direction: column;
+            }
+
+            .botao-cancelar,
+            .botao-continuar {
+                width: 100%;
+            }
+
+            .status {
+                padding: 13px;
+            }
+
         }
 
     </style>
@@ -315,12 +420,9 @@
 
         <img
             src="imagens/logo.png"
-            height="90"
             alt="Logo Guardião">
 
-        <span>
-            Guardião
-        </span>
+        <span>Guardião</span>
 
     </h1>
 
@@ -328,6 +430,15 @@
 
 
 <main class="container">
+
+    <a
+        href="painel.html"
+        class="voltar-topo">
+
+        ← Voltar
+
+    </a>
+
 
     <div class="card">
 
@@ -363,8 +474,7 @@
 
             <p>
                 Você está prestes a iniciar um alerta de emergência.
-                Sua localização será preparada para compartilhamento
-                com seus contatos de confiança.
+                Sua localização será compartilhada com seus contatos de confiança.
             </p>
 
             <div class="botoes-confirmacao">
@@ -533,19 +643,6 @@
 
         </div>
 
-
-        <div class="voltar-area">
-
-            <a
-                href="painel.html"
-                class="voltar">
-
-                Voltar
-
-            </a>
-
-        </div>
-
     </div>
 
 </main>
@@ -586,17 +683,18 @@
         ).style.display = "none";
 
 
-        // LIMPA O STATUS DO ALERTA ANTERIOR
-
         localStorage.removeItem(
             "ajudaGuardiao"
         );
 
 
-        // LIMPA A LOCALIZAÇÃO DO ALERTA ANTERIOR
-
         localStorage.removeItem(
             "localizacaoAlertaGuardiao"
+        );
+
+
+        localStorage.removeItem(
+            "ajudasGuardiao"
         );
 
 
@@ -649,22 +747,16 @@
         if (contatos.length === 0) {
 
             lista.innerHTML = `
-
                 <div class="contato-alerta">
 
                     <span class="sem-contatos">
-
                         Nenhum contato cadastrado.
-
                     </span>
 
                 </div>
-
             `;
 
-        }
-
-        else {
+        } else {
 
             contatos.forEach(
                 function(contato) {
@@ -680,19 +772,13 @@
 
 
                     elemento.innerHTML = `
-
                         <strong>
-
                             🟢 ${contato.nome}
-
                         </strong>
 
                         <span>
-
                             📱 ${contato.telefone}
-
                         </span>
-
                     `;
 
 
@@ -751,13 +837,6 @@
                     longitude;
 
 
-                /*
-                    SALVA A LOCALIZAÇÃO DO ALERTA
-
-                    Essa será a localização que
-                    todos os contatos verão.
-                */
-
                 const localizacaoAlerta = {
 
                     latitude: latitude,
@@ -785,19 +864,14 @@
 
 
                 localizacao.innerHTML =
-
                     "📍 Localização: " +
                     coordenadas +
-
                     "<br>" +
-
                     "<a class='link-mapa' " +
                     "href='" +
                     linkMapa +
                     "' target='_blank'>" +
-
                     "Abrir localização no mapa" +
-
                     "</a>";
 
 
@@ -854,9 +928,7 @@
                     )
                     .join("\n");
 
-        }
-
-        else {
+        } else {
 
             nomes =
                 "Nenhum contato cadastrado.";
@@ -865,19 +937,12 @@
 
 
         textoMensagem =
-
             "🚨 ALERTA DE EMERGÊNCIA — GUARDIÃO\n\n" +
-
             "Preciso de ajuda.\n\n" +
-
             "📍 Minha localização:\n" +
-
             localizacaoTexto +
-
             "\n\n" +
-
             "👥 Contatos de confiança:\n" +
-
             nomes;
 
 
@@ -1138,13 +1203,9 @@
 
 
         const link =
-
             "https://wa.me/" +
-
             telefone +
-
             "?text=" +
-
             mensagem;
 
 
