@@ -20,94 +20,121 @@
             font-family: Arial, Helvetica, sans-serif;
             background: #f5f7fb;
             color: #0b1f3a;
-            padding-bottom: 100px;
+            padding-bottom: 90px;
         }
 
         header {
             background: #0b1f3a;
             color: white;
             text-align: center;
-            padding: 25px;
+            padding: 18px 15px;
         }
 
         header h1 {
-            font-size: 30px;
+            font-size: 27px;
         }
 
         .logo-area {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
+        }
+
+        .logo-area img {
+            height: 68px;
         }
 
         .container {
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 20px;
+            max-width: 760px;
+            margin: 18px auto;
+            padding: 15px;
         }
 
         .card {
             background: white;
-            border-radius: 22px;
-            padding: 25px;
-            margin-bottom: 20px;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 14px;
             text-align: center;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, .07);
+        }
+
+        .card-boas-vindas {
+            padding: 16px 18px;
         }
 
         .icone {
-            font-size: 45px;
-            margin-bottom: 10px;
+            font-size: 34px;
+            margin-bottom: 7px;
         }
 
         h2 {
-            margin-bottom: 12px;
+            margin-bottom: 8px;
+            font-size: 21px;
         }
 
         p {
             color: #666;
-            line-height: 1.5;
-            margin-bottom: 20px;
+            line-height: 1.4;
+            margin-bottom: 14px;
+            font-size: 14px;
         }
 
-        /* Botão emergência */
+        /* EMERGÊNCIA */
+
+        .card-emergencia {
+            border: 1px solid #f1d3d8;
+        }
 
         .emergencia {
-            width: 110px;
-            height: 110px;
+            width: 95px;
+            height: 95px;
             border-radius: 50%;
             border: none;
             background: #d90429;
             color: white;
             cursor: pointer;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: bold;
-            box-shadow: 0 8px 20px rgba(217, 4, 41, .35);
-            transition: .3s;
+            box-shadow: 0 8px 18px rgba(217, 4, 41, .30);
+            transition: .2s;
         }
 
         .emergencia:hover {
-            transform: scale(1.08);
+            transform: scale(1.05);
         }
 
-        /* Botão azul */
+        /* BOTÃO AZUL */
 
         .botao {
             background: #0b1f3a;
             color: white;
             border: none;
-            padding: 13px 30px;
+            padding: 12px 24px;
             border-radius: 30px;
             cursor: pointer;
-            font-size: 15px;
+            font-size: 14px;
+            font-weight: bold;
         }
 
         .botao:hover {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
 
-        /* Barra inferior */
+        /* GRID DOS CARDS MENORES */
+
+        .grid-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .grid-cards .card {
+            margin-bottom: 0;
+        }
+
+        /* BARRA INFERIOR */
 
         .navbar {
             position: fixed;
@@ -118,7 +145,7 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
-            padding: 12px 0;
+            padding: 10px 0 8px;
             box-shadow: 0 -4px 12px rgba(0, 0, 0, .1);
             z-index: 1000;
         }
@@ -127,91 +154,177 @@
             text-decoration: none;
             color: #0b1f3a;
             text-align: center;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: bold;
         }
 
         .navbar span {
             display: block;
-            font-size: 24px;
-            margin-bottom: 5px;
+            font-size: 21px;
+            margin-bottom: 3px;
+        }
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 14px 12px;
+            }
+
+            .logo-area img {
+                height: 58px;
+            }
+
+            header h1 {
+                font-size: 24px;
+            }
+
+            .container {
+                margin: 12px auto;
+                padding: 12px;
+            }
+
+            .card {
+                padding: 16px;
+                border-radius: 18px;
+                margin-bottom: 10px;
+            }
+
+            .card-boas-vindas {
+                padding: 13px 15px;
+            }
+
+            .icone {
+                font-size: 28px;
+                margin-bottom: 5px;
+            }
+
+            h2 {
+                font-size: 19px;
+                margin-bottom: 6px;
+            }
+
+            p {
+                font-size: 13px;
+                margin-bottom: 11px;
+            }
+
+            .emergencia {
+                width: 82px;
+                height: 82px;
+                font-size: 11px;
+            }
+
+            .grid-cards {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .grid-cards .icone {
+                font-size: 25px;
+            }
+
+            .grid-cards h2 {
+                font-size: 16px;
+            }
+
+            .grid-cards p {
+                font-size: 12px;
+            }
+
+            .grid-cards .botao {
+                width: 100%;
+                padding: 10px 8px;
+                font-size: 12px;
+            }
+
+            .navbar {
+                padding: 8px 0 7px;
+            }
+
+            .navbar span {
+                font-size: 20px;
+            }
+
+            .navbar a {
+                font-size: 11px;
+            }
+
         }
 
     </style>
 
 </head>
 
-
 <body>
 
+<header>
 
-    <!-- CABEÇALHO -->
+    <h1 class="logo-area">
 
-    <header>
+        <img
+            src="imagens/logo.png"
+            alt="Logo Guardião">
 
-        <h1 class="logo-area">
+        <span>Guardião</span>
 
-            <img src="imagens/logo.png" height="90" alt="Logo Guardião">
+    </h1>
 
-            <span>Guardião</span>
-
-        </h1>
-
-    </header>
-
-
-    <!-- CONTEÚDO -->
-
-    <main class="container">
+</header>
 
 
-        <!-- Boas vindas -->
+<main class="container">
 
-        <div class="card">
 
-            <div class="icone">
-                👋
-            </div>
+    <!-- BOAS-VINDAS -->
 
-            <h2>
-                Bem-vindo
-            </h2>
+    <div class="card card-boas-vindas">
 
-            <p>
-                Seu sistema de proteção pessoal.
-            </p>
-
+        <div class="icone">
+            👋
         </div>
 
+        <h2>
+            Bem-vindo
+        </h2>
 
-        <!-- Emergência -->
+        <p>
+            Seu sistema de proteção pessoal.
+        </p>
 
-        <div class="card">
+    </div>
 
-            <div class="icone">
-                🚨
-            </div>
 
-            <h2>
-                Emergência
-            </h2>
+    <!-- EMERGÊNCIA -->
 
-            <p>
-                Pressione em caso de necessidade.
-            </p>
+    <div class="card card-emergencia">
 
-            <a href="emergencia.html">
-
-                <button class="emergencia">
-                    ALERTA
-                </button>
-
-            </a>
-
+        <div class="icone">
+            🚨
         </div>
 
+        <h2>
+            Emergência
+        </h2>
 
-        <!-- Contatos -->
+        <p>
+            Pressione em caso de necessidade.
+        </p>
+
+        <a href="emergencia.html">
+
+            <button class="emergencia">
+                ALERTA
+            </button>
+
+        </a>
+
+    </div>
+
+
+    <!-- CARDS MENORES -->
+
+    <div class="grid-cards">
+
 
         <div class="card">
 
@@ -220,7 +333,7 @@
             </div>
 
             <h2>
-                Contatos de confiança
+                Contatos
             </h2>
 
             <p>
@@ -238,8 +351,6 @@
         </div>
 
 
-        <!-- Configurações -->
-
         <div class="card">
 
             <div class="icone">
@@ -251,13 +362,13 @@
             </h2>
 
             <p>
-                Personalize sua experiência no Guardião.
+                Personalize sua experiência.
             </p>
 
             <a href="configuracoes.html">
 
                 <button class="botao">
-                    Abrir configurações
+                    Abrir
                 </button>
 
             </a>
@@ -265,54 +376,53 @@
         </div>
 
 
-    </main>
+    </div>
 
 
-    <!-- BARRA INFERIOR -->
-
-    <nav class="navbar">
+</main>
 
 
-        <a href="painel.html">
-
-            <span>🏠</span>
-
-            Início
-
-        </a>
+<nav class="navbar">
 
 
-        <a href="contatos.html">
+    <a href="painel.html">
 
-            <span>👥</span>
+        <span>🏠</span>
 
-            Contatos
+        Início
 
-        </a>
-
-
-        <a href="emergencia.html">
-
-            <span>🚨</span>
-
-            Emergência
-
-        </a>
+    </a>
 
 
-        <a href="configuracoes.html">
+    <a href="contatos.html">
 
-            <span>⚙️</span>
+        <span>👥</span>
 
-            Config.
+        Contatos
 
-        </a>
+    </a>
 
 
-    </nav>
+    <a href="emergencia.html">
 
+        <span>🚨</span>
+
+        Emergência
+
+    </a>
+
+
+    <a href="configuracoes.html">
+
+        <span>⚙️</span>
+
+        Config.
+
+    </a>
+
+
+</nav>
 
 </body>
 
 </html>
-
