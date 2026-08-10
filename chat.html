@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Guardião - Chat de Emergência</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fb;
+            color: #0b1f3a;
+            min-height: 100vh;
+            padding-bottom: 90px;
+        }
+
+        header {
+            background: #0b1f3a;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 25px auto;
+            padding: 20px;
+        }
+
+        .chat-card {
+            background: white;
+            border-radius: 22px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+            overflow: hidden;
+        }
+
+        .chat-topo {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .chat-topo h2 {
+            margin-bottom: 6px;
+        }
+
+        .chat-topo p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+
+        .status-chat {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: #fff1f1;
+            color: #b91c1c;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .mensagens {
+            height: 420px;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f7f9fc;
+        }
+
+        .mensagem {
+            max-width: 68%;
+            margin-bottom: 14px;
+            padding: 12px 15px;
+            border-radius: 16px;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+
+        .mensagem-enviada {
+            background: #0b1f3a;
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 5px;
+        }
+
+        .mensagem-recebida {
+            background: white;
+            color: #333;
+            border: 1px solid #ddd;
+            margin-right: auto;
+            border-bottom-left-radius: 5px;
+        }
+
+        .nome-remetente {
+            display: block;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .mensagem-enviada .nome-remetente {
+            color: #dce7ff;
+        }
+
+        .mensagem-recebida .nome-remetente {
+            color: #0b1f3a;
+        }
+
+        .hora {
+            display: block;
+            font-size: 11px;
+            margin-top: 6px;
+            opacity: .7;
+        }
+
+        .entrada-wrapper {
+            position: relative;
+        }
+
+        .entrada-area {
+            display: flex;
+            gap: 10px;
+            padding: 15px;
+            border-top: 1px solid #eee;
+            background: white;
+            align-items: center;
+        }
+
+        .entrada-area input {
+            flex: 1;
+            border: 1px solid #ccc;
+            border-radius: 30px;
+            padding: 13px 16px;
+            font-size: 15px;
+            outline: none;
+            min-width: 0;
+        }
+
+        .entrada-area input:focus {
+            border-color: #0b1f3a;
+        }
+
+        .botao-emoji,
+        .botao-enviar {
+            border: none;
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .botao-emoji {
+            background: #eef2f7;
+        }
+
+        .botao-enviar {
+            background: #0b1f3a;
+            color: white;
+        }
+
+        .painel-emojis {
+            display: none;
+            position: absolute;
+            bottom: 75px;
+            left: 15px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 16px;
+            padding: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
+            width: 260px;
+            z-index: 10;
+        }
+
+        .grade-emojis {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 8px;
+        }
+
+        .emoji {
+            border: none;
+            background: transparent;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 8px;
+        }
+
+        .emoji:hover {
+            background: #f1f4f8;
+        }
+
+        .acoes {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .botao-voltar,
+        .botao-simular {
+            display: inline-block;
+            border: none;
+            text-decoration: none;
+            padding: 12px 22px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .botao-voltar {
+            background: #0b1f3a;
+            color: white;
+        }
+
+        .botao-simular {
+            background: #eef2f7;
+            color: #0b1f3a;
+            margin-left: 10px;
+        }
+
+        .limpar {
+            margin-left: 10px;
+            border: none;
+            background: #eee;
+            color: #333;
+            padding: 12px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+
+        .aviso {
+            margin-top: 15px;
+            font-size: 13px;
+            color: #777;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+
+            .container {
+                margin: 10px auto;
+                padding: 10px;
+            }
+
+            .mensagens {
+                height: 380px;
+            }
+
+            .mensagem {
+                max-width: 85%;
+            }
+
+            .painel-emojis {
+                width: 230px;
+            }
+
+            .acoes {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .botao-simular,
+            .limpar {
+                margin-left: 0;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1 class="logo-area">
+
+        <img src="imagens/logo.png" height="70" alt="Logo Guardião">
+
+        <span>Guardião</span>
+
+    </h1>
+
+</header>
+
+
+<main class="container">
+
+    <div class="chat-card">
+
+        <div class="chat-topo">
+
+            <h2>
+                💬 Chat de Emergência
+            </h2>
+
+            <p>
+                Converse com seus contatos de confiança durante o alerta.
+            </p>
+
+            <span class="status-chat">
+                🔴 Alerta em andamento
+            </span>
+
+        </div>
+
+
+        <div
+            class="mensagens"
+            id="mensagensChat">
+        </div>
+
+
+        <div class="entrada-wrapper">
+
+            <div
+                class="painel-emojis"
+                id="painelEmojis">
+
+                <div class="grade-emojis">
+
+                    <button class="emoji" onclick="adicionarEmoji('😊')">😊</button>
+                    <button class="emoji" onclick="adicionarEmoji('❤️')">❤️</button>
+                    <button class="emoji" onclick="adicionarEmoji('👍')">👍</button>
+                    <button class="emoji" onclick="adicionarEmoji('🙏')">🙏</button>
+                    <button class="emoji" onclick="adicionarEmoji('😢')">😢</button>
+                    <button class="emoji" onclick="adicionarEmoji('😰')">😰</button>
+
+                    <button class="emoji" onclick="adicionarEmoji('🚨')">🚨</button>
+                    <button class="emoji" onclick="adicionarEmoji('📍')">📍</button>
+                    <button class="emoji" onclick="adicionarEmoji('🆘')">🆘</button>
+                    <button class="emoji" onclick="adicionarEmoji('👌')">👌</button>
+                    <button class="emoji" onclick="adicionarEmoji('✅')">✅</button>
+                    <button class="emoji" onclick="adicionarEmoji('❗')">❗</button>
+
+                    <button class="emoji" onclick="adicionarEmoji('🏠')">🏠</button>
+                    <button class="emoji" onclick="adicionarEmoji('🚗')">🚗</button>
+                    <button class="emoji" onclick="adicionarEmoji('📞')">📞</button>
+                    <button class="emoji" onclick="adicionarEmoji('💬')">💬</button>
+                    <button class="emoji" onclick="adicionarEmoji('👀')">👀</button>
+                    <button class="emoji" onclick="adicionarEmoji('💙')">💙</button>
+
+                </div>
+
+            </div>
+
+
+            <div class="entrada-area">
+
+                <button
+                    class="botao-emoji"
+                    onclick="abrirEmojis()">
+
+                    😊
+
+                </button>
+
+
+                <input
+                    type="text"
+                    id="campoMensagem"
+                    placeholder="Digite uma mensagem..."
+                    onkeydown="verificarEnter(event)"
+                >
+
+
+                <button
+                    class="botao-enviar"
+                    onclick="enviarMensagem()">
+
+                    ➤
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="acoes">
+
+        <a
+            href="emergencia.html"
+            class="botao-voltar">
+
+            Voltar para emergência
+
+        </a>
+
+
+        <button
+            class="botao-simular"
+            onclick="simularResposta()">
+
+            💬 Simular resposta de contato
+
+        </button>
+
+
+        <button
+            class="limpar"
+            onclick="limparChat()">
+
+            Limpar chat
+
+        </button>
+
+    </div>
+
+
+    <div class="aviso">
+        Modo de demonstração: as respostas dos contatos são simuladas neste navegador.
+    </div>
+
+</main>
+
+
+<script>
+
+    const chaveChat =
+        "mensagensChatGuardiao";
+
+
+    const nomeUsuario =
+        "Você — pediu ajuda";
+
+
+    function carregarMensagens() {
+
+        const mensagens =
+            JSON.parse(
+                localStorage.getItem(chaveChat)
+            ) || [];
+
+
+        const area =
+            document.getElementById(
+                "mensagensChat"
+            );
+
+
+        area.innerHTML = "";
+
+
+        mensagens.forEach(function(item) {
+
+            adicionarMensagemNaTela(
+                item.texto,
+                item.tipo,
+                item.hora,
+                item.nome || nomeUsuario
+            );
+
+        });
+
+
+        area.scrollTop =
+            area.scrollHeight;
+
+    }
+
+
+    function enviarMensagem() {
+
+        const campo =
+            document.getElementById(
+                "campoMensagem"
+            );
+
+
+        const texto =
+            campo.value.trim();
+
+
+        if (texto === "") {
+            return;
+        }
+
+
+        const hora =
+            obterHoraAtual();
+
+
+        salvarMensagem({
+
+            nome: nomeUsuario,
+            texto: texto,
+            tipo: "enviada",
+            hora: hora
+
+        });
+
+
+        adicionarMensagemNaTela(
+            texto,
+            "enviada",
+            hora,
+            nomeUsuario
+        );
+
+
+        campo.value = "";
+
+        campo.focus();
+
+
+        document.getElementById(
+            "painelEmojis"
+        ).style.display = "none";
+
+
+        rolarChat();
+
+    }
+
+
+    function simularResposta() {
+
+        const contatos =
+            JSON.parse(
+                localStorage.getItem(
+                    "contatosGuardiao"
+                )
+            ) || [];
+
+
+        if (contatos.length === 0) {
+
+            alert(
+                "Cadastre pelo menos um contato para testar o chat."
+            );
+
+            return;
+
+        }
+
+
+        const contato =
+            contatos[
+                Math.floor(
+                    Math.random() * contatos.length
+                )
+            ];
+
+
+        const respostas = [
+
+            "Estou indo até você. 🚗",
+
+            "Onde você está agora? 📍",
+
+            "Recebi seu alerta.",
+
+            "Estou tentando falar com você.",
+
+            "Fique onde está. Estou a caminho.",
+
+            "Já estou chegando. 👍",
+
+            "Você está bem?",
+
+            "Vou pedir ajuda agora. 📞"
+
+        ];
+
+
+        const texto =
+            respostas[
+                Math.floor(
+                    Math.random() * respostas.length
+                )
+            ];
+
+
+        const hora =
+            obterHoraAtual();
+
+
+        salvarMensagem({
+
+            nome: contato.nome,
+            texto: texto,
+            tipo: "recebida",
+            hora: hora
+
+        });
+
+
+        adicionarMensagemNaTela(
+            texto,
+            "recebida",
+            hora,
+            contato.nome
+        );
+
+
+        rolarChat();
+
+    }
+
+
+    function salvarMensagem(mensagem) {
+
+        const mensagens =
+            JSON.parse(
+                localStorage.getItem(chaveChat)
+            ) || [];
+
+
+        mensagens.push(mensagem);
+
+
+        localStorage.setItem(
+            chaveChat,
+            JSON.stringify(mensagens)
+        );
+
+    }
+
+
+    function adicionarMensagemNaTela(
+        texto,
+        tipo,
+        hora,
+        nome
+    ) {
+
+        const area =
+            document.getElementById(
+                "mensagensChat"
+            );
+
+
+        const mensagem =
+            document.createElement("div");
+
+
+        mensagem.className =
+            "mensagem " +
+            (
+                tipo === "recebida"
+                    ? "mensagem-recebida"
+                    : "mensagem-enviada"
+            );
+
+
+        const nomeElemento =
+            document.createElement("span");
+
+
+        nomeElemento.className =
+            "nome-remetente";
+
+
+        nomeElemento.textContent =
+            nome;
+
+
+        const textoElemento =
+            document.createElement("div");
+
+
+        textoElemento.textContent =
+            texto;
+
+
+        const horaElemento =
+            document.createElement("span");
+
+
+        horaElemento.className =
+            "hora";
+
+
+        horaElemento.textContent =
+            hora;
+
+
+        mensagem.appendChild(
+            nomeElemento
+        );
+
+
+        mensagem.appendChild(
+            textoElemento
+        );
+
+
+        mensagem.appendChild(
+            horaElemento
+        );
+
+
+        area.appendChild(
+            mensagem
+        );
+
+    }
+
+
+    function abrirEmojis() {
+
+        const painel =
+            document.getElementById(
+                "painelEmojis"
+            );
+
+
+        painel.style.display =
+            painel.style.display === "block"
+                ? "none"
+                : "block";
+
+    }
+
+
+    function adicionarEmoji(emoji) {
+
+        const campo =
+            document.getElementById(
+                "campoMensagem"
+            );
+
+
+        campo.value =
+            campo.value + emoji;
+
+
+        campo.focus();
+
+    }
+
+
+    function verificarEnter(event) {
+
+        if (event.key === "Enter") {
+
+            enviarMensagem();
+
+        }
+
+    }
+
+
+    function obterHoraAtual() {
+
+        return new Date()
+            .toLocaleTimeString(
+                "pt-BR",
+                {
+                    hour: "2-digit",
+                    minute: "2-digit"
+                }
+            );
+
+    }
+
+
+    function rolarChat() {
+
+        const area =
+            document.getElementById(
+                "mensagensChat"
+            );
+
+
+        area.scrollTop =
+            area.scrollHeight;
+
+    }
+
+
+    function limparChat() {
+
+        const confirmar =
+            confirm(
+                "Deseja realmente apagar as mensagens deste chat?"
+            );
+
+
+        if (!confirmar) {
+            return;
+        }
+
+
+        localStorage.removeItem(
+            chaveChat
+        );
+
+
+        document.getElementById(
+            "mensagensChat"
+        ).innerHTML = "";
+
+    }
+
+
+    carregarMensagens();
+
+</script>
+
+
+</body>
+
+</html>

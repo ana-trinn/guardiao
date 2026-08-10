@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Guardião - Painel</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fb;
+            color: #0b1f3a;
+            padding-bottom: 100px;
+        }
+
+        header {
+            background: #0b1f3a;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        header h1 {
+            font-size: 30px;
+        }
+
+        .logo-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 22px;
+            padding: 25px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+        }
+
+        .icone {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            margin-bottom: 12px;
+        }
+
+        p {
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        /* Botão emergência */
+
+        .emergencia {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: none;
+            background: #d90429;
+            color: white;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+            box-shadow: 0 8px 20px rgba(217, 4, 41, .35);
+            transition: .3s;
+        }
+
+        .emergencia:hover {
+            transform: scale(1.08);
+        }
+
+        /* Botão azul */
+
+        .botao {
+            background: #0b1f3a;
+            color: white;
+            border: none;
+            padding: 13px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .botao:hover {
+            transform: scale(1.05);
+        }
+
+        /* Barra inferior */
+
+        .navbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 12px 0;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, .1);
+            z-index: 1000;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #0b1f3a;
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .navbar span {
+            display: block;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- CABEÇALHO -->
+
+    <header>
+
+        <h1 class="logo-area">
+
+            <img src="imagens/logo.png" height="90" alt="Logo Guardião">
+
+            <span>Guardião</span>
+
+        </h1>
+
+    </header>
+
+
+    <!-- CONTEÚDO -->
+
+    <main class="container">
+
+
+        <!-- Boas vindas -->
+
+        <div class="card">
+
+            <div class="icone">
+                👋
+            </div>
+
+            <h2>
+                Bem-vindo
+            </h2>
+
+            <p>
+                Seu sistema de proteção pessoal.
+            </p>
+
+        </div>
+
+
+        <!-- Emergência -->
+
+        <div class="card">
+
+            <div class="icone">
+                🚨
+            </div>
+
+            <h2>
+                Emergência
+            </h2>
+
+            <p>
+                Pressione em caso de necessidade.
+            </p>
+
+            <a href="emergencia.html">
+
+                <button class="emergencia">
+                    ALERTA
+                </button>
+
+            </a>
+
+        </div>
+
+
+        <!-- Contatos -->
+
+        <div class="card">
+
+            <div class="icone">
+                👥
+            </div>
+
+            <h2>
+                Contatos de confiança
+            </h2>
+
+            <p>
+                Pessoas que receberão seu alerta.
+            </p>
+
+            <a href="contatos.html">
+
+                <button class="botao">
+                    Ver contatos
+                </button>
+
+            </a>
+
+        </div>
+
+
+        <!-- Configurações -->
+
+        <div class="card">
+
+            <div class="icone">
+                ⚙️
+            </div>
+
+            <h2>
+                Configurações
+            </h2>
+
+            <p>
+                Personalize sua experiência no Guardião.
+            </p>
+
+            <a href="configuracoes.html">
+
+                <button class="botao">
+                    Abrir configurações
+                </button>
+
+            </a>
+
+        </div>
+
+
+    </main>
+
+
+    <!-- BARRA INFERIOR -->
+
+    <nav class="navbar">
+
+
+        <a href="painel.html">
+
+            <span>🏠</span>
+
+            Início
+
+        </a>
+
+
+        <a href="contatos.html">
+
+            <span>👥</span>
+
+            Contatos
+
+        </a>
+
+
+        <a href="emergencia.html">
+
+            <span>🚨</span>
+
+            Emergência
+
+        </a>
+
+
+        <a href="configuracoes.html">
+
+            <span>⚙️</span>
+
+            Config.
+
+        </a>
+
+
+    </nav>
+
+
+</body>
+
+</html>
+

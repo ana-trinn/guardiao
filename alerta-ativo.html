@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Guardião - Alerta Ativo</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fb;
+            color: #0b1f3a;
+            padding-bottom: 50px;
+        }
+
+        header {
+            background: #0b1f3a;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .logo-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 22px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+        }
+
+        .titulo-alerta {
+            text-align: center;
+            color: #d90429;
+            margin-bottom: 20px;
+        }
+
+        .status-item {
+            background: #f7f9fc;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 12px;
+        }
+
+        .status-item strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .texto-secundario {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .mapa-area {
+            margin-top: 12px;
+        }
+
+        .botao-mapa {
+            display: inline-block;
+            text-decoration: none;
+            background: #0b1f3a;
+            color: white;
+            padding: 11px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+
+        .selecao-contato {
+            margin-top: 20px;
+            padding: 18px;
+            background: #f7f9fc;
+            border-radius: 15px;
+        }
+
+        .selecao-contato label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .selecao-contato select {
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            padding: 12px;
+            font-size: 15px;
+            background: white;
+            color: #0b1f3a;
+        }
+
+        .ajudas-lista {
+            margin-top: 20px;
+        }
+
+        .ajuda-item {
+            background: #eef8f0;
+            border: 1px solid #cde8d3;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+
+        .ajuda-item strong {
+            display: block;
+            color: #1b5e20;
+            margin-bottom: 5px;
+        }
+
+        .aguardando {
+            background: #fffaf0;
+            border: 1px solid #f3dfaa;
+        }
+
+        .aguardando strong {
+            color: #8a6500;
+        }
+
+        .botoes {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .botao {
+            border: none;
+            border-radius: 30px;
+            padding: 14px 20px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .botao-ajudar {
+            background: #1b5e20;
+            color: white;
+        }
+
+        .botao-chat {
+            background: #0b1f3a;
+            color: white;
+        }
+
+        .botao-localizacao {
+            background: #eef2f7;
+            color: #0b1f3a;
+        }
+
+        .botao-encerrar {
+            background: #fff1f1;
+            color: #b91c1c;
+            border: 1px solid #e5bcbc;
+        }
+
+        .mensagem {
+            display: none;
+            margin-top: 15px;
+            padding: 14px;
+            border-radius: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .mensagem-sucesso {
+            background: #eef8f0;
+            color: #1b5e20;
+        }
+
+        .mensagem-encerrado {
+            background: #f2f2f2;
+            color: #555;
+        }
+
+        .voltar-area {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .voltar {
+            display: inline-block;
+            text-decoration: none;
+            color: #0b1f3a;
+            font-weight: bold;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1 class="logo-area">
+
+        <img
+            src="imagens/logo.png"
+            height="80"
+            alt="Logo Guardião">
+
+        <span>Guardião</span>
+
+    </h1>
+
+</header>
+
+
+<main class="container">
+
+    <div class="card">
+
+        <h2 class="titulo-alerta">
+            🔴 Alerta em andamento
+        </h2>
+
+
+        <div class="status-item">
+
+            <strong>
+                🛡️ Pessoa que pediu ajuda
+            </strong>
+
+            <span class="texto-secundario">
+                Usuário do Guardião
+            </span>
+
+        </div>
+
+
+        <div class="status-item">
+
+            <strong>
+                📍 Localização compartilhada
+            </strong>
+
+            <span
+                class="texto-secundario"
+                id="statusLocalizacao">
+
+                Carregando localização do alerta...
+
+            </span>
+
+            <div
+                class="mapa-area"
+                id="mapaArea"
+                style="display: none;">
+
+                <a
+                    href="#"
+                    target="_blank"
+                    id="linkMapa"
+                    class="botao-mapa">
+
+                    📍 Abrir localização no mapa
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="status-item">
+
+            <strong>
+                👥 Contatos avisados
+            </strong>
+
+            <span
+                class="texto-secundario"
+                id="quantidadeContatos">
+
+                Verificando contatos...
+
+            </span>
+
+        </div>
+
+
+        <div class="selecao-contato">
+
+            <label for="contatoRespondendo">
+                Quem está respondendo ao alerta?
+            </label>
+
+            <select id="contatoRespondendo">
+
+                <option value="">
+                    Selecione um contato
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="botoes">
+
+            <button
+                class="botao botao-ajudar"
+                onclick="aceitarAjuda()">
+
+                🚗 Estou indo ajudar
+
+            </button>
+
+        </div>
+
+
+        <div
+            class="mensagem mensagem-sucesso"
+            id="mensagemAjuda">
+
+            ✅ Informação registrada.
+
+        </div>
+
+
+        <div
+            class="ajudas-lista"
+            id="listaStatusContatos">
+        </div>
+
+
+        <div class="botoes">
+
+            <a
+                href="chat.html"
+                class="botao botao-chat">
+
+                💬 Abrir chat de emergência
+
+            </a>
+
+
+            <button
+                class="botao botao-localizacao"
+                onclick="abrirLocalizacao()">
+
+                📍 Ver localização
+
+            </button>
+
+
+            <button
+                class="botao botao-encerrar"
+                onclick="encerrarAlerta()">
+
+                Encerrar alerta
+
+            </button>
+
+        </div>
+
+
+        <div
+            class="mensagem mensagem-encerrado"
+            id="mensagemEncerrado">
+
+            Alerta encerrado.
+
+        </div>
+
+    </div>
+
+
+    <div class="voltar-area">
+
+        <a
+            href="painel.html"
+            class="voltar">
+
+            ← Voltar ao painel
+
+        </a>
+
+    </div>
+
+</main>
+
+
+<script>
+
+    const chaveChat =
+        "mensagensChatGuardiao";
+
+
+    const chaveAjudas =
+        "ajudasGuardiao";
+
+
+    let linkLocalizacao =
+        "";
+
+
+    function carregarDados() {
+
+        carregarContatos();
+
+        carregarLocalizacaoDoAlerta();
+
+        atualizarListaStatus();
+
+    }
+
+
+    function carregarContatos() {
+
+        const contatos =
+            JSON.parse(
+                localStorage.getItem(
+                    "contatosGuardiao"
+                )
+            ) || [];
+
+
+        const quantidade =
+            document.getElementById(
+                "quantidadeContatos"
+            );
+
+
+        const seletor =
+            document.getElementById(
+                "contatoRespondendo"
+            );
+
+
+        seletor.innerHTML = `
+            <option value="">
+                Selecione um contato
+            </option>
+        `;
+
+
+        if (contatos.length === 0) {
+
+            quantidade.textContent =
+                "Nenhum contato cadastrado.";
+
+            return;
+
+        }
+
+
+        quantidade.textContent =
+            contatos.length === 1
+                ? "1 contato de confiança avisado."
+                : contatos.length +
+                  " contatos de confiança avisados.";
+
+
+        contatos.forEach(function(contato) {
+
+            const opcao =
+                document.createElement(
+                    "option"
+                );
+
+
+            opcao.value =
+                contato.nome;
+
+
+            opcao.textContent =
+                contato.nome;
+
+
+            seletor.appendChild(
+                opcao
+            );
+
+        });
+
+    }
+
+
+    function carregarLocalizacaoDoAlerta() {
+
+        const elemento =
+            document.getElementById(
+                "statusLocalizacao"
+            );
+
+
+        const mapaArea =
+            document.getElementById(
+                "mapaArea"
+            );
+
+
+        const linkMapaElemento =
+            document.getElementById(
+                "linkMapa"
+            );
+
+
+        const localizacao =
+            JSON.parse(
+                localStorage.getItem(
+                    "localizacaoAlertaGuardiao"
+                )
+            );
+
+
+        if (!localizacao) {
+
+            elemento.textContent =
+                "Localização do alerta ainda não disponível.";
+
+            mapaArea.style.display =
+                "none";
+
+            return;
+
+        }
+
+
+        linkLocalizacao =
+            localizacao.linkMapa;
+
+
+        elemento.innerHTML =
+            localizacao.coordenadas +
+            "<br>" +
+            "Compartilhada às " +
+            localizacao.horario;
+
+
+        linkMapaElemento.href =
+            localizacao.linkMapa;
+
+
+        mapaArea.style.display =
+            "block";
+
+    }
+
+
+    function abrirLocalizacao() {
+
+        if (linkLocalizacao === "") {
+
+            alert(
+                "A localização do alerta ainda não está disponível."
+            );
+
+            return;
+
+        }
+
+
+        window.open(
+            linkLocalizacao,
+            "_blank"
+        );
+
+    }
+
+
+    function aceitarAjuda() {
+
+        const seletor =
+            document.getElementById(
+                "contatoRespondendo"
+            );
+
+
+        const nomeContato =
+            seletor.value;
+
+
+        if (nomeContato === "") {
+
+            alert(
+                "Selecione quem está respondendo ao alerta."
+            );
+
+            return;
+
+        }
+
+
+        let ajudas =
+            JSON.parse(
+                localStorage.getItem(
+                    chaveAjudas
+                )
+            ) || [];
+
+
+        const jaExiste =
+            ajudas.some(
+                function(item) {
+
+                    return item.nome ===
+                        nomeContato;
+
+                }
+            );
+
+
+        if (jaExiste) {
+
+            alert(
+                nomeContato +
+                " já informou que está indo ajudar."
+            );
+
+            return;
+
+        }
+
+
+        const horario =
+            obterHoraAtual();
+
+
+        const novaAjuda = {
+
+            nome: nomeContato,
+
+            horario: horario,
+
+            status: "A caminho"
+
+        };
+
+
+        ajudas.push(
+            novaAjuda
+        );
+
+
+        localStorage.setItem(
+
+            chaveAjudas,
+
+            JSON.stringify(
+                ajudas
+            )
+
+        );
+
+
+        registrarMensagemSistema(
+
+            "🚗 " +
+            nomeContato +
+            " informou que está indo ajudar.",
+
+            horario
+
+        );
+
+
+        document.getElementById(
+            "mensagemAjuda"
+        ).style.display =
+            "block";
+
+
+        setTimeout(function() {
+
+            document.getElementById(
+                "mensagemAjuda"
+            ).style.display =
+                "none";
+
+        }, 2500);
+
+
+        seletor.value = "";
+
+
+        atualizarListaStatus();
+
+    }
+
+
+    function atualizarListaStatus() {
+
+        const contatos =
+            JSON.parse(
+                localStorage.getItem(
+                    "contatosGuardiao"
+                )
+            ) || [];
+
+
+        const ajudas =
+            JSON.parse(
+                localStorage.getItem(
+                    chaveAjudas
+                )
+            ) || [];
+
+
+        const area =
+            document.getElementById(
+                "listaStatusContatos"
+            );
+
+
+        area.innerHTML = "";
+
+
+        contatos.forEach(function(contato) {
+
+            const ajuda =
+                ajudas.find(
+                    function(item) {
+
+                        return item.nome ===
+                            contato.nome;
+
+                    }
+                );
+
+
+            const bloco =
+                document.createElement(
+                    "div"
+                );
+
+
+            if (ajuda) {
+
+                bloco.className =
+                    "ajuda-item";
+
+
+                bloco.innerHTML = `
+
+                    <strong>
+                        🚗 ${contato.nome}
+                    </strong>
+
+                    <span class="texto-secundario">
+                        A caminho • ${ajuda.horario}
+                    </span>
+
+                `;
+
+            }
+
+            else {
+
+                bloco.className =
+                    "ajuda-item aguardando";
+
+
+                bloco.innerHTML = `
+
+                    <strong>
+                        👀 ${contato.nome}
+                    </strong>
+
+                    <span class="texto-secundario">
+                        Ainda não informou se irá ajudar.
+                    </span>
+
+                `;
+
+            }
+
+
+            area.appendChild(
+                bloco
+            );
+
+        });
+
+    }
+
+
+    function registrarMensagemSistema(
+        texto,
+        horario
+    ) {
+
+        const mensagens =
+            JSON.parse(
+                localStorage.getItem(
+                    chaveChat
+                )
+            ) || [];
+
+
+        mensagens.push({
+
+            nome: "Sistema Guardião",
+
+            texto: texto,
+
+            tipo: "recebida",
+
+            hora: horario
+
+        });
+
+
+        localStorage.setItem(
+
+            chaveChat,
+
+            JSON.stringify(
+                mensagens
+            )
+
+        );
+
+    }
+
+
+    function obterHoraAtual() {
+
+        return new Date()
+            .toLocaleTimeString(
+
+                "pt-BR",
+
+                {
+                    hour: "2-digit",
+                    minute: "2-digit"
+                }
+
+            );
+
+    }
+
+
+    function encerrarAlerta() {
+
+        const confirmar =
+            confirm(
+                "Deseja realmente encerrar este alerta?"
+            );
+
+
+        if (!confirmar) {
+
+            return;
+
+        }
+
+
+        const horario =
+            obterHoraAtual();
+
+
+        registrarMensagemSistema(
+
+            "✅ O alerta de emergência foi encerrado.",
+
+            horario
+
+        );
+
+
+        localStorage.removeItem(
+            chaveAjudas
+        );
+
+
+        localStorage.removeItem(
+            "ajudaGuardiao"
+        );
+
+
+        localStorage.removeItem(
+            "localizacaoAlertaGuardiao"
+        );
+
+
+        document.getElementById(
+            "mensagemEncerrado"
+        ).style.display =
+            "block";
+
+
+        document.getElementById(
+            "listaStatusContatos"
+        ).innerHTML = `
+
+            <div class="ajuda-item">
+
+                <strong>
+                    ✅ Alerta encerrado
+                </strong>
+
+                <span class="texto-secundario">
+                    Esta ocorrência foi finalizada.
+                </span>
+
+            </div>
+
+        `;
+
+
+        document.getElementById(
+            "contatoRespondendo"
+        ).disabled =
+            true;
+
+    }
+
+
+    carregarDados();
+
+</script>
+
+
+</body>
+
+</html>
