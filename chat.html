@@ -21,13 +21,13 @@
             background: #f5f7fb;
             color: #0b1f3a;
             min-height: 100vh;
-            padding-bottom: 90px;
+            padding-bottom: 35px;
         }
 
         header {
             background: #0b1f3a;
             color: white;
-            padding: 20px;
+            padding: 18px 15px;
             text-align: center;
         }
 
@@ -35,62 +35,83 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
+        }
+
+        .logo-area img {
+            height: 68px;
+        }
+
+        .logo-area span {
+            font-size: 27px;
+            font-weight: bold;
         }
 
         .container {
             max-width: 700px;
-            margin: 25px auto;
-            padding: 20px;
+            margin: 18px auto;
+            padding: 15px;
+        }
+
+        .voltar-topo {
+            display: inline-block;
+            margin-bottom: 12px;
+            text-decoration: none;
+            color: #0b1f3a;
+            font-size: 14px;
+            font-weight: bold;
         }
 
         .chat-card {
             background: white;
-            border-radius: 22px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+            border-radius: 20px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, .07);
             overflow: hidden;
         }
 
         .chat-topo {
-            padding: 20px;
+            padding: 16px;
             border-bottom: 1px solid #eee;
         }
 
         .chat-topo h2 {
-            margin-bottom: 6px;
+            margin-bottom: 5px;
+            font-size: 20px;
         }
 
         .chat-topo p {
             color: #666;
-            font-size: 14px;
+            font-size: 13px;
             margin-bottom: 0;
+            line-height: 1.4;
         }
 
         .status-chat {
             display: inline-block;
-            margin-top: 10px;
-            padding: 6px 12px;
+            margin-top: 8px;
+            padding: 5px 10px;
             border-radius: 20px;
             background: #fff1f1;
             color: #b91c1c;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: bold;
         }
 
         .mensagens {
-            height: 420px;
+            height: 360px;
             overflow-y: auto;
-            padding: 20px;
+            padding: 14px;
             background: #f7f9fc;
         }
 
         .mensagem {
-            max-width: 68%;
-            margin-bottom: 14px;
-            padding: 12px 15px;
-            border-radius: 16px;
+            max-width: 78%;
+            margin-bottom: 10px;
+            padding: 10px 12px;
+            border-radius: 14px;
             line-height: 1.4;
             word-wrap: break-word;
+            font-size: 13px;
         }
 
         .mensagem-enviada {
@@ -110,9 +131,9 @@
 
         .nome-remetente {
             display: block;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: bold;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
         }
 
         .mensagem-enviada .nome-remetente {
@@ -125,8 +146,8 @@
 
         .hora {
             display: block;
-            font-size: 11px;
-            margin-top: 6px;
+            font-size: 10px;
+            margin-top: 5px;
             opacity: .7;
         }
 
@@ -136,8 +157,8 @@
 
         .entrada-area {
             display: flex;
-            gap: 10px;
-            padding: 15px;
+            gap: 8px;
+            padding: 12px;
             border-top: 1px solid #eee;
             background: white;
             align-items: center;
@@ -147,8 +168,8 @@
             flex: 1;
             border: 1px solid #ccc;
             border-radius: 30px;
-            padding: 13px 16px;
-            font-size: 15px;
+            padding: 11px 14px;
+            font-size: 14px;
             outline: none;
             min-width: 0;
         }
@@ -160,12 +181,12 @@
         .botao-emoji,
         .botao-enviar {
             border: none;
-            width: 48px;
-            height: 48px;
-            min-width: 48px;
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 20px;
+            font-size: 18px;
         }
 
         .botao-emoji {
@@ -180,29 +201,29 @@
         .painel-emojis {
             display: none;
             position: absolute;
-            bottom: 75px;
-            left: 15px;
+            bottom: 66px;
+            left: 12px;
             background: white;
             border: 1px solid #ddd;
-            border-radius: 16px;
-            padding: 12px;
+            border-radius: 14px;
+            padding: 10px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
-            width: 260px;
+            width: 230px;
             z-index: 10;
         }
 
         .grade-emojis {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
-            gap: 8px;
+            gap: 6px;
         }
 
         .emoji {
             border: none;
             background: transparent;
-            font-size: 24px;
+            font-size: 21px;
             cursor: pointer;
-            padding: 4px;
+            padding: 3px;
             border-radius: 8px;
         }
 
@@ -211,77 +232,118 @@
         }
 
         .acoes {
-            margin-top: 20px;
-            text-align: center;
+            margin-top: 14px;
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
-        .botao-voltar,
-        .botao-simular {
-            display: inline-block;
+        .botao-simular,
+        .limpar {
             border: none;
             text-decoration: none;
-            padding: 12px 22px;
+            padding: 11px 16px;
             border-radius: 30px;
             cursor: pointer;
             font-weight: bold;
-        }
-
-        .botao-voltar {
-            background: #0b1f3a;
-            color: white;
+            font-size: 12px;
         }
 
         .botao-simular {
             background: #eef2f7;
             color: #0b1f3a;
-            margin-left: 10px;
         }
 
         .limpar {
-            margin-left: 10px;
-            border: none;
             background: #eee;
             color: #333;
-            padding: 12px 20px;
-            border-radius: 30px;
-            cursor: pointer;
         }
 
         .aviso {
-            margin-top: 15px;
-            font-size: 13px;
+            margin-top: 12px;
+            font-size: 11px;
             color: #777;
             text-align: center;
+            line-height: 1.4;
         }
 
         @media (max-width: 600px) {
 
+            header {
+                padding: 14px 12px;
+            }
+
+            .logo-area img {
+                height: 58px;
+            }
+
+            .logo-area span {
+                font-size: 24px;
+            }
+
             .container {
-                margin: 10px auto;
-                padding: 10px;
+                margin: 12px auto;
+                padding: 12px;
+            }
+
+            .voltar-topo {
+                font-size: 13px;
+                margin-bottom: 9px;
+            }
+
+            .chat-topo {
+                padding: 13px;
+            }
+
+            .chat-topo h2 {
+                font-size: 18px;
+            }
+
+            .chat-topo p {
+                font-size: 12px;
             }
 
             .mensagens {
-                height: 380px;
+                height: 330px;
+                padding: 11px;
             }
 
             .mensagem {
                 max-width: 85%;
+                font-size: 12px;
+                padding: 9px 11px;
+            }
+
+            .entrada-area {
+                padding: 10px;
+                gap: 6px;
+            }
+
+            .entrada-area input {
+                font-size: 13px;
+                padding: 10px 12px;
+            }
+
+            .botao-emoji,
+            .botao-enviar {
+                width: 38px;
+                height: 38px;
+                min-width: 38px;
+                font-size: 17px;
             }
 
             .painel-emojis {
-                width: 230px;
+                width: 215px;
             }
 
             .acoes {
-                display: flex;
                 flex-direction: column;
-                gap: 10px;
             }
 
             .botao-simular,
             .limpar {
-                margin-left: 0;
+                width: 100%;
             }
 
         }
@@ -296,7 +358,9 @@
 
     <h1 class="logo-area">
 
-        <img src="imagens/logo.png" height="70" alt="Logo Guardião">
+        <img
+            src="imagens/logo.png"
+            alt="Logo Guardião">
 
         <span>Guardião</span>
 
@@ -306,6 +370,15 @@
 
 
 <main class="container">
+
+    <a
+        href="emergencia.html"
+        class="voltar-topo">
+
+        ← Voltar
+
+    </a>
+
 
     <div class="chat-card">
 
@@ -401,15 +474,6 @@
 
 
     <div class="acoes">
-
-        <a
-            href="emergencia.html"
-            class="botao-voltar">
-
-            Voltar para emergência
-
-        </a>
-
 
         <button
             class="botao-simular"
