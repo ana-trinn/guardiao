@@ -20,102 +20,119 @@
             font-family: Arial, Helvetica, sans-serif;
             background: #f5f7fb;
             color: #0b1f3a;
-            padding-bottom: 50px;
+            padding-bottom: 40px;
         }
 
         header {
             background: #0b1f3a;
             color: white;
             text-align: center;
-            padding: 25px;
+            padding: 18px 15px;
         }
 
         .logo-area {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
+        }
+
+        .logo-area img {
+            height: 68px;
+        }
+
+        .logo-area span {
+            font-size: 27px;
+            font-weight: bold;
         }
 
         .container {
             max-width: 700px;
-            margin: 30px auto;
-            padding: 20px;
+            margin: 18px auto;
+            padding: 15px;
         }
 
-        /* VOLTAR NO TOPO */
+        /* VOLTAR */
 
         .voltar-topo {
             display: inline-block;
-            margin-bottom: 18px;
+            margin-bottom: 14px;
             color: #0b1f3a;
             text-decoration: none;
             font-weight: bold;
-            font-size: 15px;
+            font-size: 14px;
         }
 
         .voltar-topo:hover {
             text-decoration: underline;
         }
 
+        /* CARD */
+
         .card {
             background: white;
-            border-radius: 22px;
-            padding: 30px;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, .07);
         }
 
         .icone {
-            font-size: 50px;
+            font-size: 36px;
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 8px;
         }
 
         h2 {
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            font-size: 22px;
         }
 
         .descricao {
             text-align: center;
             color: #666;
-            line-height: 1.5;
-            margin-bottom: 25px;
+            line-height: 1.45;
+            margin-bottom: 20px;
+            font-size: 14px;
         }
 
         /* CONTATOS */
 
         .contato {
             background: #f5f7fb;
-            border-radius: 15px;
-            padding: 15px;
-            margin-top: 15px;
+            border-radius: 14px;
+            padding: 13px;
+            margin-top: 10px;
 
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
 
         .informacoes-contato {
             text-align: left;
             flex: 1;
+            min-width: 0;
         }
 
         .informacoes-contato strong {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
+            font-size: 14px;
         }
 
         .informacoes-contato span {
             color: #666;
+            font-size: 13px;
+            word-break: break-word;
         }
 
         .sem-contatos {
             text-align: center;
             color: #777;
-            margin-top: 20px;
+            margin-top: 15px;
+            font-size: 14px;
         }
 
         /* LIXEIRA */
@@ -123,13 +140,13 @@
         .lixeira {
             border: none;
             background: transparent;
-            font-size: 22px;
+            font-size: 20px;
             cursor: pointer;
             padding: 5px;
         }
 
         .lixeira:hover {
-            transform: scale(1.15);
+            transform: scale(1.12);
         }
 
         /* BOTÕES */
@@ -139,12 +156,12 @@
             background: #0b1f3a;
             color: white;
             border: none;
-            padding: 14px;
+            padding: 13px;
             border-radius: 30px;
             cursor: pointer;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: bold;
-            margin-top: 20px;
+            margin-top: 16px;
         }
 
         .botao:hover {
@@ -156,41 +173,41 @@
             background: white;
             color: #0b1f3a;
             border: 2px solid #0b1f3a;
-            padding: 13px;
+            padding: 12px;
             border-radius: 30px;
             cursor: pointer;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: bold;
-            margin-top: 12px;
+            margin-top: 10px;
         }
 
         /* FORMULÁRIO */
 
         .formulario {
             display: none;
-            margin-top: 25px;
-            padding-top: 25px;
+            margin-top: 20px;
+            padding-top: 20px;
             border-top: 1px solid #e5e5e5;
         }
 
         .campo {
-            margin-bottom: 15px;
+            margin-bottom: 13px;
             text-align: left;
         }
 
         .campo label {
             display: block;
-            margin-bottom: 7px;
+            margin-bottom: 6px;
             font-weight: bold;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .campo input {
             width: 100%;
-            padding: 13px;
+            padding: 12px;
             border: 1px solid #ccc;
             border-radius: 12px;
-            font-size: 15px;
+            font-size: 14px;
             outline: none;
         }
 
@@ -200,13 +217,64 @@
 
         @media (max-width: 600px) {
 
+            header {
+                padding: 14px 12px;
+            }
+
+            .logo-area img {
+                height: 58px;
+            }
+
+            .logo-area span {
+                font-size: 24px;
+            }
+
             .container {
-                margin-top: 15px;
-                padding: 15px;
+                margin: 12px auto;
+                padding: 12px;
+            }
+
+            .voltar-topo {
+                font-size: 13px;
+                margin-bottom: 10px;
             }
 
             .card {
-                padding: 22px;
+                padding: 18px;
+                border-radius: 18px;
+            }
+
+            .icone {
+                font-size: 30px;
+                margin-bottom: 6px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            .descricao {
+                font-size: 13px;
+                margin-bottom: 16px;
+            }
+
+            .contato {
+                padding: 11px;
+                margin-top: 8px;
+            }
+
+            .informacoes-contato strong {
+                font-size: 13px;
+            }
+
+            .informacoes-contato span {
+                font-size: 12px;
+            }
+
+            .botao {
+                margin-top: 14px;
+                padding: 12px;
+                font-size: 13px;
             }
 
         }
@@ -224,7 +292,6 @@
 
         <img
             src="imagens/logo.png"
-            height="90"
             alt="Logo Guardião">
 
         <span>Guardião</span>
@@ -236,8 +303,6 @@
 
 <main class="container">
 
-
-    <!-- VOLTAR AGORA FICA NO TOPO -->
 
     <a
         href="painel.html"
