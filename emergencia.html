@@ -426,24 +426,39 @@
 
     <div class="card">
 
-        <div class="icone">
-            🚨
+
+        <!--
+            Esta área aparece quando a pessoa
+            entra normalmente em Emergência.
+
+            Quando vier do ALERTA do painel,
+            ela será escondida automaticamente.
+        -->
+
+        <div id="inicioAlerta">
+
+            <div class="icone">
+                🚨
+            </div>
+
+            <h2>
+                Emergência
+            </h2>
+
+            <p>
+                Pressione o botão abaixo para iniciar um alerta.
+            </p>
+
+            <button
+                class="botao-alerta"
+                type="button"
+                onclick="mostrarConfirmacao()">
+
+                ALERTA
+
+            </button>
+
         </div>
-
-        <h2>Emergência</h2>
-
-        <p>
-            Pressione o botão abaixo para iniciar um alerta.
-        </p>
-
-
-        <button
-            class="botao-alerta"
-            onclick="mostrarConfirmacao()">
-
-            ALERTA
-
-        </button>
 
 
         <div
@@ -459,11 +474,11 @@
                 Seus contatos de confiança serão preparados para receber o aviso.
             </p>
 
-
             <div class="botoes-confirmacao">
 
                 <button
                     class="botao-cancelar"
+                    type="button"
                     onclick="cancelarAlerta()">
 
                     Cancelar
@@ -473,6 +488,7 @@
 
                 <button
                     class="botao-continuar"
+                    type="button"
                     onclick="continuarAlerta()">
 
                     Continuar
@@ -526,7 +542,6 @@
 
                 </a>
 
-
                 <a
                     href="alerta-ativo.html"
                     class="botao-acompanhar">
@@ -554,6 +569,7 @@
 
                 <button
                     class="botao-copiar"
+                    type="button"
                     onclick="copiarMensagem()">
 
                     📋 Copiar mensagem
@@ -572,6 +588,7 @@
 
                 <button
                     class="botao-enviar"
+                    type="button"
                     onclick="mostrarEnvios()">
 
                     📤 Enviar alerta
@@ -594,6 +611,7 @@
 
                 <button
                     class="botao-engano"
+                    type="button"
                     onclick="mostrarEnviosEngano()">
 
                     Foi enviado por engano
@@ -1462,14 +1480,48 @@
 
 
     /*
-        INÍCIO AUTOMÁTICO DO ALERTA
+        ESCONDE A PARTE REPETIDA DO ALERTA
+    */
 
-        Se a pessoa vier do botão principal
-        do painel com:
+    function esconderInicioAlerta() {
 
+        const inicioAlerta =
+            document.getElementById(
+                "inicioAlerta"
+            );
+
+
+        const confirmacao =
+            document.getElementById(
+                "confirmacao"
+            );
+
+
+        if (inicioAlerta) {
+
+            inicioAlerta.style.display =
+                "none";
+
+        }
+
+
+        if (confirmacao) {
+
+            confirmacao.style.display =
+                "none";
+
+        }
+
+    }
+
+
+    /*
+        ALERTA RÁPIDO
+
+        Se entrar por:
         emergencia.html?auto=1
 
-        o alerta começa imediatamente.
+        inicia direto.
     */
 
     function verificarInicioAutomatico() {
@@ -1491,9 +1543,16 @@
         ) {
 
             /*
-                Remove ?auto=1 da URL para
-                evitar iniciar novamente se
-                a página for atualizada.
+                Primeiro escondemos o segundo
+                ALERTA e a confirmação.
+            */
+
+            esconderInicioAlerta();
+
+
+            /*
+                Depois retiramos ?auto=1
+                da barra de endereço.
             */
 
             window.history.replaceState(
@@ -1508,8 +1567,7 @@
 
 
             /*
-                Inicia o alerta sem mostrar
-                a etapa de confirmação.
+                Agora ativa diretamente.
             */
 
             continuarAlerta();
