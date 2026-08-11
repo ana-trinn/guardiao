@@ -1,963 +1,644 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Guardião - Chat de Emergência</title>
 
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f5f7fb;
+        color: #0b1f3a;
+        min-height: 100vh;
+        padding-bottom: 35px;
+        overflow-x: hidden;
+      }
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f5f7fb;
-            color: #0b1f3a;
-            min-height: 100vh;
-            padding-bottom: 35px;
-            overflow-x: hidden;
-        }
+      header {
+        background: #0b1f3a;
+        color: white;
+        text-align: center;
+        padding: 14px 12px;
+      }
 
-        header {
-            background: #0b1f3a;
-            color: white;
-            text-align: center;
-            padding: 14px 12px;
-        }
+      .logo-area {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+      }
 
-        .logo-area {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-        }
+      .logo-area img {
+        height: 58px;
+      }
 
-        .logo-area img {
-            height: 58px;
-        }
+      .logo-area span {
+        font-size: 24px;
+        font-weight: bold;
+      }
 
-        .logo-area span {
-            font-size: 24px;
-            font-weight: bold;
-        }
+      .container {
+        width: 100%;
+        max-width: 620px;
+        margin: 12px auto;
+        padding: 14px;
+      }
 
+      .voltar-topo {
+        display: inline-block;
+        margin-bottom: 12px;
+        text-decoration: none;
+        color: #0b1f3a;
+        font-size: 13px;
+        font-weight: bold;
+      }
+
+      .chat-card {
+        width: 100%;
+        background: white;
+        border-radius: 18px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+        overflow: hidden;
+      }
+
+      .chat-topo {
+        padding: 16px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .chat-topo h2 {
+        font-size: 19px;
+        margin-bottom: 5px;
+      }
+
+      .chat-topo p {
+        color: #666;
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
+      .status-chat {
+        display: inline-block;
+        margin-top: 8px;
+        padding: 5px 10px;
+        border-radius: 20px;
+        background: #fff1f1;
+        color: #b91c1c;
+        font-size: 11px;
+        font-weight: bold;
+      }
+
+      .mensagens {
+        height: 300px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 14px;
+        background: #f7f9fc;
+      }
+
+      .mensagem {
+        max-width: 82%;
+        margin-bottom: 9px;
+        padding: 9px 11px;
+        border-radius: 13px;
+        line-height: 1.35;
+        font-size: 12px;
+        overflow-wrap: anywhere;
+      }
+
+      .mensagem-enviada {
+        background: #0b1f3a;
+        color: white;
+        margin-left: auto;
+        border-bottom-right-radius: 5px;
+      }
+
+      .mensagem-recebida {
+        background: white;
+        color: #333;
+        border: 1px solid #ddd;
+        margin-right: auto;
+        border-bottom-left-radius: 5px;
+      }
+
+      .nome-remetente {
+        display: block;
+        font-size: 11px;
+        font-weight: bold;
+        margin-bottom: 4px;
+      }
+
+      .mensagem-enviada .nome-remetente {
+        color: #dce7ff;
+      }
+
+      .mensagem-recebida .nome-remetente {
+        color: #0b1f3a;
+      }
+
+      .hora {
+        display: block;
+        font-size: 10px;
+        margin-top: 5px;
+        opacity: 0.7;
+      }
+
+      .entrada-wrapper {
+        position: relative;
+        width: 100%;
+      }
+
+      .entrada-area {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        width: 100%;
+        padding: 12px 16px;
+        border-top: 1px solid #eee;
+        background: white;
+      }
+
+      .entrada-area input {
+        flex: 1;
+        max-width: 420px;
+        min-width: 0;
+        border: 1px solid #ccc;
+        border-radius: 30px;
+        padding: 9px 12px;
+        font-size: 13px;
+        outline: none;
+      }
+
+      .entrada-area input:focus {
+        border-color: #0b1f3a;
+      }
+
+      .botao-emoji,
+      .botao-enviar {
+        border: none;
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+        flex: 0 0 36px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .botao-emoji {
+        background: #eef2f7;
+      }
+
+      .botao-enviar {
+        background: #0b1f3a;
+        color: white;
+      }
+
+      .painel-emojis {
+        display: none;
+        position: absolute;
+        bottom: 60px;
+        left: 16px;
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 14px;
+        padding: 10px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        width: 220px;
+        max-width: calc(100% - 32px);
+        z-index: 10;
+      }
+
+      .grade-emojis {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 6px;
+      }
+
+      .emoji {
+        border: none;
+        background: transparent;
+        font-size: 20px;
+        cursor: pointer;
+        padding: 3px;
+        border-radius: 8px;
+      }
+
+      .acoes {
+        margin-top: 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
+
+      .botao-voltar,
+      .botao-simular,
+      .limpar {
+        width: 100%;
+        border: none;
+        text-decoration: none;
+        padding: 11px 14px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 12px;
+        text-align: center;
+      }
+
+      .botao-voltar {
+        background: #0b1f3a;
+        color: white;
+      }
+
+      .botao-simular {
+        background: #eef2f7;
+        color: #0b1f3a;
+      }
+
+      .limpar {
+        background: #eee;
+        color: #333;
+      }
+
+      .aviso {
+        margin-top: 10px;
+        padding: 0 10px;
+        font-size: 11px;
+        color: #777;
+        text-align: center;
+        line-height: 1.4;
+      }
+
+      @media (max-width: 600px) {
         .container {
-            width: 100%;
-            max-width: 620px;
-            margin: 12px auto;
-            padding: 14px;
-        }
-
-        .voltar-topo {
-            display: inline-block;
-            margin-bottom: 12px;
-            text-decoration: none;
-            color: #0b1f3a;
-            font-size: 13px;
-            font-weight: bold;
+          padding: 16px;
         }
 
         .chat-card {
-            width: 100%;
-            background: white;
-            border-radius: 18px;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, .07);
-            overflow: hidden;
-        }
-
-        .chat-topo {
-            padding: 16px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .chat-topo h2 {
-            font-size: 19px;
-            margin-bottom: 5px;
-        }
-
-        .chat-topo p {
-            color: #666;
-            font-size: 12px;
-            line-height: 1.4;
-        }
-
-        .status-chat {
-            display: inline-block;
-            margin-top: 8px;
-            padding: 5px 10px;
-            border-radius: 20px;
-            background: #fff1f1;
-            color: #b91c1c;
-            font-size: 11px;
-            font-weight: bold;
-        }
-
-        .mensagens {
-            height: 300px;
-            overflow-y: auto;
-            overflow-x: hidden;
-            padding: 14px;
-            background: #f7f9fc;
-        }
-
-        .mensagem {
-            max-width: 82%;
-            margin-bottom: 9px;
-            padding: 9px 11px;
-            border-radius: 13px;
-            line-height: 1.35;
-            font-size: 12px;
-            overflow-wrap: anywhere;
-        }
-
-        .mensagem-enviada {
-            background: #0b1f3a;
-            color: white;
-            margin-left: auto;
-            border-bottom-right-radius: 5px;
-        }
-
-        .mensagem-recebida {
-            background: white;
-            color: #333;
-            border: 1px solid #ddd;
-            margin-right: auto;
-            border-bottom-left-radius: 5px;
-        }
-
-        .nome-remetente {
-            display: block;
-            font-size: 11px;
-            font-weight: bold;
-            margin-bottom: 4px;
-        }
-
-        .mensagem-enviada .nome-remetente {
-            color: #dce7ff;
-        }
-
-        .mensagem-recebida .nome-remetente {
-            color: #0b1f3a;
-        }
-
-        .hora {
-            display: block;
-            font-size: 10px;
-            margin-top: 5px;
-            opacity: .7;
-        }
-
-        .entrada-wrapper {
-            position: relative;
-            width: 100%;
+          border-radius: 18px;
         }
 
         .entrada-area {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 9px;
-            width: 100%;
-            padding: 12px 16px;
-            border-top: 1px solid #eee;
-            background: white;
+          padding: 12px 18px;
+          gap: 10px;
         }
 
         .entrada-area input {
-            flex: 1;
-            max-width: 420px;
-            min-width: 0;
-            border: 1px solid #ccc;
-            border-radius: 30px;
-            padding: 9px 12px;
-            font-size: 13px;
-            outline: none;
-        }
-
-        .entrada-area input:focus {
-            border-color: #0b1f3a;
+          max-width: none;
+          padding: 9px 12px;
+          font-size: 13px;
         }
 
         .botao-emoji,
         .botao-enviar {
-            border: none;
-            width: 36px;
-            height: 36px;
-            min-width: 36px;
-            flex: 0 0 36px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+          width: 34px;
+          height: 34px;
+          min-width: 34px;
+          flex: 0 0 34px;
+          font-size: 15px;
         }
-
-        .botao-emoji {
-            background: #eef2f7;
-        }
-
-        .botao-enviar {
-            background: #0b1f3a;
-            color: white;
-        }
-
-        .painel-emojis {
-            display: none;
-            position: absolute;
-            bottom: 60px;
-            left: 16px;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 14px;
-            padding: 10px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
-            width: 220px;
-            max-width: calc(100% - 32px);
-            z-index: 10;
-        }
-
-        .grade-emojis {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 6px;
-        }
-
-        .emoji {
-            border: none;
-            background: transparent;
-            font-size: 20px;
-            cursor: pointer;
-            padding: 3px;
-            border-radius: 8px;
-        }
-
-        .acoes {
-            margin-top: 14px;
-            display: flex;
-            flex-direction: column;
-            gap: 9px;
-        }
-
-        .botao-voltar,
-        .botao-simular,
-        .limpar {
-            width: 100%;
-            border: none;
-            text-decoration: none;
-            padding: 11px 14px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 12px;
-            text-align: center;
-        }
-
-        .botao-voltar {
-            background: #0b1f3a;
-            color: white;
-        }
-
-        .botao-simular {
-            background: #eef2f7;
-            color: #0b1f3a;
-        }
-
-        .limpar {
-            background: #eee;
-            color: #333;
-        }
-
-        .aviso {
-            margin-top: 10px;
-            padding: 0 10px;
-            font-size: 11px;
-            color: #777;
-            text-align: center;
-            line-height: 1.4;
-        }
-
-        @media (max-width: 600px) {
-
-            .container {
-                padding: 16px;
-            }
-
-            .chat-card {
-                border-radius: 18px;
-            }
-
-            .entrada-area {
-                padding: 12px 18px;
-                gap: 10px;
-            }
-
-            .entrada-area input {
-                max-width: none;
-                padding: 9px 12px;
-                font-size: 13px;
-            }
-
-            .botao-emoji,
-            .botao-enviar {
-                width: 34px;
-                height: 34px;
-                min-width: 34px;
-                flex: 0 0 34px;
-                font-size: 15px;
-            }
-
-        }
-
+      }
     </style>
+  </head>
 
-</head>
-
-<body>
-
-<header>
-
-    <h1 class="logo-area">
-
-        <img
-            src="imagens/logo.png"
-            alt="Logo Guardião">
+  <body>
+    <header>
+      <h1 class="logo-area">
+        <img src="imagens/logo.png" alt="Logo Guardião" />
 
         <span>Guardião</span>
+      </h1>
+    </header>
 
-    </h1>
+    <main class="container">
+      <a href="emergencia.html" class="voltar-topo"> ← Voltar </a>
 
-</header>
-
-<main class="container">
-
-    <a
-        href="emergencia.html"
-        class="voltar-topo">
-
-        ← Voltar
-
-    </a>
-
-    <div class="chat-card">
-
+      <div class="chat-card">
         <div class="chat-topo">
+          <h2>💬 Chat de Emergência</h2>
 
-            <h2>
-                💬 Chat de Emergência
-            </h2>
+          <p>Converse com seus contatos de confiança durante o alerta.</p>
 
-            <p>
-                Converse com seus contatos de confiança durante o alerta.
-            </p>
-
-            <span class="status-chat">
-                🔴 Alerta em andamento
-            </span>
-
+          <span class="status-chat"> 🔴 Alerta em andamento </span>
         </div>
 
-        <div
-            class="mensagens"
-            id="mensagensChat">
-        </div>
+        <div class="mensagens" id="mensagensChat"></div>
 
         <div class="entrada-wrapper">
+          <div class="painel-emojis" id="painelEmojis">
+            <div class="grade-emojis">
+              <button class="emoji" onclick="adicionarEmoji('😊')">😊</button>
+              <button class="emoji" onclick="adicionarEmoji('❤️')">❤️</button>
+              <button class="emoji" onclick="adicionarEmoji('👍')">👍</button>
+              <button class="emoji" onclick="adicionarEmoji('🙏')">🙏</button>
+              <button class="emoji" onclick="adicionarEmoji('😢')">😢</button>
+              <button class="emoji" onclick="adicionarEmoji('😰')">😰</button>
 
-            <div
-                class="painel-emojis"
-                id="painelEmojis">
+              <button class="emoji" onclick="adicionarEmoji('🚨')">🚨</button>
+              <button class="emoji" onclick="adicionarEmoji('📍')">📍</button>
+              <button class="emoji" onclick="adicionarEmoji('🆘')">🆘</button>
+              <button class="emoji" onclick="adicionarEmoji('👌')">👌</button>
+              <button class="emoji" onclick="adicionarEmoji('✅')">✅</button>
+              <button class="emoji" onclick="adicionarEmoji('❗')">❗</button>
 
-                <div class="grade-emojis">
-
-                    <button class="emoji" onclick="adicionarEmoji('😊')">😊</button>
-                    <button class="emoji" onclick="adicionarEmoji('❤️')">❤️</button>
-                    <button class="emoji" onclick="adicionarEmoji('👍')">👍</button>
-                    <button class="emoji" onclick="adicionarEmoji('🙏')">🙏</button>
-                    <button class="emoji" onclick="adicionarEmoji('😢')">😢</button>
-                    <button class="emoji" onclick="adicionarEmoji('😰')">😰</button>
-
-                    <button class="emoji" onclick="adicionarEmoji('🚨')">🚨</button>
-                    <button class="emoji" onclick="adicionarEmoji('📍')">📍</button>
-                    <button class="emoji" onclick="adicionarEmoji('🆘')">🆘</button>
-                    <button class="emoji" onclick="adicionarEmoji('👌')">👌</button>
-                    <button class="emoji" onclick="adicionarEmoji('✅')">✅</button>
-                    <button class="emoji" onclick="adicionarEmoji('❗')">❗</button>
-
-                    <button class="emoji" onclick="adicionarEmoji('🏠')">🏠</button>
-                    <button class="emoji" onclick="adicionarEmoji('🚗')">🚗</button>
-                    <button class="emoji" onclick="adicionarEmoji('📞')">📞</button>
-                    <button class="emoji" onclick="adicionarEmoji('💬')">💬</button>
-                    <button class="emoji" onclick="adicionarEmoji('👀')">👀</button>
-                    <button class="emoji" onclick="adicionarEmoji('💙')">💙</button>
-
-                </div>
-
+              <button class="emoji" onclick="adicionarEmoji('🏠')">🏠</button>
+              <button class="emoji" onclick="adicionarEmoji('🚗')">🚗</button>
+              <button class="emoji" onclick="adicionarEmoji('📞')">📞</button>
+              <button class="emoji" onclick="adicionarEmoji('💬')">💬</button>
+              <button class="emoji" onclick="adicionarEmoji('👀')">👀</button>
+              <button class="emoji" onclick="adicionarEmoji('💙')">💙</button>
             </div>
+          </div>
 
-            <div class="entrada-area">
+          <div class="entrada-area">
+            <button class="botao-emoji" type="button" onclick="abrirEmojis()">
+              😊
+            </button>
 
-                <button
-                    class="botao-emoji"
-                    type="button"
-                    onclick="abrirEmojis()">
+            <input
+              type="text"
+              id="campoMensagem"
+              placeholder="Digite uma mensagem..."
+              onkeydown="verificarEnter(event)"
+            />
 
-                    😊
-
-                </button>
-
-                <input
-                    type="text"
-                    id="campoMensagem"
-                    placeholder="Digite uma mensagem..."
-                    onkeydown="verificarEnter(event)"
-                >
-
-                <button
-                    class="botao-enviar"
-                    type="button"
-                    onclick="enviarMensagem()">
-
-                    ➤
-
-                </button>
-
-            </div>
-
+            <button
+              class="botao-enviar"
+              type="button"
+              onclick="enviarMensagem()"
+            >
+              ➤
+            </button>
+          </div>
         </div>
+      </div>
 
-    </div>
-
-    <div class="acoes">
-
-        <a
-            href="emergencia.html"
-            class="botao-voltar">
-
-            Voltar para emergência
-
+      <div class="acoes">
+        <a href="emergencia.html" class="botao-voltar">
+          Voltar para emergência
         </a>
 
-        <button
-            class="botao-simular"
-            onclick="simularResposta()">
-
-            💬 Simular resposta de contato
-
+        <button class="botao-simular" onclick="simularResposta()">
+          💬 Simular resposta de contato
         </button>
 
-        <button
-            class="limpar"
-            onclick="limparChat()">
+        <button class="limpar" onclick="limparChat()">Limpar chat</button>
+      </div>
 
-            Limpar chat
+      <div class="aviso">
+        Modo de demonstração: as respostas dos contatos são simuladas neste
+        navegador.
+      </div>
+    </main>
 
-        </button>
+    <script>
+      const chaveChat = "mensagensChatGuardiao";
 
-    </div>
+      const chavePerfil = "perfilGuardiao";
 
-    <div class="aviso">
+      function obterNomeUsuario() {
+        const perfil = JSON.parse(localStorage.getItem(chavePerfil));
 
-        Modo de demonstração: as respostas dos contatos são simuladas neste navegador.
-
-    </div>
-
-</main>
-
-<script>
-
-    const chaveChat =
-        "mensagensChatGuardiao";
-
-    const chavePerfil =
-        "perfilGuardiao";
-
-
-    function obterNomeUsuario() {
-
-        const perfil =
-            JSON.parse(
-                localStorage.getItem(
-                    chavePerfil
-                )
-            );
-
-
-        if (
-            perfil &&
-            perfil.nome
-        ) {
-
-            return perfil.nome +
-                " — pediu ajuda";
-
+        if (perfil && perfil.nome) {
+          return perfil.nome + " — pediu ajuda";
         }
-
 
         return "Você — pediu ajuda";
+      }
 
-    }
+      function carregarMensagens() {
+        const mensagens = JSON.parse(localStorage.getItem(chaveChat)) || [];
 
+        const area = document.getElementById("mensagensChat");
 
-    function carregarMensagens() {
+        area.innerHTML = "";
 
-        const mensagens =
-            JSON.parse(
-                localStorage.getItem(
-                    chaveChat
-                )
-            ) || [];
+        mensagens.forEach(function (item) {
+          adicionarMensagemNaTela(
+            item.texto,
 
+            item.tipo,
 
-        const area =
-            document.getElementById(
-                "mensagensChat"
-            );
+            item.hora,
 
+            item.nome || obterNomeUsuario(),
+          );
+        });
 
-        area.innerHTML =
-            "";
+        area.scrollTop = area.scrollHeight;
+      }
 
+      function enviarMensagem() {
+        const campo = document.getElementById("campoMensagem");
 
-        mensagens.forEach(
-            function(item) {
-
-                adicionarMensagemNaTela(
-
-                    item.texto,
-
-                    item.tipo,
-
-                    item.hora,
-
-                    item.nome ||
-                    obterNomeUsuario()
-
-                );
-
-            }
-        );
-
-
-        area.scrollTop =
-            area.scrollHeight;
-
-    }
-
-
-    function enviarMensagem() {
-
-        const campo =
-            document.getElementById(
-                "campoMensagem"
-            );
-
-
-        const texto =
-            campo.value.trim();
-
+        const texto = campo.value.trim();
 
         if (texto === "") {
-
-            return;
-
+          return;
         }
 
+        const hora = obterHoraAtual();
 
-        const hora =
-            obterHoraAtual();
-
-
-        const nomeUsuario =
-            obterNomeUsuario();
-
+        const nomeUsuario = obterNomeUsuario();
 
         salvarMensagem({
+          nome: nomeUsuario,
 
-            nome: nomeUsuario,
+          texto: texto,
 
-            texto: texto,
+          tipo: "enviada",
 
-            tipo: "enviada",
-
-            hora: hora
-
+          hora: hora,
         });
 
-
         adicionarMensagemNaTela(
+          texto,
 
-            texto,
+          "enviada",
 
-            "enviada",
+          hora,
 
-            hora,
-
-            nomeUsuario
-
+          nomeUsuario,
         );
 
-
-        campo.value =
-            "";
-
+        campo.value = "";
 
         campo.focus();
 
-
-        document.getElementById(
-            "painelEmojis"
-        ).style.display =
-            "none";
-
+        document.getElementById("painelEmojis").style.display = "none";
 
         rolarChat();
+      }
 
-    }
-
-
-    function simularResposta() {
-
+      function simularResposta() {
         const contatos =
-            JSON.parse(
-                localStorage.getItem(
-                    "contatosGuardiao"
-                )
-            ) || [];
-
+          JSON.parse(localStorage.getItem("contatosGuardiao")) || [];
 
         if (contatos.length === 0) {
+          alert("Cadastre pelo menos um contato para testar o chat.");
 
-            alert(
-                "Cadastre pelo menos um contato para testar o chat."
-            );
-
-            return;
-
+          return;
         }
 
-
-        const contato =
-            contatos[
-                Math.floor(
-                    Math.random() *
-                    contatos.length
-                )
-            ];
-
+        const contato = contatos[Math.floor(Math.random() * contatos.length)];
 
         const respostas = [
+          "Estou indo até você. 🚗",
 
-            "Estou indo até você. 🚗",
+          "Onde você está agora? 📍",
 
-            "Onde você está agora? 📍",
+          "Recebi seu alerta.",
 
-            "Recebi seu alerta.",
+          "Estou tentando falar com você.",
 
-            "Estou tentando falar com você.",
+          "Fique onde está. Estou a caminho.",
 
-            "Fique onde está. Estou a caminho.",
+          "Já estou chegando. 👍",
 
-            "Já estou chegando. 👍",
+          "Você está bem?",
 
-            "Você está bem?",
-
-            "Vou pedir ajuda agora. 📞"
-
+          "Vou pedir ajuda agora. 📞",
         ];
 
+        const texto = respostas[Math.floor(Math.random() * respostas.length)];
 
-        const texto =
-            respostas[
-                Math.floor(
-                    Math.random() *
-                    respostas.length
-                )
-            ];
-
-
-        const hora =
-            obterHoraAtual();
-
+        const hora = obterHoraAtual();
 
         salvarMensagem({
+          nome: contato.nome,
 
-            nome: contato.nome,
+          texto: texto,
 
-            texto: texto,
+          tipo: "recebida",
 
-            tipo: "recebida",
-
-            hora: hora
-
+          hora: hora,
         });
 
-
         adicionarMensagemNaTela(
+          texto,
 
-            texto,
+          "recebida",
 
-            "recebida",
+          hora,
 
-            hora,
-
-            contato.nome
-
+          contato.nome,
         );
-
 
         rolarChat();
+      }
 
-    }
+      function salvarMensagem(mensagem) {
+        const mensagens = JSON.parse(localStorage.getItem(chaveChat)) || [];
 
-
-    function salvarMensagem(
-        mensagem
-    ) {
-
-        const mensagens =
-            JSON.parse(
-                localStorage.getItem(
-                    chaveChat
-                )
-            ) || [];
-
-
-        mensagens.push(
-            mensagem
-        );
-
+        mensagens.push(mensagem);
 
         localStorage.setItem(
+          chaveChat,
 
-            chaveChat,
-
-            JSON.stringify(
-                mensagens
-            )
-
+          JSON.stringify(mensagens),
         );
+      }
 
-    }
+      function adicionarMensagemNaTela(texto, tipo, hora, nome) {
+        const area = document.getElementById("mensagensChat");
 
-
-    function adicionarMensagemNaTela(
-        texto,
-        tipo,
-        hora,
-        nome
-    ) {
-
-        const area =
-            document.getElementById(
-                "mensagensChat"
-            );
-
-
-        const mensagem =
-            document.createElement(
-                "div"
-            );
-
+        const mensagem = document.createElement("div");
 
         mensagem.className =
+          "mensagem " +
+          (tipo === "recebida" ? "mensagem-recebida" : "mensagem-enviada");
 
-            "mensagem " +
+        const nomeElemento = document.createElement("span");
 
-            (
-                tipo === "recebida"
+        nomeElemento.className = "nome-remetente";
 
-                    ? "mensagem-recebida"
+        nomeElemento.textContent = nome;
 
-                    : "mensagem-enviada"
-            );
+        const textoElemento = document.createElement("div");
 
+        textoElemento.textContent = texto;
 
-        const nomeElemento =
-            document.createElement(
-                "span"
-            );
+        const horaElemento = document.createElement("span");
 
+        horaElemento.className = "hora";
 
-        nomeElemento.className =
-            "nome-remetente";
+        horaElemento.textContent = hora;
 
+        mensagem.appendChild(nomeElemento);
 
-        nomeElemento.textContent =
-            nome;
+        mensagem.appendChild(textoElemento);
 
+        mensagem.appendChild(horaElemento);
 
-        const textoElemento =
-            document.createElement(
-                "div"
-            );
+        area.appendChild(mensagem);
+      }
 
-
-        textoElemento.textContent =
-            texto;
-
-
-        const horaElemento =
-            document.createElement(
-                "span"
-            );
-
-
-        horaElemento.className =
-            "hora";
-
-
-        horaElemento.textContent =
-            hora;
-
-
-        mensagem.appendChild(
-            nomeElemento
-        );
-
-
-        mensagem.appendChild(
-            textoElemento
-        );
-
-
-        mensagem.appendChild(
-            horaElemento
-        );
-
-
-        area.appendChild(
-            mensagem
-        );
-
-    }
-
-
-    function abrirEmojis() {
-
-        const painel =
-            document.getElementById(
-                "painelEmojis"
-            );
-
+      function abrirEmojis() {
+        const painel = document.getElementById("painelEmojis");
 
         painel.style.display =
+          painel.style.display === "block" ? "none" : "block";
+      }
 
-            painel.style.display === "block"
+      function adicionarEmoji(emoji) {
+        const campo = document.getElementById("campoMensagem");
 
-                ? "none"
-
-                : "block";
-
-    }
-
-
-    function adicionarEmoji(
-        emoji
-    ) {
-
-        const campo =
-            document.getElementById(
-                "campoMensagem"
-            );
-
-
-        campo.value =
-            campo.value +
-            emoji;
-
+        campo.value = campo.value + emoji;
 
         campo.focus();
+      }
 
-    }
-
-
-    function verificarEnter(
-        event
-    ) {
-
+      function verificarEnter(event) {
         if (event.key === "Enter") {
-
-            enviarMensagem();
-
+          enviarMensagem();
         }
+      }
 
-    }
+      function obterHoraAtual() {
+        return new Date().toLocaleTimeString(
+          "pt-BR",
 
+          {
+            hour: "2-digit",
 
-    function obterHoraAtual() {
+            minute: "2-digit",
+          },
+        );
+      }
 
-        return new Date()
-            .toLocaleTimeString(
+      function rolarChat() {
+        const area = document.getElementById("mensagensChat");
 
-                "pt-BR",
+        area.scrollTop = area.scrollHeight;
+      }
 
-                {
-
-                    hour: "2-digit",
-
-                    minute: "2-digit"
-
-                }
-
-            );
-
-    }
-
-
-    function rolarChat() {
-
-        const area =
-            document.getElementById(
-                "mensagensChat"
-            );
-
-
-        area.scrollTop =
-            area.scrollHeight;
-
-    }
-
-
-    function limparChat() {
-
-        const confirmar =
-            confirm(
-                "Deseja realmente apagar as mensagens deste chat?"
-            );
-
-
-        if (!confirmar) {
-
-            return;
-
-        }
-
-
-        localStorage.removeItem(
-            chaveChat
+      function limparChat() {
+        const confirmar = confirm(
+          "Deseja realmente apagar as mensagens deste chat?",
         );
 
+        if (!confirmar) {
+          return;
+        }
 
-        document.getElementById(
-            "mensagensChat"
-        ).innerHTML =
-            "";
+        localStorage.removeItem(chaveChat);
 
-    }
+        document.getElementById("mensagensChat").innerHTML = "";
+      }
 
-
-    carregarMensagens();
-
-</script>
-
-</body>
-
+      carregarMensagens();
+    </script>
+  </body>
 </html>

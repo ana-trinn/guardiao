@@ -1,512 +1,384 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Guardião - Configurações</title>
 
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f5f7fb;
+        color: #0b1f3a;
+        padding-bottom: 85px;
+      }
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f5f7fb;
-            color: #0b1f3a;
-            padding-bottom: 85px;
-        }
+      header {
+        background: #0b1f3a;
+        color: white;
+        text-align: center;
+        padding: 14px 12px;
+      }
 
-        header {
-            background: #0b1f3a;
-            color: white;
-            text-align: center;
-            padding: 14px 12px;
-        }
+      .logo-area {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+      }
 
-        .logo-area {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-        }
+      .logo-area img {
+        height: 58px;
+      }
 
-        .logo-area img {
-            height: 58px;
-        }
+      .logo-area span {
+        font-size: 24px;
+        font-weight: bold;
+      }
 
-        .logo-area span {
-            font-size: 24px;
-            font-weight: bold;
-        }
+      .container {
+        width: 100%;
+        max-width: 700px;
+        margin: 12px auto;
+        padding: 14px;
+      }
 
-        .container {
-            width: 100%;
-            max-width: 700px;
-            margin: 12px auto;
-            padding: 14px;
-        }
+      .voltar-topo {
+        display: inline-block;
+        margin-bottom: 12px;
+        color: #0b1f3a;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: bold;
+      }
 
-        .voltar-topo {
-            display: inline-block;
-            margin-bottom: 12px;
-            color: #0b1f3a;
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: bold;
-        }
+      .titulo-pagina {
+        text-align: center;
+        margin-bottom: 16px;
+      }
 
-        .titulo-pagina {
-            text-align: center;
-            margin-bottom: 16px;
-        }
+      .titulo-pagina h2 {
+        font-size: 21px;
+        margin-bottom: 5px;
+      }
 
-        .titulo-pagina h2 {
-            font-size: 21px;
-            margin-bottom: 5px;
-        }
+      .titulo-pagina p {
+        color: #666;
+        font-size: 13px;
+      }
 
-        .titulo-pagina p {
-            color: #666;
-            font-size: 13px;
-        }
+      .card {
+        background: white;
+        border-radius: 18px;
+        padding: 16px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+      }
 
-        .card {
-            background: white;
-            border-radius: 18px;
-            padding: 16px;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, .07);
-        }
+      .item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        padding: 15px 4px;
+        border-bottom: 1px solid #eee;
+      }
 
-        .item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 15px;
-            padding: 15px 4px;
-            border-bottom: 1px solid #eee;
-        }
+      .item:last-child {
+        border-bottom: none;
+      }
 
-        .item:last-child {
-            border-bottom: none;
-        }
+      .item-link {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+      }
 
-        .item-link {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
+      .item-info {
+        flex: 1;
+        min-width: 0;
+      }
 
-        .item-info {
-            flex: 1;
-            min-width: 0;
-        }
+      .titulo {
+        font-weight: bold;
+        font-size: 15px;
+      }
 
-        .titulo {
-            font-weight: bold;
-            font-size: 15px;
-        }
+      .descricao {
+        color: #666;
+        font-size: 12px;
+        margin-top: 4px;
+        line-height: 1.4;
+      }
 
-        .descricao {
-            color: #666;
-            font-size: 12px;
-            margin-top: 4px;
-            line-height: 1.4;
-        }
+      .seta {
+        color: #0b1f3a;
+        font-size: 18px;
+        font-weight: bold;
+      }
 
-        .seta {
-            color: #0b1f3a;
-            font-size: 18px;
-            font-weight: bold;
-        }
+      /* SWITCH */
 
-        /* SWITCH */
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 46px;
+        height: 26px;
+        flex-shrink: 0;
+      }
 
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 46px;
-            height: 26px;
-            flex-shrink: 0;
-        }
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
 
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        inset: 0;
+        background: #ccc;
+        border-radius: 30px;
+        transition: 0.25s;
+      }
 
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            inset: 0;
-            background: #ccc;
-            border-radius: 30px;
-            transition: .25s;
-        }
+      .slider:before {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        left: 3px;
+        top: 3px;
+        background: white;
+        border-radius: 50%;
+        transition: 0.25s;
+      }
 
-        .slider:before {
-            content: "";
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            left: 3px;
-            top: 3px;
-            background: white;
-            border-radius: 50%;
-            transition: .25s;
-        }
+      input:checked + .slider {
+        background: #1b5e20;
+      }
 
-        input:checked + .slider {
-            background: #1b5e20;
-        }
+      input:checked + .slider:before {
+        transform: translateX(20px);
+      }
 
-        input:checked + .slider:before {
-            transform: translateX(20px);
-        }
+      .mensagem-salva {
+        display: none;
+        margin-top: 14px;
+        padding: 10px;
+        border-radius: 12px;
+        background: #eef8f0;
+        color: #1b5e20;
+        text-align: center;
+        font-size: 12px;
+        font-weight: bold;
+      }
 
-        .mensagem-salva {
-            display: none;
-            margin-top: 14px;
-            padding: 10px;
-            border-radius: 12px;
-            background: #eef8f0;
-            color: #1b5e20;
-            text-align: center;
-            font-size: 12px;
-            font-weight: bold;
-        }
+      .navbar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: white;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 8px 0 7px;
+        box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
+        z-index: 1000;
+      }
 
-        .navbar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: white;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 8px 0 7px;
-            box-shadow: 0 -4px 12px rgba(0, 0, 0, .08);
-            z-index: 1000;
-        }
+      .navbar a {
+        text-decoration: none;
+        color: #0b1f3a;
+        text-align: center;
+        font-size: 11px;
+        font-weight: bold;
+      }
 
-        .navbar a {
-            text-decoration: none;
-            color: #0b1f3a;
-            text-align: center;
-            font-size: 11px;
-            font-weight: bold;
-        }
-
-        .navbar span {
-            display: block;
-            font-size: 20px;
-            margin-bottom: 3px;
-        }
-
+      .navbar span {
+        display: block;
+        font-size: 20px;
+        margin-bottom: 3px;
+      }
     </style>
+  </head>
 
-</head>
-
-<body>
-
-<header>
-
-    <div class="logo-area">
-
-        <img
-            src="imagens/logo.png"
-            alt="Logo Guardião">
+  <body>
+    <header>
+      <div class="logo-area">
+        <img src="imagens/logo.png" alt="Logo Guardião" />
 
         <span>Guardião</span>
+      </div>
+    </header>
 
-    </div>
+    <main class="container">
+      <a href="painel.html" class="voltar-topo"> ← Voltar </a>
 
-</header>
+      <div class="titulo-pagina">
+        <h2>⚙️ Configurações</h2>
 
-<main class="container">
+        <p>Ajuste as preferências do Guardião.</p>
+      </div>
 
-    <a
-        href="painel.html"
-        class="voltar-topo">
-
-        ← Voltar
-
-    </a>
-
-    <div class="titulo-pagina">
-
-        <h2>
-            ⚙️ Configurações
-        </h2>
-
-        <p>
-            Ajuste as preferências do Guardião.
-        </p>
-
-    </div>
-
-    <div class="card">
-
+      <div class="card">
         <!-- PERFIL -->
 
-        <a
-            href="perfil.html"
-            class="item-link">
+        <a href="perfil.html" class="item-link">
+          <div class="item">
+            <div class="item-info">
+              <div class="titulo">👤 Perfil</div>
 
-            <div class="item">
-
-                <div class="item-info">
-
-                    <div class="titulo">
-                        👤 Perfil
-                    </div>
-
-                    <div class="descricao">
-                        Visualizar e editar seus dados.
-                    </div>
-
-                </div>
-
-                <div class="seta">
-                    ›
-                </div>
-
+              <div class="descricao">Visualizar e editar seus dados.</div>
             </div>
 
+            <div class="seta">›</div>
+          </div>
         </a>
 
         <!-- NOTIFICAÇÕES -->
 
         <div class="item">
+          <div class="item-info">
+            <div class="titulo">🔔 Notificações</div>
 
-            <div class="item-info">
+            <div class="descricao">Ativar ou desativar avisos do Guardião.</div>
+          </div>
 
-                <div class="titulo">
-                    🔔 Notificações
-                </div>
+          <label class="switch">
+            <input
+              type="checkbox"
+              id="configNotificacoes"
+              onchange="salvarConfiguracoes()"
+            />
 
-                <div class="descricao">
-                    Ativar ou desativar avisos do Guardião.
-                </div>
-
-            </div>
-
-            <label class="switch">
-
-                <input
-                    type="checkbox"
-                    id="configNotificacoes"
-                    onchange="salvarConfiguracoes()">
-
-                <span class="slider"></span>
-
-            </label>
-
+            <span class="slider"></span>
+          </label>
         </div>
 
         <!-- LOCALIZAÇÃO -->
 
         <div class="item">
+          <div class="item-info">
+            <div class="titulo">📍 Compartilhar localização</div>
 
-            <div class="item-info">
-
-                <div class="titulo">
-                    📍 Compartilhar localização
-                </div>
-
-                <div class="descricao">
-                    Permitir o uso da localização durante um alerta.
-                </div>
-
+            <div class="descricao">
+              Permitir o uso da localização durante um alerta.
             </div>
+          </div>
 
-            <label class="switch">
+          <label class="switch">
+            <input
+              type="checkbox"
+              id="configLocalizacao"
+              onchange="salvarConfiguracoes()"
+            />
 
-                <input
-                    type="checkbox"
-                    id="configLocalizacao"
-                    onchange="salvarConfiguracoes()">
-
-                <span class="slider"></span>
-
-            </label>
-
+            <span class="slider"></span>
+          </label>
         </div>
 
         <!-- SOBRE -->
 
         <div class="item">
+          <div class="item-info">
+            <div class="titulo">🛡️ Sobre o Guardião</div>
 
-            <div class="item-info">
-
-                <div class="titulo">
-                    🛡️ Sobre o Guardião
-                </div>
-
-                <div class="descricao">
-                    Versão 0.4 • Protótipo em desenvolvimento.
-                </div>
-
+            <div class="descricao">
+              Versão 0.4 • Protótipo em desenvolvimento.
             </div>
+          </div>
 
-            <div class="seta">
-                ›
-            </div>
-
+          <div class="seta">›</div>
         </div>
+      </div>
 
-    </div>
-
-    <div
-        class="mensagem-salva"
-        id="mensagemSalva">
-
+      <div class="mensagem-salva" id="mensagemSalva">
         ✅ Preferências atualizadas.
+      </div>
+    </main>
 
-    </div>
-
-</main>
-
-<nav class="navbar">
-
-    <a href="painel.html">
+    <nav class="navbar">
+      <a href="painel.html">
         <span>🏠</span>
         Início
-    </a>
+      </a>
 
-    <a href="contatos.html">
+      <a href="contatos.html">
         <span>👥</span>
         Contatos
-    </a>
+      </a>
 
-    <a href="emergencia.html">
+      <a href="emergencia.html">
         <span>🚨</span>
         Emergência
-    </a>
+      </a>
 
-    <a href="configuracoes.html">
+      <a href="configuracoes.html">
         <span>⚙️</span>
         Config.
-    </a>
+      </a>
+    </nav>
 
-</nav>
+    <script>
+      const chaveConfiguracoes = "configuracoesGuardiao";
 
-<script>
-
-    const chaveConfiguracoes =
-        "configuracoesGuardiao";
-
-
-    function carregarConfiguracoes() {
-
-        const configuracoes =
-            JSON.parse(
-                localStorage.getItem(
-                    chaveConfiguracoes
-                )
-            );
-
-
-        if (!configuracoes) {
-
-            document.getElementById(
-                "configNotificacoes"
-            ).checked = true;
-
-
-            document.getElementById(
-                "configLocalizacao"
-            ).checked = true;
-
-
-            salvarConfiguracoes(false);
-
-            return;
-
-        }
-
-
-        document.getElementById(
-            "configNotificacoes"
-        ).checked =
-            configuracoes.notificacoes !== false;
-
-
-        document.getElementById(
-            "configLocalizacao"
-        ).checked =
-            configuracoes.localizacao !== false;
-
-    }
-
-
-    function salvarConfiguracoes(
-        mostrarMensagem = true
-    ) {
-
-        const configuracoes = {
-
-            notificacoes:
-                document.getElementById(
-                    "configNotificacoes"
-                ).checked,
-
-            localizacao:
-                document.getElementById(
-                    "configLocalizacao"
-                ).checked
-
-        };
-
-
-        localStorage.setItem(
-
-            chaveConfiguracoes,
-
-            JSON.stringify(
-                configuracoes
-            )
-
+      function carregarConfiguracoes() {
+        const configuracoes = JSON.parse(
+          localStorage.getItem(chaveConfiguracoes),
         );
 
+        if (!configuracoes) {
+          document.getElementById("configNotificacoes").checked = true;
 
-        if (!mostrarMensagem) {
-            return;
+          document.getElementById("configLocalizacao").checked = true;
+
+          salvarConfiguracoes(false);
+
+          return;
         }
 
+        document.getElementById("configNotificacoes").checked =
+          configuracoes.notificacoes !== false;
 
-        const mensagem =
-            document.getElementById(
-                "mensagemSalva"
-            );
+        document.getElementById("configLocalizacao").checked =
+          configuracoes.localizacao !== false;
+      }
 
+      function salvarConfiguracoes(mostrarMensagem = true) {
+        const configuracoes = {
+          notificacoes: document.getElementById("configNotificacoes").checked,
 
-        mensagem.style.display =
-            "block";
+          localizacao: document.getElementById("configLocalizacao").checked,
+        };
 
+        localStorage.setItem(
+          chaveConfiguracoes,
 
-        setTimeout(function() {
+          JSON.stringify(configuracoes),
+        );
 
-            mensagem.style.display =
-                "none";
+        if (!mostrarMensagem) {
+          return;
+        }
 
+        const mensagem = document.getElementById("mensagemSalva");
+
+        mensagem.style.display = "block";
+
+        setTimeout(function () {
+          mensagem.style.display = "none";
         }, 1800);
+      }
 
-    }
-
-
-    carregarConfiguracoes();
-
-</script>
-
-</body>
-
+      carregarConfiguracoes();
+    </script>
+  </body>
 </html>

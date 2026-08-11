@@ -1,394 +1,276 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Guardião - Perfil</title>
 
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f5f7fb;
+        color: #0b1f3a;
+        min-height: 100vh;
+        padding-bottom: 40px;
+      }
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f5f7fb;
-            color: #0b1f3a;
-            min-height: 100vh;
-            padding-bottom: 40px;
-        }
+      header {
+        background: #0b1f3a;
+        color: white;
+        text-align: center;
+        padding: 14px 12px;
+      }
 
-        header {
-            background: #0b1f3a;
-            color: white;
-            text-align: center;
-            padding: 14px 12px;
-        }
+      .logo-area {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+      }
 
-        .logo-area {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-        }
+      .logo-area img {
+        height: 58px;
+      }
 
-        .logo-area img {
-            height: 58px;
-        }
+      .logo-area span {
+        font-size: 24px;
+        font-weight: bold;
+      }
 
-        .logo-area span {
-            font-size: 24px;
-            font-weight: bold;
-        }
+      .container {
+        width: 100%;
+        max-width: 620px;
+        margin: 12px auto;
+        padding: 14px;
+      }
 
-        .container {
-            width: 100%;
-            max-width: 620px;
-            margin: 12px auto;
-            padding: 14px;
-        }
+      .voltar-topo {
+        display: inline-block;
+        margin-bottom: 12px;
+        color: #0b1f3a;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: bold;
+      }
 
-        .voltar-topo {
-            display: inline-block;
-            margin-bottom: 12px;
-            color: #0b1f3a;
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: bold;
-        }
+      .card {
+        background: white;
+        border-radius: 18px;
+        padding: 20px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+      }
 
-        .card {
-            background: white;
-            border-radius: 18px;
-            padding: 20px;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, .07);
-        }
+      .icone {
+        text-align: center;
+        font-size: 36px;
+        margin-bottom: 8px;
+      }
 
-        .icone {
-            text-align: center;
-            font-size: 36px;
-            margin-bottom: 8px;
-        }
+      h2 {
+        text-align: center;
+        font-size: 21px;
+        margin-bottom: 6px;
+      }
 
-        h2 {
-            text-align: center;
-            font-size: 21px;
-            margin-bottom: 6px;
-        }
+      .descricao {
+        text-align: center;
+        color: #666;
+        font-size: 13px;
+        line-height: 1.45;
+        margin-bottom: 20px;
+      }
 
-        .descricao {
-            text-align: center;
-            color: #666;
-            font-size: 13px;
-            line-height: 1.45;
-            margin-bottom: 20px;
-        }
+      .campo {
+        margin-bottom: 14px;
+      }
 
-        .campo {
-            margin-bottom: 14px;
-        }
+      .campo label {
+        display: block;
+        font-size: 13px;
+        font-weight: bold;
+        margin-bottom: 6px;
+      }
 
-        .campo label {
-            display: block;
-            font-size: 13px;
-            font-weight: bold;
-            margin-bottom: 6px;
-        }
+      .campo input,
+      .campo textarea {
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 12px;
+        padding: 12px;
+        font-size: 14px;
+        font-family: Arial, Helvetica, sans-serif;
+        outline: none;
+      }
 
-        .campo input,
-        .campo textarea {
-            width: 100%;
-            border: 1px solid #ccc;
-            border-radius: 12px;
-            padding: 12px;
-            font-size: 14px;
-            font-family: Arial, Helvetica, sans-serif;
-            outline: none;
-        }
+      .campo textarea {
+        min-height: 90px;
+        resize: vertical;
+      }
 
-        .campo textarea {
-            min-height: 90px;
-            resize: vertical;
-        }
+      .campo input:focus,
+      .campo textarea:focus {
+        border-color: #0b1f3a;
+      }
 
-        .campo input:focus,
-        .campo textarea:focus {
-            border-color: #0b1f3a;
-        }
+      .opcional {
+        color: #777;
+        font-size: 11px;
+        font-weight: normal;
+      }
 
-        .opcional {
-            color: #777;
-            font-size: 11px;
-            font-weight: normal;
-        }
+      .botao {
+        width: 100%;
+        border: none;
+        border-radius: 30px;
+        padding: 13px;
+        background: #0b1f3a;
+        color: white;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: bold;
+        margin-top: 6px;
+      }
 
-        .botao {
-            width: 100%;
-            border: none;
-            border-radius: 30px;
-            padding: 13px;
-            background: #0b1f3a;
-            color: white;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: bold;
-            margin-top: 6px;
-        }
-
-        .mensagem-sucesso {
-            display: none;
-            margin-top: 14px;
-            padding: 11px;
-            border-radius: 12px;
-            background: #eef8f0;
-            color: #1b5e20;
-            text-align: center;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
+      .mensagem-sucesso {
+        display: none;
+        margin-top: 14px;
+        padding: 11px;
+        border-radius: 12px;
+        background: #eef8f0;
+        color: #1b5e20;
+        text-align: center;
+        font-size: 12px;
+        font-weight: bold;
+      }
     </style>
+  </head>
 
-</head>
-
-<body>
-
-<header>
-
-    <div class="logo-area">
-
-        <img
-            src="imagens/logo.png"
-            alt="Logo Guardião">
+  <body>
+    <header>
+      <div class="logo-area">
+        <img src="imagens/logo.png" alt="Logo Guardião" />
 
         <span>Guardião</span>
+      </div>
+    </header>
 
-    </div>
+    <main class="container">
+      <a href="configuracoes.html" class="voltar-topo"> ← Voltar </a>
 
-</header>
+      <div class="card">
+        <div class="icone">👤</div>
 
-
-<main class="container">
-
-    <a
-        href="configuracoes.html"
-        class="voltar-topo">
-
-        ← Voltar
-
-    </a>
-
-
-    <div class="card">
-
-        <div class="icone">
-            👤
-        </div>
-
-        <h2>
-            Meu perfil
-        </h2>
+        <h2>Meu perfil</h2>
 
         <p class="descricao">
-            Cadastre seus dados para que o Guardião possa identificar
-            corretamente quem iniciou um alerta.
+          Cadastre seus dados para que o Guardião possa identificar corretamente
+          quem iniciou um alerta.
         </p>
 
+        <div class="campo">
+          <label for="nomeUsuario"> Nome </label>
+
+          <input type="text" id="nomeUsuario" placeholder="Digite seu nome" />
+        </div>
 
         <div class="campo">
+          <label for="telefoneUsuario"> Telefone </label>
 
-            <label for="nomeUsuario">
-                Nome
-            </label>
-
-            <input
-                type="text"
-                id="nomeUsuario"
-                placeholder="Digite seu nome">
-
+          <input
+            type="tel"
+            id="telefoneUsuario"
+            placeholder="(11) 99999-9999"
+          />
         </div>
-
 
         <div class="campo">
+          <label for="informacaoEmergencia">
+            Informação para emergência
 
-            <label for="telefoneUsuario">
-                Telefone
-            </label>
+            <span class="opcional"> (opcional) </span>
+          </label>
 
-            <input
-                type="tel"
-                id="telefoneUsuario"
-                placeholder="(11) 99999-9999">
-
+          <textarea
+            id="informacaoEmergencia"
+            placeholder="Ex.: informação importante que você queira disponibilizar durante um alerta."
+          ></textarea>
         </div>
 
+        <button class="botao" onclick="salvarPerfil()">Salvar perfil</button>
 
-        <div class="campo">
-
-            <label for="informacaoEmergencia">
-
-                Informação para emergência
-
-                <span class="opcional">
-                    (opcional)
-                </span>
-
-            </label>
-
-            <textarea
-                id="informacaoEmergencia"
-                placeholder="Ex.: informação importante que você queira disponibilizar durante um alerta."></textarea>
-
+        <div class="mensagem-sucesso" id="mensagemSucesso">
+          ✅ Perfil salvo com sucesso.
         </div>
+      </div>
+    </main>
 
+    <script>
+      const chavePerfil = "perfilGuardiao";
 
-        <button
-            class="botao"
-            onclick="salvarPerfil()">
-
-            Salvar perfil
-
-        </button>
-
-
-        <div
-            class="mensagem-sucesso"
-            id="mensagemSucesso">
-
-            ✅ Perfil salvo com sucesso.
-
-        </div>
-
-    </div>
-
-</main>
-
-
-<script>
-
-    const chavePerfil =
-        "perfilGuardiao";
-
-
-    function carregarPerfil() {
-
-        const perfil =
-            JSON.parse(
-                localStorage.getItem(
-                    chavePerfil
-                )
-            );
-
+      function carregarPerfil() {
+        const perfil = JSON.parse(localStorage.getItem(chavePerfil));
 
         if (!perfil) {
-            return;
+          return;
         }
 
+        document.getElementById("nomeUsuario").value = perfil.nome || "";
 
-        document.getElementById(
-            "nomeUsuario"
-        ).value =
-            perfil.nome || "";
+        document.getElementById("telefoneUsuario").value =
+          perfil.telefone || "";
 
+        document.getElementById("informacaoEmergencia").value =
+          perfil.informacaoEmergencia || "";
+      }
 
-        document.getElementById(
-            "telefoneUsuario"
-        ).value =
-            perfil.telefone || "";
+      function salvarPerfil() {
+        const nome = document.getElementById("nomeUsuario").value.trim();
 
+        const telefone = document
+          .getElementById("telefoneUsuario")
+          .value.trim();
 
-        document.getElementById(
-            "informacaoEmergencia"
-        ).value =
-            perfil.informacaoEmergencia || "";
-
-    }
-
-
-    function salvarPerfil() {
-
-        const nome =
-            document.getElementById(
-                "nomeUsuario"
-            ).value.trim();
-
-
-        const telefone =
-            document.getElementById(
-                "telefoneUsuario"
-            ).value.trim();
-
-
-        const informacaoEmergencia =
-            document.getElementById(
-                "informacaoEmergencia"
-            ).value.trim();
-
+        const informacaoEmergencia = document
+          .getElementById("informacaoEmergencia")
+          .value.trim();
 
         if (nome === "") {
+          alert("Digite seu nome.");
 
-            alert(
-                "Digite seu nome."
-            );
-
-            return;
-
+          return;
         }
 
-
         const perfil = {
+          nome: nome,
 
-            nome: nome,
+          telefone: telefone,
 
-            telefone: telefone,
-
-            informacaoEmergencia:
-                informacaoEmergencia
-
+          informacaoEmergencia: informacaoEmergencia,
         };
 
-
         localStorage.setItem(
+          chavePerfil,
 
-            chavePerfil,
-
-            JSON.stringify(
-                perfil
-            )
-
+          JSON.stringify(perfil),
         );
 
+        const mensagem = document.getElementById("mensagemSucesso");
 
-        const mensagem =
-            document.getElementById(
-                "mensagemSucesso"
-            );
+        mensagem.style.display = "block";
 
-
-        mensagem.style.display =
-            "block";
-
-
-        setTimeout(function() {
-
-            mensagem.style.display =
-                "none";
-
+        setTimeout(function () {
+          mensagem.style.display = "none";
         }, 2500);
+      }
 
-    }
-
-
-    carregarPerfil();
-
-</script>
-
-</body>
-
+      carregarPerfil();
+    </script>
+  </body>
 </html>

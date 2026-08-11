@@ -1,416 +1,322 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Guardião - Painel</title>
 
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f5f7fb;
+        color: #0b1f3a;
+        padding-bottom: 100px;
+      }
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f5f7fb;
-            color: #0b1f3a;
-            padding-bottom: 100px;
-        }
+      header {
+        background: #0b1f3a;
+        color: white;
+        text-align: center;
+        padding: 18px 15px;
+      }
 
+      .logo-area {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .logo-area img {
+        height: 68px;
+      }
+
+      .logo-area span {
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 700px;
+        margin: 18px auto;
+        padding: 15px;
+      }
+
+      .card {
+        background: white;
+        border-radius: 20px;
+        padding: 22px;
+        margin-bottom: 16px;
+        text-align: center;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+      }
+
+      .icone {
+        font-size: 38px;
+        margin-bottom: 8px;
+      }
+
+      h2 {
+        margin-bottom: 8px;
+        font-size: 22px;
+      }
+
+      p {
+        color: #666;
+        line-height: 1.45;
+        margin-bottom: 16px;
+        font-size: 14px;
+      }
+
+      /* EMERGÊNCIA */
+
+      .card-emergencia {
+        border: 1px solid #f1cccc;
+        padding-top: 28px;
+        padding-bottom: 28px;
+      }
+
+      .emergencia {
+        width: 105px;
+        height: 105px;
+        border-radius: 50%;
+        border: none;
+        background: #d90429;
+        color: white;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: bold;
+        box-shadow: 0 8px 20px rgba(217, 4, 41, 0.3);
+        transition: 0.2s;
+      }
+
+      .emergencia:hover {
+        transform: scale(1.05);
+      }
+
+      /* CARDS INFERIORES */
+
+      .grade {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+
+      .grade .card {
+        margin-bottom: 0;
+      }
+
+      .botao {
+        width: 100%;
+        background: #0b1f3a;
+        color: white;
+        border: none;
+        padding: 12px 15px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: bold;
+      }
+
+      .botao:hover {
+        transform: scale(1.02);
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      /* BARRA INFERIOR */
+
+      .navbar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: white;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 8px 0 7px;
+        box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
+        z-index: 1000;
+      }
+
+      .navbar a {
+        text-decoration: none;
+        color: #0b1f3a;
+        text-align: center;
+        font-size: 11px;
+        font-weight: bold;
+      }
+
+      .navbar span {
+        display: block;
+        font-size: 20px;
+        margin-bottom: 3px;
+      }
+
+      @media (max-width: 600px) {
         header {
-            background: #0b1f3a;
-            color: white;
-            text-align: center;
-            padding: 18px 15px;
-        }
-
-        .logo-area {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
+          padding: 14px 12px;
         }
 
         .logo-area img {
-            height: 68px;
+          height: 58px;
         }
 
         .logo-area span {
-            font-size: 28px;
-            font-weight: bold;
+          font-size: 24px;
         }
 
         .container {
-            width: 100%;
-            max-width: 700px;
-            margin: 18px auto;
-            padding: 15px;
+          margin: 12px auto;
+          padding: 12px;
         }
 
         .card {
-            background: white;
-            border-radius: 20px;
-            padding: 22px;
-            margin-bottom: 16px;
-            text-align: center;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, .07);
+          padding: 18px;
+          border-radius: 18px;
         }
 
         .icone {
-            font-size: 38px;
-            margin-bottom: 8px;
+          font-size: 30px;
         }
 
         h2 {
-            margin-bottom: 8px;
-            font-size: 22px;
+          font-size: 20px;
         }
 
         p {
-            color: #666;
-            line-height: 1.45;
-            margin-bottom: 16px;
-            font-size: 14px;
+          font-size: 13px;
         }
 
-        /* EMERGÊNCIA */
-
         .card-emergencia {
-            border: 1px solid #f1cccc;
-            padding-top: 28px;
-            padding-bottom: 28px;
+          padding-top: 24px;
+          padding-bottom: 24px;
         }
 
         .emergencia {
-            width: 105px;
-            height: 105px;
-            border-radius: 50%;
-            border: none;
-            background: #d90429;
-            color: white;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: bold;
-            box-shadow: 0 8px 20px rgba(217, 4, 41, .30);
-            transition: .2s;
+          width: 95px;
+          height: 95px;
+          font-size: 13px;
         }
-
-        .emergencia:hover {
-            transform: scale(1.05);
-        }
-
-        /* CARDS INFERIORES */
 
         .grade {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
+          gap: 10px;
         }
 
         .grade .card {
-            margin-bottom: 0;
+          padding: 15px 10px;
         }
 
-        .botao {
-            width: 100%;
-            background: #0b1f3a;
-            color: white;
-            border: none;
-            padding: 12px 15px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: bold;
+        .grade .icone {
+          font-size: 28px;
         }
 
-        .botao:hover {
-            transform: scale(1.02);
+        .grade h2 {
+          font-size: 17px;
         }
 
-        a {
-            text-decoration: none;
+        .grade p {
+          font-size: 12px;
+          min-height: 52px;
         }
-
-        /* BARRA INFERIOR */
-
-        .navbar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: white;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 8px 0 7px;
-            box-shadow: 0 -4px 12px rgba(0, 0, 0, .08);
-            z-index: 1000;
-        }
-
-        .navbar a {
-            text-decoration: none;
-            color: #0b1f3a;
-            text-align: center;
-            font-size: 11px;
-            font-weight: bold;
-        }
-
-        .navbar span {
-            display: block;
-            font-size: 20px;
-            margin-bottom: 3px;
-        }
-
-        @media (max-width: 600px) {
-
-            header {
-                padding: 14px 12px;
-            }
-
-            .logo-area img {
-                height: 58px;
-            }
-
-            .logo-area span {
-                font-size: 24px;
-            }
-
-            .container {
-                margin: 12px auto;
-                padding: 12px;
-            }
-
-            .card {
-                padding: 18px;
-                border-radius: 18px;
-            }
-
-            .icone {
-                font-size: 30px;
-            }
-
-            h2 {
-                font-size: 20px;
-            }
-
-            p {
-                font-size: 13px;
-            }
-
-            .card-emergencia {
-                padding-top: 24px;
-                padding-bottom: 24px;
-            }
-
-            .emergencia {
-                width: 95px;
-                height: 95px;
-                font-size: 13px;
-            }
-
-            .grade {
-                gap: 10px;
-            }
-
-            .grade .card {
-                padding: 15px 10px;
-            }
-
-            .grade .icone {
-                font-size: 28px;
-            }
-
-            .grade h2 {
-                font-size: 17px;
-            }
-
-            .grade p {
-                font-size: 12px;
-                min-height: 52px;
-            }
-
-        }
-
+      }
     </style>
+  </head>
 
-</head>
+  <body>
+    <header>
+      <h1 class="logo-area">
+        <img src="imagens/logo.png" alt="Logo Guardião" />
 
-<body>
+        <span> Guardião </span>
+      </h1>
+    </header>
 
+    <main class="container">
+      <!-- EMERGÊNCIA -->
 
-<header>
+      <div class="card card-emergencia">
+        <div class="icone">🚨</div>
 
-    <h1 class="logo-area">
+        <h2>Emergência</h2>
 
-        <img
-            src="imagens/logo.png"
-            alt="Logo Guardião">
-
-        <span>
-            Guardião
-        </span>
-
-    </h1>
-
-</header>
-
-
-<main class="container">
-
-
-    <!-- EMERGÊNCIA -->
-
-    <div class="card card-emergencia">
-
-        <div class="icone">
-            🚨
-        </div>
-
-        <h2>
-            Emergência
-        </h2>
-
-        <p>
-            Pressione em caso de necessidade.
-        </p>
-
+        <p>Pressione em caso de necessidade.</p>
 
         <a href="emergencia.html?auto=1">
-
-            <button
-                class="emergencia"
-                type="button">
-
-                ALERTA
-
-            </button>
-
+          <button class="emergencia" type="button">ALERTA</button>
         </a>
+      </div>
 
-    </div>
+      <!-- CARDS INFERIORES -->
 
-
-    <!-- CARDS INFERIORES -->
-
-    <div class="grade">
-
-
+      <div class="grade">
         <!-- CONTATOS -->
 
         <div class="card">
+          <div class="icone">👥</div>
 
-            <div class="icone">
-                👥
-            </div>
+          <h2>Contatos</h2>
 
-            <h2>
-                Contatos
-            </h2>
+          <p>Pessoas que receberão seu alerta.</p>
 
-            <p>
-                Pessoas que receberão seu alerta.
-            </p>
-
-            <a href="contatos.html">
-
-                <button
-                    class="botao"
-                    type="button">
-
-                    Ver contatos
-
-                </button>
-
-            </a>
-
+          <a href="contatos.html">
+            <button class="botao" type="button">Ver contatos</button>
+          </a>
         </div>
-
 
         <!-- CONFIGURAÇÕES -->
 
         <div class="card">
+          <div class="icone">⚙️</div>
 
-            <div class="icone">
-                ⚙️
-            </div>
+          <h2>Configurações</h2>
 
-            <h2>
-                Configurações
-            </h2>
+          <p>Personalize sua experiência.</p>
 
-            <p>
-                Personalize sua experiência.
-            </p>
-
-            <a href="configuracoes.html">
-
-                <button
-                    class="botao"
-                    type="button">
-
-                    Abrir
-
-                </button>
-
-            </a>
-
+          <a href="configuracoes.html">
+            <button class="botao" type="button">Abrir</button>
+          </a>
         </div>
+      </div>
+    </main>
 
-    </div>
+    <!-- BARRA INFERIOR -->
 
-</main>
-
-
-<!-- BARRA INFERIOR -->
-
-<nav class="navbar">
-
-
-    <a href="painel.html">
-
+    <nav class="navbar">
+      <a href="painel.html">
         <span>🏠</span>
 
         Início
+      </a>
 
-    </a>
-
-
-    <a href="contatos.html">
-
+      <a href="contatos.html">
         <span>👥</span>
 
         Contatos
+      </a>
 
-    </a>
-
-
-    <a href="emergencia.html">
-
+      <a href="emergencia.html">
         <span>🚨</span>
 
         Emergência
+      </a>
 
-    </a>
-
-
-    <a href="configuracoes.html">
-
+      <a href="configuracoes.html">
         <span>⚙️</span>
 
         Config.
-
-    </a>
-
-
-</nav>
-
-
-</body>
-
+      </a>
+    </nav>
+  </body>
 </html>

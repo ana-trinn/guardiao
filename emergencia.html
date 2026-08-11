@@ -1,1123 +1,758 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Guardião - Emergência</title>
 
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f5f7fb;
+        color: #0b1f3a;
+        text-align: center;
+        padding-bottom: 40px;
+      }
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f5f7fb;
-            color: #0b1f3a;
-            text-align: center;
-            padding-bottom: 40px;
-        }
+      header {
+        background: #0b1f3a;
+        color: white;
+        padding: 18px 15px;
+      }
 
+      .logo-area {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .logo-area img {
+        height: 68px;
+      }
+
+      .logo-area span {
+        font-size: 27px;
+        font-weight: bold;
+      }
+
+      .container {
+        max-width: 700px;
+        margin: 18px auto;
+        padding: 15px;
+      }
+
+      .voltar-topo {
+        display: block;
+        text-align: left;
+        margin-bottom: 12px;
+        text-decoration: none;
+        color: #0b1f3a;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      .card {
+        background: white;
+        border-radius: 20px;
+        padding: 24px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+      }
+
+      .icone {
+        font-size: 38px;
+        margin-bottom: 8px;
+      }
+
+      h2 {
+        margin-bottom: 8px;
+        font-size: 23px;
+      }
+
+      p {
+        color: #666;
+        line-height: 1.45;
+        margin-bottom: 18px;
+        font-size: 14px;
+      }
+
+      /* BOTÃO PRINCIPAL */
+
+      .botao-alerta {
+        width: 115px;
+        height: 115px;
+        border-radius: 50%;
+        border: none;
+        background: #d90429;
+        color: white;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 8px 20px rgba(217, 4, 41, 0.3);
+        transition: 0.2s;
+      }
+
+      .botao-alerta:hover {
+        transform: scale(1.04);
+      }
+
+      /* CONFIRMAÇÃO */
+
+      .confirmacao {
+        display: none;
+        margin-top: 20px;
+        padding: 18px;
+        background: #fff8f8;
+        border: 1px solid #f0caca;
+        border-radius: 16px;
+      }
+
+      .confirmacao h3 {
+        margin-bottom: 10px;
+        font-size: 18px;
+      }
+
+      .confirmacao p {
+        margin-bottom: 14px;
+        font-size: 13px;
+      }
+
+      .botoes-confirmacao {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+      }
+
+      .botao-cancelar,
+      .botao-continuar {
+        border: none;
+        padding: 11px 18px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 13px;
+      }
+
+      .botao-cancelar {
+        background: #e5e5e5;
+        color: #333;
+      }
+
+      .botao-continuar {
+        background: #d90429;
+        color: white;
+      }
+
+      /* STATUS */
+
+      .status {
+        display: none;
+        margin-top: 20px;
+        padding: 16px;
+        border-radius: 16px;
+        background: #f8f8f8;
+        text-align: left;
+      }
+
+      .status p {
+        margin-bottom: 9px;
+        color: #0b1f3a;
+        font-weight: bold;
+        font-size: 13px;
+      }
+
+      .link-mapa {
+        color: #0b1f3a;
+        font-weight: bold;
+        font-size: 13px;
+      }
+
+      /* CONTATOS */
+
+      .lista-contatos {
+        margin-top: 8px;
+      }
+
+      .contato-alerta {
+        background: white;
+        border-radius: 12px;
+        padding: 10px;
+        margin-top: 7px;
+        border: 1px solid #ddd;
+      }
+
+      .contato-alerta strong {
+        display: block;
+        margin-bottom: 3px;
+        font-size: 13px;
+      }
+
+      .contato-alerta span {
+        color: #666;
+        font-size: 12px;
+      }
+
+      .sem-contatos {
+        color: #777;
+        font-weight: normal;
+      }
+
+      /* ACOMPANHAMENTO */
+
+      .acoes-alerta {
+        display: none;
+        margin-top: 16px;
+        padding: 15px;
+        border-radius: 15px;
+        background: #eef4ff;
+        border: 1px solid #cddaf3;
+        text-align: center;
+      }
+
+      .acoes-alerta h3 {
+        margin-bottom: 7px;
+        font-size: 17px;
+      }
+
+      .acoes-alerta p {
+        margin-bottom: 10px;
+        font-size: 12px;
+      }
+
+      .botao-chat,
+      .botao-acompanhar {
+        display: block;
+        width: 100%;
+        text-decoration: none;
+        padding: 11px 15px;
+        border-radius: 30px;
+        font-weight: bold;
+        font-size: 13px;
+        margin-top: 8px;
+      }
+
+      .botao-chat {
+        background: #0b1f3a;
+        color: white;
+      }
+
+      .botao-acompanhar {
+        background: #e1e9f5;
+        color: #0b1f3a;
+      }
+
+      /* PRÉVIA */
+
+      .previa {
+        display: none;
+        margin-top: 16px;
+        padding: 15px;
+        background: white;
+        border-radius: 15px;
+        border: 1px solid #ddd;
+      }
+
+      .previa h3 {
+        margin-bottom: 10px;
+        text-align: center;
+        font-size: 17px;
+      }
+
+      .mensagem-emergencia {
+        background: #f5f7fb;
+        border-radius: 12px;
+        padding: 14px;
+        line-height: 1.45;
+        white-space: pre-line;
+        color: #333;
+        text-align: left;
+        font-size: 13px;
+        overflow-wrap: anywhere;
+      }
+
+      /* BOTÕES */
+
+      .botao-copiar,
+      .botao-enviar,
+      .botao-engano {
+        width: 100%;
+        border: none;
+        padding: 11px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+
+      .botao-copiar,
+      .botao-enviar {
+        background: #0b1f3a;
+        color: white;
+      }
+
+      .botao-engano {
+        background: #f2f2f2;
+        color: #b91c1c;
+        border: 1px solid #e0b4b4;
+      }
+
+      /* WHATSAPP */
+
+      .envios-contatos,
+      .envios-engano {
+        display: none;
+        margin-top: 15px;
+      }
+
+      .envios-contatos h3,
+      .envios-engano h3 {
+        text-align: center;
+        margin-bottom: 8px;
+        font-size: 15px;
+      }
+
+      .botao-whatsapp {
+        width: 100%;
+        border: none;
+        padding: 11px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: bold;
+        margin-top: 7px;
+        background: #25d366;
+        color: white;
+      }
+
+      .copiado,
+      .enviado {
+        display: none;
+        text-align: center;
+        margin-top: 8px;
+        color: #1b5e20;
+        font-weight: bold;
+        font-size: 12px;
+      }
+
+      /* CELULAR */
+
+      @media (max-width: 600px) {
         header {
-            background: #0b1f3a;
-            color: white;
-            padding: 18px 15px;
-        }
-
-        .logo-area {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
+          padding: 14px 12px;
         }
 
         .logo-area img {
-            height: 68px;
+          height: 58px;
         }
 
         .logo-area span {
-            font-size: 27px;
-            font-weight: bold;
+          font-size: 24px;
         }
 
         .container {
-            max-width: 700px;
-            margin: 18px auto;
-            padding: 15px;
-        }
-
-        .voltar-topo {
-            display: block;
-            text-align: left;
-            margin-bottom: 12px;
-            text-decoration: none;
-            color: #0b1f3a;
-            font-size: 14px;
-            font-weight: bold;
+          margin: 12px auto;
+          padding: 12px;
         }
 
         .card {
-            background: white;
-            border-radius: 20px;
-            padding: 24px;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, .07);
+          padding: 18px;
+          border-radius: 18px;
         }
 
         .icone {
-            font-size: 38px;
-            margin-bottom: 8px;
+          font-size: 30px;
+          margin-bottom: 6px;
         }
 
         h2 {
-            margin-bottom: 8px;
-            font-size: 23px;
+          font-size: 20px;
         }
 
         p {
-            color: #666;
-            line-height: 1.45;
-            margin-bottom: 18px;
-            font-size: 14px;
+          font-size: 13px;
+          margin-bottom: 14px;
         }
-
-        /* BOTÃO PRINCIPAL */
 
         .botao-alerta {
-            width: 115px;
-            height: 115px;
-            border-radius: 50%;
-            border: none;
-            background: #d90429;
-            color: white;
-            font-size: 15px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 8px 20px rgba(217, 4, 41, .30);
-            transition: .2s;
+          width: 95px;
+          height: 95px;
+          font-size: 13px;
         }
-
-        .botao-alerta:hover {
-            transform: scale(1.04);
-        }
-
-        /* CONFIRMAÇÃO */
 
         .confirmacao {
-            display: none;
-            margin-top: 20px;
-            padding: 18px;
-            background: #fff8f8;
-            border: 1px solid #f0caca;
-            border-radius: 16px;
-        }
-
-        .confirmacao h3 {
-            margin-bottom: 10px;
-            font-size: 18px;
-        }
-
-        .confirmacao p {
-            margin-bottom: 14px;
-            font-size: 13px;
+          padding: 14px;
         }
 
         .botoes-confirmacao {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
+          flex-direction: column;
         }
 
         .botao-cancelar,
         .botao-continuar {
-            border: none;
-            padding: 11px 18px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 13px;
+          width: 100%;
         }
-
-        .botao-cancelar {
-            background: #e5e5e5;
-            color: #333;
-        }
-
-        .botao-continuar {
-            background: #d90429;
-            color: white;
-        }
-
-        /* STATUS */
 
         .status {
-            display: none;
-            margin-top: 20px;
-            padding: 16px;
-            border-radius: 16px;
-            background: #f8f8f8;
-            text-align: left;
+          padding: 13px;
         }
-
-        .status p {
-            margin-bottom: 9px;
-            color: #0b1f3a;
-            font-weight: bold;
-            font-size: 13px;
-        }
-
-        .link-mapa {
-            color: #0b1f3a;
-            font-weight: bold;
-            font-size: 13px;
-        }
-
-        /* CONTATOS */
-
-        .lista-contatos {
-            margin-top: 8px;
-        }
-
-        .contato-alerta {
-            background: white;
-            border-radius: 12px;
-            padding: 10px;
-            margin-top: 7px;
-            border: 1px solid #ddd;
-        }
-
-        .contato-alerta strong {
-            display: block;
-            margin-bottom: 3px;
-            font-size: 13px;
-        }
-
-        .contato-alerta span {
-            color: #666;
-            font-size: 12px;
-        }
-
-        .sem-contatos {
-            color: #777;
-            font-weight: normal;
-        }
-
-        /* ACOMPANHAMENTO */
-
-        .acoes-alerta {
-            display: none;
-            margin-top: 16px;
-            padding: 15px;
-            border-radius: 15px;
-            background: #eef4ff;
-            border: 1px solid #cddaf3;
-            text-align: center;
-        }
-
-        .acoes-alerta h3 {
-            margin-bottom: 7px;
-            font-size: 17px;
-        }
-
-        .acoes-alerta p {
-            margin-bottom: 10px;
-            font-size: 12px;
-        }
-
-        .botao-chat,
-        .botao-acompanhar {
-            display: block;
-            width: 100%;
-            text-decoration: none;
-            padding: 11px 15px;
-            border-radius: 30px;
-            font-weight: bold;
-            font-size: 13px;
-            margin-top: 8px;
-        }
-
-        .botao-chat {
-            background: #0b1f3a;
-            color: white;
-        }
-
-        .botao-acompanhar {
-            background: #e1e9f5;
-            color: #0b1f3a;
-        }
-
-        /* PRÉVIA */
-
-        .previa {
-            display: none;
-            margin-top: 16px;
-            padding: 15px;
-            background: white;
-            border-radius: 15px;
-            border: 1px solid #ddd;
-        }
-
-        .previa h3 {
-            margin-bottom: 10px;
-            text-align: center;
-            font-size: 17px;
-        }
-
-        .mensagem-emergencia {
-            background: #f5f7fb;
-            border-radius: 12px;
-            padding: 14px;
-            line-height: 1.45;
-            white-space: pre-line;
-            color: #333;
-            text-align: left;
-            font-size: 13px;
-            overflow-wrap: anywhere;
-        }
-
-        /* BOTÕES */
-
-        .botao-copiar,
-        .botao-enviar,
-        .botao-engano {
-            width: 100%;
-            border: none;
-            padding: 11px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-
-        .botao-copiar,
-        .botao-enviar {
-            background: #0b1f3a;
-            color: white;
-        }
-
-        .botao-engano {
-            background: #f2f2f2;
-            color: #b91c1c;
-            border: 1px solid #e0b4b4;
-        }
-
-        /* WHATSAPP */
-
-        .envios-contatos,
-        .envios-engano {
-            display: none;
-            margin-top: 15px;
-        }
-
-        .envios-contatos h3,
-        .envios-engano h3 {
-            text-align: center;
-            margin-bottom: 8px;
-            font-size: 15px;
-        }
-
-        .botao-whatsapp {
-            width: 100%;
-            border: none;
-            padding: 11px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: bold;
-            margin-top: 7px;
-            background: #25d366;
-            color: white;
-        }
-
-        .copiado,
-        .enviado {
-            display: none;
-            text-align: center;
-            margin-top: 8px;
-            color: #1b5e20;
-            font-weight: bold;
-            font-size: 12px;
-        }
-
-        /* CELULAR */
-
-        @media (max-width: 600px) {
-
-            header {
-                padding: 14px 12px;
-            }
-
-            .logo-area img {
-                height: 58px;
-            }
-
-            .logo-area span {
-                font-size: 24px;
-            }
-
-            .container {
-                margin: 12px auto;
-                padding: 12px;
-            }
-
-            .card {
-                padding: 18px;
-                border-radius: 18px;
-            }
-
-            .icone {
-                font-size: 30px;
-                margin-bottom: 6px;
-            }
-
-            h2 {
-                font-size: 20px;
-            }
-
-            p {
-                font-size: 13px;
-                margin-bottom: 14px;
-            }
-
-            .botao-alerta {
-                width: 95px;
-                height: 95px;
-                font-size: 13px;
-            }
-
-            .confirmacao {
-                padding: 14px;
-            }
-
-            .botoes-confirmacao {
-                flex-direction: column;
-            }
-
-            .botao-cancelar,
-            .botao-continuar {
-                width: 100%;
-            }
-
-            .status {
-                padding: 13px;
-            }
-
-        }
-
+      }
     </style>
+  </head>
 
-</head>
+  <body>
+    <header>
+      <h1 class="logo-area">
+        <img src="imagens/logo.png" alt="Logo Guardião" />
 
-<body>
+        <span> Guardião </span>
+      </h1>
+    </header>
 
+    <main class="container">
+      <a href="painel.html" class="voltar-topo"> ← Voltar </a>
 
-<header>
-
-    <h1 class="logo-area">
-
-        <img
-            src="imagens/logo.png"
-            alt="Logo Guardião">
-
-        <span>
-            Guardião
-        </span>
-
-    </h1>
-
-</header>
-
-
-<main class="container">
-
-
-    <a
-        href="painel.html"
-        class="voltar-topo">
-
-        ← Voltar
-
-    </a>
-
-
-    <div class="card">
-
-
+      <div class="card">
         <!-- INÍCIO NORMAL DA EMERGÊNCIA -->
 
         <div id="inicioAlerta">
+          <div class="icone">🚨</div>
 
-            <div class="icone">
-                🚨
-            </div>
+          <h2>Emergência</h2>
 
-            <h2>
-                Emergência
-            </h2>
+          <p>Pressione o botão abaixo para iniciar um alerta.</p>
 
-            <p>
-                Pressione o botão abaixo para iniciar um alerta.
-            </p>
-
-
-            <button
-                class="botao-alerta"
-                type="button"
-                onclick="mostrarConfirmacao()">
-
-                ALERTA
-
-            </button>
-
+          <button
+            class="botao-alerta"
+            type="button"
+            onclick="mostrarConfirmacao()"
+          >
+            ALERTA
+          </button>
         </div>
-
 
         <!-- CONFIRMAÇÃO -->
 
-        <div
-            class="confirmacao"
-            id="confirmacao">
+        <div class="confirmacao" id="confirmacao">
+          <h3>⚠️ Confirmar alerta</h3>
 
-            <h3>
-                ⚠️ Confirmar alerta
-            </h3>
+          <p>
+            Você está prestes a iniciar um alerta de emergência. Seus contatos
+            de confiança serão preparados para receber o aviso.
+          </p>
 
-            <p>
-                Você está prestes a iniciar um alerta de emergência.
-                Seus contatos de confiança serão preparados para receber o aviso.
-            </p>
+          <div class="botoes-confirmacao">
+            <button
+              class="botao-cancelar"
+              type="button"
+              onclick="cancelarAlerta()"
+            >
+              Cancelar
+            </button>
 
-
-            <div class="botoes-confirmacao">
-
-                <button
-                    class="botao-cancelar"
-                    type="button"
-                    onclick="cancelarAlerta()">
-
-                    Cancelar
-
-                </button>
-
-
-                <button
-                    class="botao-continuar"
-                    type="button"
-                    onclick="continuarAlerta()">
-
-                    Continuar
-
-                </button>
-
-            </div>
-
+            <button
+              class="botao-continuar"
+              type="button"
+              onclick="continuarAlerta()"
+            >
+              Continuar
+            </button>
+          </div>
         </div>
-
 
         <!-- ALERTA ATIVO -->
 
-        <div
-            class="status"
-            id="statusAlerta">
+        <div class="status" id="statusAlerta">
+          <p>🔴 Alerta ativo</p>
 
+          <p id="localizacao">📍 Localização: aguardando...</p>
 
-            <p>
-                🔴 Alerta ativo
-            </p>
+          <p>👥 Contatos de confiança:</p>
 
+          <div class="lista-contatos" id="listaContatosAlerta"></div>
 
-            <p id="localizacao">
-                📍 Localização: aguardando...
-            </p>
+          <!-- ACOMPANHAMENTO -->
 
+          <div class="acoes-alerta" id="acoesAlerta">
+            <h3>🛡️ Acompanhar emergência</h3>
 
-            <p>
-                👥 Contatos de confiança:
-            </p>
+            <p>Acesse o chat ou acompanhe quem está indo ajudar.</p>
 
+            <a href="chat.html" class="botao-chat">
+              💬 Abrir chat de emergência
+            </a>
 
-            <div
-                class="lista-contatos"
-                id="listaContatosAlerta">
+            <a href="alerta-ativo.html" class="botao-acompanhar">
+              🚗 Acompanhar alerta
+            </a>
+          </div>
+
+          <!-- PRÉVIA -->
+
+          <div class="previa" id="previaMensagem">
+            <h3>🚨 Prévia da mensagem</h3>
+
+            <div class="mensagem-emergencia" id="mensagemEmergencia"></div>
+
+            <button
+              class="botao-copiar"
+              type="button"
+              onclick="copiarMensagem()"
+            >
+              📋 Copiar mensagem
+            </button>
+
+            <div class="copiado" id="mensagemCopiada">✅ Mensagem copiada!</div>
+
+            <button
+              class="botao-enviar"
+              type="button"
+              onclick="mostrarEnvios()"
+            >
+              📤 Enviar alerta
+            </button>
+
+            <!-- CONTATOS PARA ENVIO -->
+
+            <div class="envios-contatos" id="enviosContatos">
+              <h3>Escolha para quem enviar</h3>
+
+              <div id="botoesContatos"></div>
             </div>
 
+            <!-- ENGANO -->
 
-            <!-- ACOMPANHAMENTO -->
+            <button
+              class="botao-engano"
+              type="button"
+              onclick="mostrarEnviosEngano()"
+            >
+              Foi enviado por engano
+            </button>
 
-            <div
-                class="acoes-alerta"
-                id="acoesAlerta">
+            <div class="envios-engano" id="enviosEngano">
+              <h3>Avisar que está tudo bem</h3>
 
-                <h3>
-                    🛡️ Acompanhar emergência
-                </h3>
-
-                <p>
-                    Acesse o chat ou acompanhe quem está indo ajudar.
-                </p>
-
-
-                <a
-                    href="chat.html"
-                    class="botao-chat">
-
-                    💬 Abrir chat de emergência
-
-                </a>
-
-
-                <a
-                    href="alerta-ativo.html"
-                    class="botao-acompanhar">
-
-                    🚗 Acompanhar alerta
-
-                </a>
-
+              <div id="botoesEngano"></div>
             </div>
 
-
-            <!-- PRÉVIA -->
-
-            <div
-                class="previa"
-                id="previaMensagem">
-
-
-                <h3>
-                    🚨 Prévia da mensagem
-                </h3>
-
-
-                <div
-                    class="mensagem-emergencia"
-                    id="mensagemEmergencia">
-                </div>
-
-
-                <button
-                    class="botao-copiar"
-                    type="button"
-                    onclick="copiarMensagem()">
-
-                    📋 Copiar mensagem
-
-                </button>
-
-
-                <div
-                    class="copiado"
-                    id="mensagemCopiada">
-
-                    ✅ Mensagem copiada!
-
-                </div>
-
-
-                <button
-                    class="botao-enviar"
-                    type="button"
-                    onclick="mostrarEnvios()">
-
-                    📤 Enviar alerta
-
-                </button>
-
-
-                <!-- CONTATOS PARA ENVIO -->
-
-                <div
-                    class="envios-contatos"
-                    id="enviosContatos">
-
-                    <h3>
-                        Escolha para quem enviar
-                    </h3>
-
-                    <div id="botoesContatos">
-                    </div>
-
-                </div>
-
-
-                <!-- ENGANO -->
-
-                <button
-                    class="botao-engano"
-                    type="button"
-                    onclick="mostrarEnviosEngano()">
-
-                    Foi enviado por engano
-
-                </button>
-
-
-                <div
-                    class="envios-engano"
-                    id="enviosEngano">
-
-                    <h3>
-                        Avisar que está tudo bem
-                    </h3>
-
-                    <div id="botoesEngano">
-                    </div>
-
-                </div>
-
-
-                <div
-                    class="enviado"
-                    id="mensagemEnviada">
-
-                    ✅ WhatsApp aberto para envio!
-
-                </div>
-
-
+            <div class="enviado" id="mensagemEnviada">
+              ✅ WhatsApp aberto para envio!
             </div>
-
+          </div>
         </div>
+      </div>
+    </main>
 
-    </div>
+    <script>
+      const chavePerfil = "perfilGuardiao";
 
-</main>
+      const chaveContatos = "contatosGuardiao";
 
+      const chaveLocalizacao = "localizacaoAlertaGuardiao";
 
-<script>
+      const chaveAjudas = "ajudasGuardiao";
 
+      const chaveConfiguracoes = "configuracoesGuardiao";
 
-    const chavePerfil =
-        "perfilGuardiao";
+      let textoMensagem = "";
 
-
-    const chaveContatos =
-        "contatosGuardiao";
-
-
-    const chaveLocalizacao =
-        "localizacaoAlertaGuardiao";
-
-
-    const chaveAjudas =
-        "ajudasGuardiao";
-
-
-    const chaveConfiguracoes =
-        "configuracoesGuardiao";
-
-
-    let textoMensagem = "";
-
-
-    /*
+      /*
         Diz se a emergência veio
         do ALERTA rápido do painel.
     */
 
-    let modoAlertaRapido =
-        false;
+      let modoAlertaRapido = false;
 
-
-
-    /* =========================
+      /* =========================
        PERFIL
     ========================= */
 
+      function obterPerfil() {
+        return JSON.parse(localStorage.getItem(chavePerfil)) || {};
+      }
 
-    function obterPerfil() {
-
-        return JSON.parse(
-
-            localStorage.getItem(
-                chavePerfil
-            )
-
-        ) || {};
-
-    }
-
-
-
-    function obterConfiguracoes() {
-
-        return JSON.parse(
-
-            localStorage.getItem(
-                chaveConfiguracoes
-            )
-
-        ) || {
-
+      function obterConfiguracoes() {
+        return (
+          JSON.parse(localStorage.getItem(chaveConfiguracoes)) || {
             notificacoes: true,
-            localizacao: true
+            localizacao: true,
+          }
+        );
+      }
 
-        };
-
-    }
-
-
-
-    function localizacaoEstaAtivada() {
-
-        const configuracoes =
-            obterConfiguracoes();
-
+      function localizacaoEstaAtivada() {
+        const configuracoes = obterConfiguracoes();
 
         return configuracoes.localizacao !== false;
+      }
 
-    }
+      function obterNomeUsuario() {
+        const perfil = obterPerfil();
 
-
-
-    function obterNomeUsuario() {
-
-        const perfil =
-            obterPerfil();
-
-
-        if (
-
-            perfil.nome &&
-            perfil.nome.trim() !== ""
-
-        ) {
-
-            return perfil.nome.trim();
-
+        if (perfil.nome && perfil.nome.trim() !== "") {
+          return perfil.nome.trim();
         }
 
-
         return "";
+      }
 
-    }
-
-
-
-    function obterInformacaoEmergencia() {
-
-        const perfil =
-            obterPerfil();
-
+      function obterInformacaoEmergencia() {
+        const perfil = obterPerfil();
 
         if (
-
-            perfil.informacaoEmergencia &&
-            perfil.informacaoEmergencia.trim() !== ""
-
+          perfil.informacaoEmergencia &&
+          perfil.informacaoEmergencia.trim() !== ""
         ) {
-
-            return perfil.informacaoEmergencia.trim();
-
+          return perfil.informacaoEmergencia.trim();
         }
 
-
         return "";
+      }
 
-    }
-
-
-
-    /* =========================
+      /* =========================
        CONFIRMAÇÃO
     ========================= */
 
+      function mostrarConfirmacao() {
+        document.getElementById("confirmacao").style.display = "block";
+      }
 
-    function mostrarConfirmacao() {
+      function cancelarAlerta() {
+        document.getElementById("confirmacao").style.display = "none";
+      }
 
-        document.getElementById(
-            "confirmacao"
-        ).style.display =
-            "block";
+      function continuarAlerta() {
+        document.getElementById("confirmacao").style.display = "none";
 
-    }
+        localStorage.removeItem(chaveLocalizacao);
 
-
-
-    function cancelarAlerta() {
-
-        document.getElementById(
-            "confirmacao"
-        ).style.display =
-            "none";
-
-    }
-
-
-
-    function continuarAlerta() {
-
-        document.getElementById(
-            "confirmacao"
-        ).style.display =
-            "none";
-
-
-        localStorage.removeItem(
-            chaveLocalizacao
-        );
-
-
-        localStorage.removeItem(
-            chaveAjudas
-        );
-
+        localStorage.removeItem(chaveAjudas);
 
         acionarAlerta();
+      }
 
-    }
-
-
-
-    /* =========================
+      /* =========================
        ACIONAR ALERTA
     ========================= */
 
+      function acionarAlerta() {
+        const status = document.getElementById("statusAlerta");
 
-    function acionarAlerta() {
+        const localizacao = document.getElementById("localizacao");
 
+        const lista = document.getElementById("listaContatosAlerta");
 
-        const status =
-            document.getElementById(
-                "statusAlerta"
-            );
+        const acoes = document.getElementById("acoesAlerta");
 
+        status.style.display = "block";
 
-        const localizacao =
-            document.getElementById(
-                "localizacao"
-            );
+        acoes.style.display = "block";
 
-
-        const lista =
-            document.getElementById(
-                "listaContatosAlerta"
-            );
-
-
-        const acoes =
-            document.getElementById(
-                "acoesAlerta"
-            );
-
-
-        status.style.display =
-            "block";
-
-
-        acoes.style.display =
-            "block";
-
-
-        carregarContatosDoAlerta(
-            lista
-        );
-
-
+        carregarContatosDoAlerta(lista);
 
         /*
             LOCALIZAÇÃO DESATIVADA
         */
 
+        if (!localizacaoEstaAtivada()) {
+          localizacao.textContent =
+            "📍 Localização: compartilhamento desativado nas configurações.";
 
-        if (
-            !localizacaoEstaAtivada()
-        ) {
+          localStorage.removeItem(chaveLocalizacao);
 
-            localizacao.textContent =
-                "📍 Localização: compartilhamento desativado nas configurações.";
+          criarMensagem("Localização não compartilhada.");
 
-
-            localStorage.removeItem(
-                chaveLocalizacao
-            );
-
-
-            criarMensagem(
-                "Localização não compartilhada."
-            );
-
-
-            return;
-
+          return;
         }
-
-
 
         /*
             GEOLOCALIZAÇÃO NÃO SUPORTADA
         */
 
+        if (!navigator.geolocation) {
+          localizacao.textContent = "📍 Localização: não disponível.";
 
-        if (
-            !navigator.geolocation
-        ) {
+          criarMensagem("Localização não disponível.");
 
-            localizacao.textContent =
-                "📍 Localização: não disponível.";
-
-
-            criarMensagem(
-                "Localização não disponível."
-            );
-
-
-            return;
-
+          return;
         }
 
-
-
-        localizacao.textContent =
-            "📍 Localização: obtendo localização...";
-
-
+        localizacao.textContent = "📍 Localização: obtendo localização...";
 
         navigator.geolocation.getCurrentPosition(
+          function (posicao) {
+            const latitude = posicao.coords.latitude;
 
+            const longitude = posicao.coords.longitude;
 
-            function(posicao) {
+            const coordenadas =
+              latitude.toFixed(5) + ", " + longitude.toFixed(5);
 
+            const linkMapa =
+              "https://www.google.com/maps?q=" + latitude + "," + longitude;
 
-                const latitude =
-                    posicao.coords.latitude;
+            const localizacaoAlerta = {
+              latitude: latitude,
 
+              longitude: longitude,
 
-                const longitude =
-                    posicao.coords.longitude;
+              coordenadas: coordenadas,
 
+              linkMapa: linkMapa,
 
-                const coordenadas =
-                    latitude.toFixed(5) +
-                    ", " +
-                    longitude.toFixed(5);
+              horario: obterHoraAtual(),
+            };
 
+            localStorage.setItem(
+              chaveLocalizacao,
 
+              JSON.stringify(localizacaoAlerta),
+            );
 
-                const linkMapa =
-                    "https://www.google.com/maps?q=" +
-                    latitude +
-                    "," +
-                    longitude;
+            localizacao.innerHTML =
+              "📍 Localização: " +
+              coordenadas +
+              "<br>" +
+              "<a class='link-mapa' " +
+              "href='" +
+              linkMapa +
+              "' " +
+              "target='_blank' " +
+              "rel='noopener noreferrer'>" +
+              "Abrir localização no mapa" +
+              "</a>";
 
+            criarMensagem(linkMapa);
+          },
 
+          function () {
+            localizacao.textContent =
+              "📍 Localização: permissão não concedida.";
 
-                const localizacaoAlerta = {
-
-                    latitude: latitude,
-
-                    longitude: longitude,
-
-                    coordenadas: coordenadas,
-
-                    linkMapa: linkMapa,
-
-                    horario: obterHoraAtual()
-
-                };
-
-
-
-                localStorage.setItem(
-
-                    chaveLocalizacao,
-
-                    JSON.stringify(
-                        localizacaoAlerta
-                    )
-
-                );
-
-
-
-                localizacao.innerHTML =
-
-                    "📍 Localização: " +
-                    coordenadas +
-
-                    "<br>" +
-
-                    "<a class='link-mapa' " +
-
-                    "href='" +
-                    linkMapa +
-                    "' " +
-
-                    "target='_blank' " +
-
-                    "rel='noopener noreferrer'>" +
-
-                    "Abrir localização no mapa" +
-
-                    "</a>";
-
-
-
-                criarMensagem(
-                    linkMapa
-                );
-
-            },
-
-
-
-            function() {
-
-
-                localizacao.textContent =
-                    "📍 Localização: permissão não concedida.";
-
-
-                criarMensagem(
-                    "Localização não disponível."
-                );
-
-            }
-
-
+            criarMensagem("Localização não disponível.");
+          },
         );
+      }
 
-    }
-
-
-
-    /* =========================
+      /* =========================
        CONTATOS
     ========================= */
 
+      function carregarContatosDoAlerta(lista) {
+        const contatos = JSON.parse(localStorage.getItem(chaveContatos)) || [];
 
-    function carregarContatosDoAlerta(
-        lista
-    ) {
+        lista.innerHTML = "";
 
-
-        const contatos =
-            JSON.parse(
-
-                localStorage.getItem(
-                    chaveContatos
-                )
-
-            ) || [];
-
-
-        lista.innerHTML =
-            "";
-
-
-
-        if (
-            contatos.length === 0
-        ) {
-
-
-            lista.innerHTML = `
+        if (contatos.length === 0) {
+          lista.innerHTML = `
 
                 <div class="contato-alerta">
 
@@ -1131,216 +766,83 @@
 
             `;
 
-
-            return;
-
+          return;
         }
 
+        contatos.forEach(function (contato) {
+          const elemento = document.createElement("div");
 
+          elemento.className = "contato-alerta";
 
-        contatos.forEach(
+          const nome = document.createElement("strong");
 
-            function(contato) {
+          nome.textContent = "🟢 " + contato.nome;
 
+          const telefone = document.createElement("span");
 
-                const elemento =
-                    document.createElement(
-                        "div"
-                    );
+          telefone.textContent = "📱 " + contato.telefone;
 
+          elemento.appendChild(nome);
 
-                elemento.className =
-                    "contato-alerta";
+          elemento.appendChild(telefone);
 
+          lista.appendChild(elemento);
+        });
+      }
 
-
-                const nome =
-                    document.createElement(
-                        "strong"
-                    );
-
-
-                nome.textContent =
-                    "🟢 " +
-                    contato.nome;
-
-
-
-                const telefone =
-                    document.createElement(
-                        "span"
-                    );
-
-
-                telefone.textContent =
-                    "📱 " +
-                    contato.telefone;
-
-
-
-                elemento.appendChild(
-                    nome
-                );
-
-
-                elemento.appendChild(
-                    telefone
-                );
-
-
-                lista.appendChild(
-                    elemento
-                );
-
-            }
-
-        );
-
-    }
-
-
-
-    /* =========================
+      /* =========================
        MENSAGEM
     ========================= */
 
+      function criarMensagem(localizacaoTexto) {
+        const contatos = JSON.parse(localStorage.getItem(chaveContatos)) || [];
 
-    function criarMensagem(
-        localizacaoTexto
-    ) {
+        const nomeUsuario = obterNomeUsuario();
 
+        const informacaoEmergencia = obterInformacaoEmergencia();
 
-        const contatos =
-            JSON.parse(
+        let linhaAjuda = "Preciso de ajuda.";
 
-                localStorage.getItem(
-                    chaveContatos
-                )
-
-            ) || [];
-
-
-
-        const nomeUsuario =
-            obterNomeUsuario();
-
-
-
-        const informacaoEmergencia =
-            obterInformacaoEmergencia();
-
-
-
-        let linhaAjuda =
-            "Preciso de ajuda.";
-
-
-
-        if (
-            nomeUsuario !== ""
-        ) {
-
-            linhaAjuda =
-                nomeUsuario +
-                " precisa de ajuda.";
-
+        if (nomeUsuario !== "") {
+          linhaAjuda = nomeUsuario + " precisa de ajuda.";
         }
 
+        let blocoInformacao = "";
 
-
-        let blocoInformacao =
-            "";
-
-
-
-        if (
-            informacaoEmergencia !== ""
-        ) {
-
-            blocoInformacao =
-
-                "ℹ️ Informação importante:\n" +
-
-                informacaoEmergencia +
-
-                "\n\n";
-
+        if (informacaoEmergencia !== "") {
+          blocoInformacao =
+            "ℹ️ Informação importante:\n" + informacaoEmergencia + "\n\n";
         }
 
+        let nomes = "";
 
+        if (contatos.length > 0) {
+          nomes = contatos
 
-        let nomes =
-            "";
+            .map(function (contato) {
+              return "• " + contato.nome;
+            })
 
-
-
-        if (
-            contatos.length > 0
-        ) {
-
-
-            nomes =
-                contatos
-
-                    .map(
-
-                        function(contato) {
-
-                            return "• " +
-                                contato.nome;
-
-                        }
-
-                    )
-
-                    .join("\n");
-
+            .join("\n");
+        } else {
+          nomes = "Nenhum contato cadastrado.";
         }
-
-        else {
-
-            nomes =
-                "Nenhum contato cadastrado.";
-
-        }
-
-
 
         textoMensagem =
+          "🚨 ALERTA DE EMERGÊNCIA — GUARDIÃO\n\n" +
+          linhaAjuda +
+          "\n\n" +
+          blocoInformacao +
+          "📍 Minha localização:\n" +
+          localizacaoTexto +
+          "\n\n" +
+          "👥 Contatos de confiança:\n" +
+          nomes;
 
-            "🚨 ALERTA DE EMERGÊNCIA — GUARDIÃO\n\n" +
+        document.getElementById("mensagemEmergencia").textContent =
+          textoMensagem;
 
-            linhaAjuda +
-
-            "\n\n" +
-
-            blocoInformacao +
-
-            "📍 Minha localização:\n" +
-
-            localizacaoTexto +
-
-            "\n\n" +
-
-            "👥 Contatos de confiança:\n" +
-
-            nomes;
-
-
-
-        document.getElementById(
-            "mensagemEmergencia"
-        ).textContent =
-            textoMensagem;
-
-
-
-        document.getElementById(
-            "previaMensagem"
-        ).style.display =
-            "block";
-
-
+        document.getElementById("previaMensagem").style.display = "block";
 
         /*
             NOVA MELHORIA
@@ -1353,616 +855,261 @@
             "Enviar alerta".
         */
 
-
-        if (
-
-            modoAlertaRapido &&
-            contatos.length > 0
-
-        ) {
-
-            mostrarEnvios();
-
+        if (modoAlertaRapido && contatos.length > 0) {
+          mostrarEnvios();
         }
 
+        modoAlertaRapido = false;
+      }
 
-
-        modoAlertaRapido =
-            false;
-
-    }
-
-
-
-    /* =========================
+      /* =========================
        COPIAR
     ========================= */
 
-
-    function copiarMensagem() {
-
-
+      function copiarMensagem() {
         navigator.clipboard
 
-            .writeText(
-                textoMensagem
-            )
+          .writeText(textoMensagem)
 
-            .then(
+          .then(function () {
+            const aviso = document.getElementById("mensagemCopiada");
 
-                function() {
+            aviso.style.display = "block";
 
+            setTimeout(
+              function () {
+                aviso.style.display = "none";
+              },
 
-                    const aviso =
-                        document.getElementById(
-                            "mensagemCopiada"
-                        );
-
-
-                    aviso.style.display =
-                        "block";
-
-
-                    setTimeout(
-
-                        function() {
-
-                            aviso.style.display =
-                                "none";
-
-                        },
-
-                        2500
-
-                    );
-
-                }
-
+              2500,
             );
+          });
+      }
 
-    }
-
-
-
-    /* =========================
+      /* =========================
        MOSTRAR CONTATOS PARA ENVIO
     ========================= */
 
+      function mostrarEnvios() {
+        const contatos = JSON.parse(localStorage.getItem(chaveContatos)) || [];
 
-    function mostrarEnvios() {
+        if (contatos.length === 0) {
+          alert("Nenhum contato de confiança foi cadastrado.");
 
-
-        const contatos =
-            JSON.parse(
-
-                localStorage.getItem(
-                    chaveContatos
-                )
-
-            ) || [];
-
-
-
-        if (
-            contatos.length === 0
-        ) {
-
-            alert(
-                "Nenhum contato de confiança foi cadastrado."
-            );
-
-
-            return;
-
+          return;
         }
 
+        const area = document.getElementById("enviosContatos");
 
+        const botoes = document.getElementById("botoesContatos");
 
-        const area =
-            document.getElementById(
-                "enviosContatos"
+        botoes.innerHTML = "";
+
+        contatos.forEach(function (contato, indice) {
+          const botao = document.createElement("button");
+
+          botao.className = "botao-whatsapp";
+
+          botao.textContent = "💬 Enviar para " + contato.nome;
+
+          botao.onclick = function () {
+            enviarParaContato(
+              indice,
+
+              textoMensagem,
             );
+          };
 
+          botoes.appendChild(botao);
+        });
 
-        const botoes =
-            document.getElementById(
-                "botoesContatos"
-            );
+        area.style.display = "block";
+      }
 
-
-
-        botoes.innerHTML =
-            "";
-
-
-
-        contatos.forEach(
-
-            function(
-                contato,
-                indice
-            ) {
-
-
-                const botao =
-                    document.createElement(
-                        "button"
-                    );
-
-
-                botao.className =
-                    "botao-whatsapp";
-
-
-                botao.textContent =
-                    "💬 Enviar para " +
-                    contato.nome;
-
-
-
-                botao.onclick =
-
-                    function() {
-
-                        enviarParaContato(
-
-                            indice,
-
-                            textoMensagem
-
-                        );
-
-                    };
-
-
-
-                botoes.appendChild(
-                    botao
-                );
-
-            }
-
-        );
-
-
-
-        area.style.display =
-            "block";
-
-    }
-
-
-
-    /* =========================
+      /* =========================
        ALERTA POR ENGANO
     ========================= */
 
+      function mostrarEnviosEngano() {
+        const contatos = JSON.parse(localStorage.getItem(chaveContatos)) || [];
 
-    function mostrarEnviosEngano() {
+        if (contatos.length === 0) {
+          alert("Nenhum contato de confiança foi cadastrado.");
 
-
-        const contatos =
-            JSON.parse(
-
-                localStorage.getItem(
-                    chaveContatos
-                )
-
-            ) || [];
-
-
-
-        if (
-            contatos.length === 0
-        ) {
-
-            alert(
-                "Nenhum contato de confiança foi cadastrado."
-            );
-
-
-            return;
-
+          return;
         }
 
+        const area = document.getElementById("enviosEngano");
 
+        const botoes = document.getElementById("botoesEngano");
 
-        const area =
-            document.getElementById(
-                "enviosEngano"
-            );
-
-
-        const botoes =
-            document.getElementById(
-                "botoesEngano"
-            );
-
-
-        const nomeUsuario =
-            obterNomeUsuario();
-
-
+        const nomeUsuario = obterNomeUsuario();
 
         let textoEngano =
+          "GUARDIÃO\n\n" +
+          "O alerta de emergência enviado anteriormente " +
+          "foi acionado por engano.\n\n" +
+          "Está tudo bem. Por favor, desconsidere o alerta anterior.";
 
+        if (nomeUsuario !== "") {
+          textoEngano =
             "GUARDIÃO\n\n" +
-
-            "O alerta de emergência enviado anteriormente " +
-
-            "foi acionado por engano.\n\n" +
-
+            "O alerta de emergência de " +
+            nomeUsuario +
+            " enviado anteriormente foi acionado por engano.\n\n" +
             "Está tudo bem. Por favor, desconsidere o alerta anterior.";
-
-
-
-        if (
-            nomeUsuario !== ""
-        ) {
-
-
-            textoEngano =
-
-                "GUARDIÃO\n\n" +
-
-                "O alerta de emergência de " +
-
-                nomeUsuario +
-
-                " enviado anteriormente foi acionado por engano.\n\n" +
-
-                "Está tudo bem. Por favor, desconsidere o alerta anterior.";
-
         }
 
+        botoes.innerHTML = "";
 
+        contatos.forEach(function (contato, indice) {
+          const botao = document.createElement("button");
 
-        botoes.innerHTML =
-            "";
+          botao.className = "botao-whatsapp";
 
+          botao.textContent = "Avisar " + contato.nome;
 
+          botao.onclick = function () {
+            enviarParaContato(
+              indice,
 
-        contatos.forEach(
+              textoEngano,
+            );
+          };
 
-            function(
-                contato,
-                indice
-            ) {
+          botoes.appendChild(botao);
+        });
 
+        area.style.display = "block";
+      }
 
-                const botao =
-                    document.createElement(
-                        "button"
-                    );
-
-
-                botao.className =
-                    "botao-whatsapp";
-
-
-                botao.textContent =
-                    "Avisar " +
-                    contato.nome;
-
-
-
-                botao.onclick =
-
-                    function() {
-
-                        enviarParaContato(
-
-                            indice,
-
-                            textoEngano
-
-                        );
-
-                    };
-
-
-
-                botoes.appendChild(
-                    botao
-                );
-
-            }
-
-        );
-
-
-
-        area.style.display =
-            "block";
-
-    }
-
-
-
-    /* =========================
+      /* =========================
        WHATSAPP
     ========================= */
 
+      function enviarParaContato(indice, mensagemTexto) {
+        const contatos = JSON.parse(localStorage.getItem(chaveContatos)) || [];
 
-    function enviarParaContato(
-        indice,
-        mensagemTexto
-    ) {
-
-
-        const contatos =
-            JSON.parse(
-
-                localStorage.getItem(
-                    chaveContatos
-                )
-
-            ) || [];
-
-
-
-        if (
-            !contatos[indice]
-        ) {
-
-            return;
-
+        if (!contatos[indice]) {
+          return;
         }
 
+        let telefone = contatos[indice].telefone;
 
-
-        let telefone =
-            contatos[indice].telefone;
-
-
-
-        telefone =
-            telefone.replace(
-                /\D/g,
-                ""
-            );
-
-
+        telefone = telefone.replace(/\D/g, "");
 
         /*
             Se estiver no formato brasileiro
             sem código do país, adiciona 55.
         */
 
-
-        if (
-
-            telefone.length === 10 ||
-            telefone.length === 11
-
-        ) {
-
-            telefone =
-                "55" +
-                telefone;
-
+        if (telefone.length === 10 || telefone.length === 11) {
+          telefone = "55" + telefone;
         }
 
+        const mensagem = encodeURIComponent(mensagemTexto);
 
+        const link = "https://wa.me/" + telefone + "?text=" + mensagem;
 
-        const mensagem =
-            encodeURIComponent(
-                mensagemTexto
-            );
+        window.open(link, "_blank");
 
+        const aviso = document.getElementById("mensagemEnviada");
 
-
-        const link =
-
-            "https://wa.me/" +
-
-            telefone +
-
-            "?text=" +
-
-            mensagem;
-
-
-
-        window.open(
-            link,
-            "_blank"
-        );
-
-
-
-        const aviso =
-            document.getElementById(
-                "mensagemEnviada"
-            );
-
-
-
-        aviso.style.display =
-            "block";
-
-
+        aviso.style.display = "block";
 
         setTimeout(
+          function () {
+            aviso.style.display = "none";
+          },
 
-            function() {
-
-                aviso.style.display =
-                    "none";
-
-            },
-
-            3000
-
+          3000,
         );
+      }
 
-    }
-
-
-
-    /* =========================
+      /* =========================
        HORÁRIO
     ========================= */
 
+      function obterHoraAtual() {
+        return new Date().toLocaleTimeString(
+          "pt-BR",
 
-    function obterHoraAtual() {
+          {
+            hour: "2-digit",
 
+            minute: "2-digit",
+          },
+        );
+      }
 
-        return new Date()
-
-            .toLocaleTimeString(
-
-                "pt-BR",
-
-                {
-
-                    hour: "2-digit",
-
-                    minute: "2-digit"
-
-                }
-
-            );
-
-    }
-
-
-
-    /* =========================
+      /* =========================
        ESCONDER SEGUNDO ALERTA
     ========================= */
 
+      function esconderInicioAlerta() {
+        const inicioAlerta = document.getElementById("inicioAlerta");
 
-    function esconderInicioAlerta() {
+        const confirmacao = document.getElementById("confirmacao");
 
-
-        const inicioAlerta =
-            document.getElementById(
-                "inicioAlerta"
-            );
-
-
-        const confirmacao =
-            document.getElementById(
-                "confirmacao"
-            );
-
-
-
-        if (
-            inicioAlerta
-        ) {
-
-            inicioAlerta.style.display =
-                "none";
-
+        if (inicioAlerta) {
+          inicioAlerta.style.display = "none";
         }
 
-
-
-        if (
-            confirmacao
-        ) {
-
-            confirmacao.style.display =
-                "none";
-
+        if (confirmacao) {
+          confirmacao.style.display = "none";
         }
+      }
 
-    }
-
-
-
-    /* =========================
+      /* =========================
        ALERTA RÁPIDO
     ========================= */
 
+      function verificarInicioAutomatico() {
+        const parametros = new URLSearchParams(window.location.search);
 
-    function verificarInicioAutomatico() {
+        const iniciarAutomaticamente = parametros.get("auto");
 
-
-        const parametros =
-            new URLSearchParams(
-                window.location.search
-            );
-
-
-
-        const iniciarAutomaticamente =
-            parametros.get(
-                "auto"
-            );
-
-
-
-        if (
-            iniciarAutomaticamente === "1"
-        ) {
-
-
-            /*
+        if (iniciarAutomaticamente === "1") {
+          /*
                 Informa que o alerta veio
                 do botão principal.
             */
 
+          modoAlertaRapido = true;
 
-            modoAlertaRapido =
-                true;
-
-
-
-            /*
+          /*
                 Esconde o segundo ALERTA.
             */
 
+          esconderInicioAlerta();
 
-            esconderInicioAlerta();
-
-
-
-            /*
+          /*
                 Remove ?auto=1 da URL
                 sem atualizar a página.
             */
 
+          window.history.replaceState(
+            {},
 
-            window.history.replaceState(
+            document.title,
 
-                {},
+            "emergencia.html",
+          );
 
-                document.title,
-
-                "emergencia.html"
-
-            );
-
-
-
-            /*
+          /*
                 Ativa a emergência
                 imediatamente.
             */
 
-
-            continuarAlerta();
-
+          continuarAlerta();
         }
+      }
 
-    }
-
-
-
-    /*
+      /*
         VERIFICA COMO A PÁGINA FOI ABERTA
     */
 
-
-    verificarInicioAutomatico();
-
-
-</script>
-
-
-</body>
-
+      verificarInicioAutomatico();
+    </script>
+  </body>
 </html>

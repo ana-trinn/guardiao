@@ -1,322 +1,250 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Guardião</title>
 
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f5f7fb;
+        color: #0b1f3a;
+        min-height: 100vh;
+      }
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f5f7fb;
-            color: #0b1f3a;
-            min-height: 100vh;
-        }
+      .pagina {
+        min-height: 100vh;
+      }
 
-        .pagina {
-            min-height: 100vh;
-        }
+      header {
+        width: 100%;
+        background: #0b1f3a;
+        color: white;
+        text-align: center;
+        padding: 16px 15px;
+      }
 
+      .logo-area {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .logo-area img {
+        height: 62px;
+      }
+
+      .logo-area h1 {
+        font-size: 26px;
+      }
+
+      .logo-area span {
+        font-size: 12px;
+        opacity: 0.85;
+      }
+
+      main {
+        display: flex;
+        justify-content: center;
+        padding: 16px 14px 20px;
+      }
+
+      .card {
+        width: 100%;
+        max-width: 600px;
+        background: white;
+        border-radius: 22px;
+        padding: 24px 18px;
+        text-align: center;
+        box-shadow: 0 8px 24px rgba(11, 31, 58, 0.1);
+      }
+
+      h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      .descricao {
+        color: #5f6b7a;
+        line-height: 1.5;
+        font-size: 14px;
+        margin-bottom: 18px;
+      }
+
+      .destaques {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin-bottom: 20px;
+      }
+
+      .destaque {
+        background: #f5f7fb;
+        border-radius: 14px;
+        padding: 12px 8px;
+      }
+
+      .emoji {
+        display: block;
+        font-size: 22px;
+        margin-bottom: 5px;
+      }
+
+      .destaque strong {
+        display: block;
+        font-size: 13px;
+        margin-bottom: 3px;
+      }
+
+      .destaque p {
+        font-size: 11px;
+        color: #6b7280;
+        line-height: 1.3;
+      }
+
+      .botao {
+        display: block;
+        width: 100%;
+        background: #0b1f3a;
+        color: white;
+        text-decoration: none;
+        border-radius: 30px;
+        padding: 14px 20px;
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      .aviso {
+        margin-top: 13px;
+        color: #7a8492;
+        font-size: 11px;
+      }
+
+      footer {
+        text-align: center;
+        padding: 10px 10px 18px;
+        color: #7a8492;
+        font-size: 11px;
+      }
+
+      @media (max-width: 430px) {
         header {
-            width: 100%;
-            background: #0b1f3a;
-            color: white;
-            text-align: center;
-            padding: 16px 15px;
-        }
-
-        .logo-area {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
+          padding: 14px 12px;
         }
 
         .logo-area img {
-            height: 62px;
+          height: 58px;
         }
 
         .logo-area h1 {
-            font-size: 26px;
-        }
-
-        .logo-area span {
-            font-size: 12px;
-            opacity: .85;
+          font-size: 24px;
         }
 
         main {
-            display: flex;
-            justify-content: center;
-            padding: 16px 14px 20px;
+          padding: 14px 12px;
         }
 
         .card {
-            width: 100%;
-            max-width: 600px;
-            background: white;
-            border-radius: 22px;
-            padding: 24px 18px;
-            text-align: center;
-            box-shadow: 0 8px 24px rgba(11, 31, 58, .10);
+          padding: 22px 16px;
+          border-radius: 20px;
         }
 
         h2 {
-            font-size: 24px;
-            margin-bottom: 10px;
+          font-size: 22px;
         }
 
         .descricao {
-            color: #5f6b7a;
-            line-height: 1.5;
-            font-size: 14px;
-            margin-bottom: 18px;
+          font-size: 14px;
+          margin-bottom: 16px;
         }
 
         .destaques {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            margin-bottom: 20px;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 6px;
         }
 
         .destaque {
-            background: #f5f7fb;
-            border-radius: 14px;
-            padding: 12px 8px;
+          padding: 10px 5px;
         }
 
         .emoji {
-            display: block;
-            font-size: 22px;
-            margin-bottom: 5px;
+          font-size: 20px;
         }
 
         .destaque strong {
-            display: block;
-            font-size: 13px;
-            margin-bottom: 3px;
+          font-size: 12px;
         }
 
         .destaque p {
-            font-size: 11px;
-            color: #6b7280;
-            line-height: 1.3;
+          display: none;
         }
-
-        .botao {
-            display: block;
-            width: 100%;
-            background: #0b1f3a;
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
-            padding: 14px 20px;
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        .aviso {
-            margin-top: 13px;
-            color: #7a8492;
-            font-size: 11px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 10px 10px 18px;
-            color: #7a8492;
-            font-size: 11px;
-        }
-
-        @media (max-width: 430px) {
-
-            header {
-                padding: 14px 12px;
-            }
-
-            .logo-area img {
-                height: 58px;
-            }
-
-            .logo-area h1 {
-                font-size: 24px;
-            }
-
-            main {
-                padding: 14px 12px;
-            }
-
-            .card {
-                padding: 22px 16px;
-                border-radius: 20px;
-            }
-
-            h2 {
-                font-size: 22px;
-            }
-
-            .descricao {
-                font-size: 14px;
-                margin-bottom: 16px;
-            }
-
-            .destaques {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 6px;
-            }
-
-            .destaque {
-                padding: 10px 5px;
-            }
-
-            .emoji {
-                font-size: 20px;
-            }
-
-            .destaque strong {
-                font-size: 12px;
-            }
-
-            .destaque p {
-                display: none;
-            }
-
-        }
-
+      }
     </style>
+  </head>
 
-</head>
-
-<body>
-
-<div class="pagina">
-
-    <header>
-
+  <body>
+    <div class="pagina">
+      <header>
         <div class="logo-area">
+          <img src="imagens/logo.png" alt="Logo Guardião" />
 
-            <img
-                src="imagens/logo.png"
-                alt="Logo Guardião">
+          <h1>Guardião</h1>
 
-            <h1>
-                Guardião
-            </h1>
-
-            <span>
-                Segurança e apoio quando você precisar
-            </span>
-
+          <span> Segurança e apoio quando você precisar </span>
         </div>
+      </header>
 
-    </header>
-
-
-    <main>
-
+      <main>
         <section class="card">
+          <h2>Bem-vindo ao Guardião</h2>
 
-            <h2>
-                Bem-vindo ao Guardião
-            </h2>
+          <p class="descricao">
+            Uma forma simples de acionar pessoas de confiança, compartilhar sua
+            localização e acompanhar uma situação de emergência.
+          </p>
 
-            <p class="descricao">
-                Uma forma simples de acionar pessoas de confiança,
-                compartilhar sua localização e acompanhar uma situação
-                de emergência.
-            </p>
+          <div class="destaques">
+            <div class="destaque">
+              <span class="emoji"> 🚨 </span>
 
+              <strong> Alerta </strong>
 
-            <div class="destaques">
-
-                <div class="destaque">
-
-                    <span class="emoji">
-                        🚨
-                    </span>
-
-                    <strong>
-                        Alerta
-                    </strong>
-
-                    <p>
-                        Peça ajuda rapidamente.
-                    </p>
-
-                </div>
-
-
-                <div class="destaque">
-
-                    <span class="emoji">
-                        📍
-                    </span>
-
-                    <strong>
-                        Localização
-                    </strong>
-
-                    <p>
-                        Compartilhe seu ponto.
-                    </p>
-
-                </div>
-
-
-                <div class="destaque">
-
-                    <span class="emoji">
-                        💬
-                    </span>
-
-                    <strong>
-                        Chat
-                    </strong>
-
-                    <p>
-                        Mantenha contato.
-                    </p>
-
-                </div>
-
+              <p>Peça ajuda rapidamente.</p>
             </div>
 
+            <div class="destaque">
+              <span class="emoji"> 📍 </span>
 
-            <a
-                href="painel.html"
-                class="botao">
+              <strong> Localização </strong>
 
-                Entrar no Guardião
+              <p>Compartilhe seu ponto.</p>
+            </div>
 
-            </a>
+            <div class="destaque">
+              <span class="emoji"> 💬 </span>
 
+              <strong> Chat </strong>
 
-            <p class="aviso">
-                Protótipo demonstrativo em desenvolvimento.
-            </p>
+              <p>Mantenha contato.</p>
+            </div>
+          </div>
 
+          <a href="painel.html" class="botao"> Entrar no Guardião </a>
+
+          <p class="aviso">Protótipo demonstrativo em desenvolvimento.</p>
         </section>
+      </main>
 
-    </main>
-
-
-    <footer>
-        Guardião • Projeto em desenvolvimento
-    </footer>
-
-</div>
-
-</body>
-
+      <footer>Guardião • Projeto em desenvolvimento</footer>
+    </div>
+  </body>
 </html>

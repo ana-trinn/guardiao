@@ -1,462 +1,363 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Guardião - Contatos</title>
 
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f5f7fb;
+        color: #0b1f3a;
+        padding-bottom: 40px;
+      }
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f5f7fb;
-            color: #0b1f3a;
-            padding-bottom: 40px;
-        }
+      header {
+        background: #0b1f3a;
+        color: white;
+        text-align: center;
+        padding: 18px 15px;
+      }
 
+      .logo-area {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .logo-area img {
+        height: 68px;
+      }
+
+      .logo-area span {
+        font-size: 27px;
+        font-weight: bold;
+      }
+
+      .container {
+        max-width: 700px;
+        margin: 18px auto;
+        padding: 15px;
+      }
+
+      /* VOLTAR */
+
+      .voltar-topo {
+        display: inline-block;
+        margin-bottom: 14px;
+        color: #0b1f3a;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 14px;
+      }
+
+      .voltar-topo:hover {
+        text-decoration: underline;
+      }
+
+      /* CARD */
+
+      .card {
+        background: white;
+        border-radius: 20px;
+        padding: 24px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+      }
+
+      .icone {
+        font-size: 36px;
+        text-align: center;
+        margin-bottom: 8px;
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 8px;
+        font-size: 22px;
+      }
+
+      .descricao {
+        text-align: center;
+        color: #666;
+        line-height: 1.45;
+        margin-bottom: 20px;
+        font-size: 14px;
+      }
+
+      /* CONTATOS */
+
+      .contato {
+        background: #f5f7fb;
+        border-radius: 14px;
+        padding: 13px;
+        margin-top: 10px;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .informacoes-contato {
+        text-align: left;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .informacoes-contato strong {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 14px;
+      }
+
+      .informacoes-contato span {
+        color: #666;
+        font-size: 13px;
+        word-break: break-word;
+      }
+
+      .sem-contatos {
+        text-align: center;
+        color: #777;
+        margin-top: 15px;
+        font-size: 14px;
+      }
+
+      /* LIXEIRA */
+
+      .lixeira {
+        border: none;
+        background: transparent;
+        font-size: 20px;
+        cursor: pointer;
+        padding: 5px;
+      }
+
+      .lixeira:hover {
+        transform: scale(1.12);
+      }
+
+      /* BOTÕES */
+
+      .botao {
+        width: 100%;
+        background: #0b1f3a;
+        color: white;
+        border: none;
+        padding: 13px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: bold;
+        margin-top: 16px;
+      }
+
+      .botao:hover {
+        transform: scale(1.02);
+      }
+
+      .botao-secundario {
+        width: 100%;
+        background: white;
+        color: #0b1f3a;
+        border: 2px solid #0b1f3a;
+        padding: 12px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+
+      /* FORMULÁRIO */
+
+      .formulario {
+        display: none;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #e5e5e5;
+      }
+
+      .campo {
+        margin-bottom: 13px;
+        text-align: left;
+      }
+
+      .campo label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: bold;
+        font-size: 13px;
+      }
+
+      .campo input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 12px;
+        font-size: 14px;
+        outline: none;
+      }
+
+      .campo input:focus {
+        border-color: #0b1f3a;
+      }
+
+      @media (max-width: 600px) {
         header {
-            background: #0b1f3a;
-            color: white;
-            text-align: center;
-            padding: 18px 15px;
-        }
-
-        .logo-area {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
+          padding: 14px 12px;
         }
 
         .logo-area img {
-            height: 68px;
+          height: 58px;
         }
 
         .logo-area span {
-            font-size: 27px;
-            font-weight: bold;
+          font-size: 24px;
         }
 
         .container {
-            max-width: 700px;
-            margin: 18px auto;
-            padding: 15px;
+          margin: 12px auto;
+          padding: 12px;
         }
-
-        /* VOLTAR */
 
         .voltar-topo {
-            display: inline-block;
-            margin-bottom: 14px;
-            color: #0b1f3a;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 14px;
+          font-size: 13px;
+          margin-bottom: 10px;
         }
-
-        .voltar-topo:hover {
-            text-decoration: underline;
-        }
-
-        /* CARD */
 
         .card {
-            background: white;
-            border-radius: 20px;
-            padding: 24px;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, .07);
+          padding: 18px;
+          border-radius: 18px;
         }
 
         .icone {
-            font-size: 36px;
-            text-align: center;
-            margin-bottom: 8px;
+          font-size: 30px;
+          margin-bottom: 6px;
         }
 
         h2 {
-            text-align: center;
-            margin-bottom: 8px;
-            font-size: 22px;
+          font-size: 20px;
         }
 
         .descricao {
-            text-align: center;
-            color: #666;
-            line-height: 1.45;
-            margin-bottom: 20px;
-            font-size: 14px;
+          font-size: 13px;
+          margin-bottom: 16px;
         }
-
-        /* CONTATOS */
 
         .contato {
-            background: #f5f7fb;
-            border-radius: 14px;
-            padding: 13px;
-            margin-top: 10px;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .informacoes-contato {
-            text-align: left;
-            flex: 1;
-            min-width: 0;
+          padding: 11px;
+          margin-top: 8px;
         }
 
         .informacoes-contato strong {
-            display: block;
-            margin-bottom: 4px;
-            font-size: 14px;
+          font-size: 13px;
         }
 
         .informacoes-contato span {
-            color: #666;
-            font-size: 13px;
-            word-break: break-word;
+          font-size: 12px;
         }
-
-        .sem-contatos {
-            text-align: center;
-            color: #777;
-            margin-top: 15px;
-            font-size: 14px;
-        }
-
-        /* LIXEIRA */
-
-        .lixeira {
-            border: none;
-            background: transparent;
-            font-size: 20px;
-            cursor: pointer;
-            padding: 5px;
-        }
-
-        .lixeira:hover {
-            transform: scale(1.12);
-        }
-
-        /* BOTÕES */
 
         .botao {
-            width: 100%;
-            background: #0b1f3a;
-            color: white;
-            border: none;
-            padding: 13px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: bold;
-            margin-top: 16px;
+          margin-top: 14px;
+          padding: 12px;
+          font-size: 13px;
         }
-
-        .botao:hover {
-            transform: scale(1.02);
-        }
-
-        .botao-secundario {
-            width: 100%;
-            background: white;
-            color: #0b1f3a;
-            border: 2px solid #0b1f3a;
-            padding: 12px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-
-        /* FORMULÁRIO */
-
-        .formulario {
-            display: none;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #e5e5e5;
-        }
-
-        .campo {
-            margin-bottom: 13px;
-            text-align: left;
-        }
-
-        .campo label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: bold;
-            font-size: 13px;
-        }
-
-        .campo input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 12px;
-            font-size: 14px;
-            outline: none;
-        }
-
-        .campo input:focus {
-            border-color: #0b1f3a;
-        }
-
-        @media (max-width: 600px) {
-
-            header {
-                padding: 14px 12px;
-            }
-
-            .logo-area img {
-                height: 58px;
-            }
-
-            .logo-area span {
-                font-size: 24px;
-            }
-
-            .container {
-                margin: 12px auto;
-                padding: 12px;
-            }
-
-            .voltar-topo {
-                font-size: 13px;
-                margin-bottom: 10px;
-            }
-
-            .card {
-                padding: 18px;
-                border-radius: 18px;
-            }
-
-            .icone {
-                font-size: 30px;
-                margin-bottom: 6px;
-            }
-
-            h2 {
-                font-size: 20px;
-            }
-
-            .descricao {
-                font-size: 13px;
-                margin-bottom: 16px;
-            }
-
-            .contato {
-                padding: 11px;
-                margin-top: 8px;
-            }
-
-            .informacoes-contato strong {
-                font-size: 13px;
-            }
-
-            .informacoes-contato span {
-                font-size: 12px;
-            }
-
-            .botao {
-                margin-top: 14px;
-                padding: 12px;
-                font-size: 13px;
-            }
-
-        }
-
+      }
     </style>
+  </head>
 
-</head>
-
-<body>
-
-
-<header>
-
-    <h1 class="logo-area">
-
-        <img
-            src="imagens/logo.png"
-            alt="Logo Guardião">
+  <body>
+    <header>
+      <h1 class="logo-area">
+        <img src="imagens/logo.png" alt="Logo Guardião" />
 
         <span>Guardião</span>
+      </h1>
+    </header>
 
-    </h1>
+    <main class="container">
+      <a href="painel.html" class="voltar-topo"> ← Voltar </a>
 
-</header>
+      <div class="card">
+        <div class="icone">👥</div>
 
-
-<main class="container">
-
-
-    <a
-        href="painel.html"
-        class="voltar-topo">
-
-        ← Voltar
-
-    </a>
-
-
-    <div class="card">
-
-        <div class="icone">
-            👥
-        </div>
-
-        <h2>
-            Contatos de confiança
-        </h2>
+        <h2>Contatos de confiança</h2>
 
         <p class="descricao">
-            Cadastre as pessoas que poderão receber seus alertas
-            em uma situação de emergência.
+          Cadastre as pessoas que poderão receber seus alertas em uma situação
+          de emergência.
         </p>
 
+        <div id="listaContatos"></div>
 
-        <div id="listaContatos">
-        </div>
-
-
-        <button
-            class="botao"
-            id="botaoAdicionar"
-            onclick="mostrarFormulario()">
-
-            + Adicionar contato
-
+        <button class="botao" id="botaoAdicionar" onclick="mostrarFormulario()">
+          + Adicionar contato
         </button>
 
+        <div class="formulario" id="formularioContato">
+          <div class="campo">
+            <label for="nomeContato"> Nome </label>
 
-        <div
-            class="formulario"
-            id="formularioContato">
+            <input type="text" id="nomeContato" placeholder="Nome do contato" />
+          </div>
 
-            <div class="campo">
+          <div class="campo">
+            <label for="telefoneContato"> Telefone </label>
 
-                <label for="nomeContato">
-                    Nome
-                </label>
+            <input
+              type="tel"
+              id="telefoneContato"
+              placeholder="(11) 99999-9999"
+            />
+          </div>
 
-                <input
-                    type="text"
-                    id="nomeContato"
-                    placeholder="Nome do contato">
+          <button class="botao" onclick="salvarContato()">
+            Salvar contato
+          </button>
 
-            </div>
-
-
-            <div class="campo">
-
-                <label for="telefoneContato">
-                    Telefone
-                </label>
-
-                <input
-                    type="tel"
-                    id="telefoneContato"
-                    placeholder="(11) 99999-9999">
-
-            </div>
-
-
-            <button
-                class="botao"
-                onclick="salvarContato()">
-
-                Salvar contato
-
-            </button>
-
-
-            <button
-                class="botao-secundario"
-                onclick="cancelarFormulario()">
-
-                Cancelar
-
-            </button>
-
+          <button class="botao-secundario" onclick="cancelarFormulario()">
+            Cancelar
+          </button>
         </div>
+      </div>
+    </main>
 
-    </div>
+    <script>
+      const chaveContatos = "contatosGuardiao";
 
-</main>
+      function obterContatos() {
+        return JSON.parse(localStorage.getItem(chaveContatos)) || [];
+      }
 
-
-<script>
-
-    const chaveContatos =
-        "contatosGuardiao";
-
-
-    function obterContatos() {
-
-        return JSON.parse(
-            localStorage.getItem(
-                chaveContatos
-            )
-        ) || [];
-
-    }
-
-
-    function salvarContatos(
-        contatos
-    ) {
-
+      function salvarContatos(contatos) {
         localStorage.setItem(
+          chaveContatos,
 
-            chaveContatos,
-
-            JSON.stringify(
-                contatos
-            )
-
+          JSON.stringify(contatos),
         );
+      }
 
-    }
+      function carregarContatos() {
+        const contatos = obterContatos();
 
+        const lista = document.getElementById("listaContatos");
 
-    function carregarContatos() {
-
-        const contatos =
-            obterContatos();
-
-
-        const lista =
-            document.getElementById(
-                "listaContatos"
-            );
-
-
-        const botaoAdicionar =
-            document.getElementById(
-                "botaoAdicionar"
-            );
-
+        const botaoAdicionar = document.getElementById("botaoAdicionar");
 
         lista.innerHTML = "";
 
-
         if (contatos.length === 0) {
-
-            lista.innerHTML = `
+          lista.innerHTML = `
 
                 <p class="sem-contatos">
                     Nenhum contato cadastrado.
@@ -464,30 +365,17 @@
 
             `;
 
+          botaoAdicionar.textContent = "+ Adicionar contato";
 
-            botaoAdicionar.textContent =
-                "+ Adicionar contato";
-
-
-            return;
-
+          return;
         }
 
+        contatos.forEach(function (contato, indice) {
+          const elemento = document.createElement("div");
 
-        contatos.forEach(
-            function(contato, indice) {
+          elemento.className = "contato";
 
-                const elemento =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                elemento.className =
-                    "contato";
-
-
-                elemento.innerHTML = `
+          elemento.innerHTML = `
 
                     <div class="informacoes-contato">
 
@@ -513,193 +401,90 @@
 
                 `;
 
-
-                lista.appendChild(
-                    elemento
-                );
-
-            }
-        );
-
-
-        botaoAdicionar.textContent =
-            "+ Adicionar outro contato";
-
-    }
-
-
-    function mostrarFormulario() {
-
-        document.getElementById(
-            "formularioContato"
-        ).style.display =
-            "block";
-
-
-        document.getElementById(
-            "botaoAdicionar"
-        ).style.display =
-            "none";
-
-
-        document.getElementById(
-            "nomeContato"
-        ).focus();
-
-    }
-
-
-    function cancelarFormulario() {
-
-        limparFormulario();
-
-
-        document.getElementById(
-            "formularioContato"
-        ).style.display =
-            "none";
-
-
-        document.getElementById(
-            "botaoAdicionar"
-        ).style.display =
-            "block";
-
-    }
-
-
-    function limparFormulario() {
-
-        document.getElementById(
-            "nomeContato"
-        ).value = "";
-
-
-        document.getElementById(
-            "telefoneContato"
-        ).value = "";
-
-    }
-
-
-    function salvarContato() {
-
-        const nome =
-            document.getElementById(
-                "nomeContato"
-            ).value.trim();
-
-
-        const telefone =
-            document.getElementById(
-                "telefoneContato"
-            ).value.trim();
-
-
-        if (
-            nome === "" ||
-            telefone === ""
-        ) {
-
-            alert(
-                "Preencha o nome e o telefone do contato."
-            );
-
-            return;
-
-        }
-
-
-        const contatos =
-            obterContatos();
-
-
-        contatos.push({
-
-            nome: nome,
-            telefone: telefone
-
+          lista.appendChild(elemento);
         });
 
+        botaoAdicionar.textContent = "+ Adicionar outro contato";
+      }
 
-        salvarContatos(
-            contatos
-        );
+      function mostrarFormulario() {
+        document.getElementById("formularioContato").style.display = "block";
 
+        document.getElementById("botaoAdicionar").style.display = "none";
+
+        document.getElementById("nomeContato").focus();
+      }
+
+      function cancelarFormulario() {
+        limparFormulario();
+
+        document.getElementById("formularioContato").style.display = "none";
+
+        document.getElementById("botaoAdicionar").style.display = "block";
+      }
+
+      function limparFormulario() {
+        document.getElementById("nomeContato").value = "";
+
+        document.getElementById("telefoneContato").value = "";
+      }
+
+      function salvarContato() {
+        const nome = document.getElementById("nomeContato").value.trim();
+
+        const telefone = document
+          .getElementById("telefoneContato")
+          .value.trim();
+
+        if (nome === "" || telefone === "") {
+          alert("Preencha o nome e o telefone do contato.");
+
+          return;
+        }
+
+        const contatos = obterContatos();
+
+        contatos.push({
+          nome: nome,
+          telefone: telefone,
+        });
+
+        salvarContatos(contatos);
 
         limparFormulario();
 
+        document.getElementById("formularioContato").style.display = "none";
 
-        document.getElementById(
-            "formularioContato"
-        ).style.display =
-            "none";
-
-
-        document.getElementById(
-            "botaoAdicionar"
-        ).style.display =
-            "block";
-
+        document.getElementById("botaoAdicionar").style.display = "block";
 
         carregarContatos();
+      }
 
-    }
-
-
-    function removerContato(
-        indice
-    ) {
-
-        const contatos =
-            obterContatos();
-
+      function removerContato(indice) {
+        const contatos = obterContatos();
 
         if (!contatos[indice]) {
-
-            return;
-
+          return;
         }
 
-
-        const confirmar =
-            confirm(
-
-                "Deseja excluir " +
-                contatos[indice].nome +
-                " dos seus contatos de confiança?"
-
-            );
-
+        const confirmar = confirm(
+          "Deseja excluir " +
+            contatos[indice].nome +
+            " dos seus contatos de confiança?",
+        );
 
         if (!confirmar) {
-
-            return;
-
+          return;
         }
 
+        contatos.splice(indice, 1);
 
-        contatos.splice(
-            indice,
-            1
-        );
-
-
-        salvarContatos(
-            contatos
-        );
-
+        salvarContatos(contatos);
 
         carregarContatos();
+      }
 
-    }
-
-
-    carregarContatos();
-
-</script>
-
-
-</body>
-
+      carregarContatos();
+    </script>
+  </body>
 </html>
