@@ -84,8 +84,6 @@
         font-size: 13px;
       }
 
-      /* ALERTA PRINCIPAL */
-
       .botao-alerta {
         width: 95px;
         height: 95px;
@@ -98,8 +96,6 @@
         cursor: pointer;
         box-shadow: 0 8px 20px rgba(217, 4, 41, 0.3);
       }
-
-      /* CONFIRMAÇÃO */
 
       .confirmacao {
         display: none;
@@ -146,8 +142,6 @@
         color: white;
       }
 
-      /* ALERTA ATIVO */
-
       .status {
         display: none;
         margin-top: 14px;
@@ -165,17 +159,11 @@
         line-height: 1.4;
       }
 
-      .linha-status:last-child {
-        margin-bottom: 0;
-      }
-
       .link-mapa {
         color: #0b1f3a;
         font-weight: bold;
         font-size: 12px;
       }
-
-      /* RESUMO DE CONTATOS */
 
       .resumo-contatos {
         background: white;
@@ -185,10 +173,7 @@
         margin-top: 8px;
         font-size: 12px;
         font-weight: bold;
-        color: #0b1f3a;
       }
-
-      /* ACOMPANHAMENTO */
 
       .acoes-alerta {
         display: none;
@@ -223,11 +208,10 @@
         justify-content: center;
         min-height: 42px;
         text-decoration: none;
-        padding: 9px 8px;
+        padding: 9px;
         border-radius: 25px;
         font-weight: bold;
         font-size: 11px;
-        text-align: center;
       }
 
       .botao-chat {
@@ -240,9 +224,7 @@
         color: #0b1f3a;
       }
 
-      /* ÁREA DA MENSAGEM */
-
-      .previa {
+      .pedido-ajuda {
         display: none;
         margin-top: 12px;
         padding: 12px;
@@ -251,22 +233,44 @@
         border: 1px solid #ddd;
       }
 
-      .previa h3 {
+      .pedido-ajuda h3 {
         text-align: center;
         font-size: 15px;
         margin-bottom: 9px;
       }
 
-      .botao-ver-mensagem {
+      .botao-ver-mensagem,
+      .botao-abrir-envio,
+      .botao-enviar-selecionados,
+      .botao-copiar,
+      .botao-engano {
         width: 100%;
-        border: 1px solid #d3d8e0;
-        background: #f5f7fb;
-        color: #0b1f3a;
+        border: none;
         padding: 10px;
         border-radius: 25px;
+        cursor: pointer;
         font-size: 12px;
         font-weight: bold;
-        cursor: pointer;
+        margin-top: 8px;
+      }
+
+      .botao-ver-mensagem {
+        background: #f5f7fb;
+        color: #0b1f3a;
+        border: 1px solid #d3d8e0;
+      }
+
+      .botao-abrir-envio,
+      .botao-enviar-selecionados,
+      .botao-copiar {
+        background: #0b1f3a;
+        color: white;
+      }
+
+      .botao-engano {
+        background: #f5f5f5;
+        color: #b91c1c;
+        border: 1px solid #e0b4b4;
       }
 
       .mensagem-emergencia {
@@ -283,59 +287,70 @@
         margin-top: 9px;
       }
 
-      /* BOTÕES */
+      .area-copiar {
+        display: none;
+      }
 
-      .botao-copiar,
-      .botao-enviar,
-      .botao-engano {
-        width: 100%;
-        border: none;
+      .area-envio {
+        display: none;
+        margin-top: 12px;
+        padding: 11px;
+        background: #f7f9fc;
+        border-radius: 12px;
+      }
+
+      .area-envio h4 {
+        font-size: 13px;
+        margin-bottom: 8px;
+        text-align: center;
+      }
+
+      .contato-selecao {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 10px;
         padding: 10px;
-        border-radius: 25px;
+        margin-top: 7px;
         cursor: pointer;
+      }
+
+      .contato-selecao input {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+      }
+
+      .contato-selecao span {
         font-size: 12px;
+        color: #0b1f3a;
         font-weight: bold;
-        margin-top: 8px;
       }
 
-      .botao-copiar,
-      .botao-enviar {
-        background: #0b1f3a;
-        color: white;
-      }
-
-      .botao-engano {
-        background: #f5f5f5;
-        color: #b91c1c;
-        border: 1px solid #e0b4b4;
-      }
-
-      /* ENVIO */
-
-      .envios-contatos,
       .envios-engano {
         display: none;
         margin-top: 11px;
       }
 
-      .envios-contatos h3,
       .envios-engano h3 {
+        font-size: 13px;
         text-align: center;
         margin-bottom: 6px;
-        font-size: 13px;
       }
 
-      .botao-whatsapp {
+      .botao-aviso-engano {
         width: 100%;
-        border: none;
+        border: 1px solid #d7dce5;
+        background: #eef2f7;
+        color: #0b1f3a;
         padding: 10px;
         border-radius: 25px;
         cursor: pointer;
         font-size: 12px;
         font-weight: bold;
         margin-top: 6px;
-        background: #25d366;
-        color: white;
       }
 
       .copiado,
@@ -369,8 +384,6 @@
       <a href="painel.html" class="voltar-topo"> ← Voltar </a>
 
       <div class="card">
-        <!-- INÍCIO NORMAL -->
-
         <div id="inicioAlerta">
           <div class="icone">🚨</div>
 
@@ -386,8 +399,6 @@
             ALERTA
           </button>
         </div>
-
-        <!-- CONFIRMAÇÃO -->
 
         <div class="confirmacao" id="confirmacao">
           <h3>⚠️ Confirmar alerta</h3>
@@ -405,8 +416,6 @@
           </div>
         </div>
 
-        <!-- ALERTA ATIVO -->
-
         <div class="status" id="statusAlerta">
           <div class="linha-status">🔴 Alerta ativo</div>
 
@@ -417,8 +426,6 @@
           <div class="resumo-contatos" id="listaContatosAlerta">
             👥 Verificando contatos...
           </div>
-
-          <!-- ACOMPANHAMENTO -->
 
           <div class="acoes-alerta" id="acoesAlerta">
             <h3>🛡️ Acompanhar emergência</h3>
@@ -434,9 +441,7 @@
             </div>
           </div>
 
-          <!-- ENVIO -->
-
-          <div class="previa" id="previaMensagem">
+          <div class="pedido-ajuda" id="previaMensagem">
             <h3>🚨 Pedido de ajuda</h3>
 
             <button
@@ -450,28 +455,40 @@
 
             <div class="mensagem-emergencia" id="mensagemEmergencia"></div>
 
+            <div class="area-copiar" id="areaCopiar">
+              <button
+                class="botao-copiar"
+                type="button"
+                onclick="copiarMensagem()"
+              >
+                📋 Copiar mensagem
+              </button>
+
+              <div class="copiado" id="mensagemCopiada">
+                ✅ Mensagem copiada!
+              </div>
+            </div>
+
             <button
-              class="botao-copiar"
+              class="botao-abrir-envio"
               type="button"
-              onclick="copiarMensagem()"
+              onclick="alternarAreaEnvio()"
             >
-              📋 Copiar mensagem
+              📤 Enviar pedido de ajuda
             </button>
 
-            <div class="copiado" id="mensagemCopiada">✅ Mensagem copiada!</div>
+            <div class="area-envio" id="areaEnvio">
+              <h4>Selecione os contatos</h4>
 
-            <button
-              class="botao-enviar"
-              type="button"
-              onclick="mostrarEnvios()"
-            >
-              📤 Enviar alerta
-            </button>
+              <div id="listaSelecaoContatos"></div>
 
-            <div class="envios-contatos" id="enviosContatos">
-              <h3>Escolha para quem enviar</h3>
-
-              <div id="botoesContatos"></div>
+              <button
+                class="botao-enviar-selecionados"
+                type="button"
+                onclick="enviarParaSelecionados()"
+              >
+                Enviar para selecionados
+              </button>
             </div>
 
             <button
@@ -489,7 +506,7 @@
             </div>
 
             <div class="enviado" id="mensagemEnviada">
-              ✅ WhatsApp aberto para envio!
+              ✅ WhatsApp aberto para envio.
             </div>
           </div>
         </div>
@@ -655,8 +672,6 @@
         );
       }
 
-      /* RESUMO, SEM REPETIR OS CONTATOS */
-
       function carregarResumoContatos(lista) {
         const contatos = JSON.parse(localStorage.getItem(chaveContatos)) || [];
 
@@ -666,14 +681,10 @@
           return;
         }
 
-        if (contatos.length === 1) {
-          lista.textContent = "👥 1 contato de confiança cadastrado.";
-
-          return;
-        }
-
         lista.textContent =
-          "👥 " + contatos.length + " contatos de confiança cadastrados.";
+          contatos.length === 1
+            ? "👥 1 contato de confiança cadastrado."
+            : "👥 " + contatos.length + " contatos de confiança cadastrados.";
       }
 
       function criarMensagem(localizacaoTexto) {
@@ -727,25 +738,29 @@
         document.getElementById("previaMensagem").style.display = "block";
 
         if (modoAlertaRapido && contatos.length > 0) {
-          mostrarEnvios();
+          abrirAreaEnvioAutomaticamente();
         }
 
         modoAlertaRapido = false;
       }
-
-      /* ABRIR / FECHAR MENSAGEM */
 
       function alternarMensagem() {
         const mensagem = document.getElementById("mensagemEmergencia");
 
         const botao = document.getElementById("botaoVerMensagem");
 
+        const areaCopiar = document.getElementById("areaCopiar");
+
         if (mensagem.style.display === "block") {
           mensagem.style.display = "none";
+
+          areaCopiar.style.display = "none";
 
           botao.textContent = "👁️ Ver mensagem completa";
         } else {
           mensagem.style.display = "block";
+
+          areaCopiar.style.display = "block";
 
           botao.textContent = "▲ Ocultar mensagem";
         }
@@ -767,36 +782,85 @@
         });
       }
 
-      function mostrarEnvios() {
+      function alternarAreaEnvio() {
+        const area = document.getElementById("areaEnvio");
+
+        if (area.style.display === "block") {
+          area.style.display = "none";
+        } else {
+          montarSelecaoContatos();
+
+          area.style.display = "block";
+        }
+      }
+
+      function abrirAreaEnvioAutomaticamente() {
+        montarSelecaoContatos();
+
+        document.getElementById("areaEnvio").style.display = "block";
+      }
+
+      function montarSelecaoContatos() {
         const contatos = JSON.parse(localStorage.getItem(chaveContatos)) || [];
 
-        if (contatos.length === 0) {
-          alert("Nenhum contato de confiança foi cadastrado.");
+        const area = document.getElementById("listaSelecaoContatos");
+
+        area.innerHTML = "";
+
+        contatos.forEach(function (contato, indice) {
+          const label = document.createElement("label");
+
+          label.className = "contato-selecao";
+
+          label.innerHTML = `
+
+                    <input
+                        type="checkbox"
+                        class="checkbox-contato"
+                        value="${indice}"
+                    >
+
+                    <span>
+                        ${contato.nome}
+                    </span>
+
+                `;
+
+          area.appendChild(label);
+        });
+      }
+
+      function enviarParaSelecionados() {
+        const selecionados = document.querySelectorAll(
+          ".checkbox-contato:checked",
+        );
+
+        if (selecionados.length === 0) {
+          alert("Selecione pelo menos um contato.");
 
           return;
         }
 
-        const area = document.getElementById("enviosContatos");
-
-        const botoes = document.getElementById("botoesContatos");
-
-        botoes.innerHTML = "";
-
-        contatos.forEach(function (contato, indice) {
-          const botao = document.createElement("button");
-
-          botao.className = "botao-whatsapp";
-
-          botao.textContent = "💬 Enviar para " + contato.nome;
-
-          botao.onclick = function () {
-            enviarParaContato(indice, textoMensagem);
-          };
-
-          botoes.appendChild(botao);
+        const indices = Array.from(selecionados).map(function (item) {
+          return Number(item.value);
         });
 
-        area.style.display = "block";
+        /*
+            Navegadores normalmente permitem
+            abrir apenas um WhatsApp por clique
+            sem bloquear pop-ups.
+
+            Por isso abrimos o primeiro selecionado.
+        */
+
+        enviarParaContato(indices[0], textoMensagem);
+
+        if (indices.length > 1) {
+          alert(
+            "O WhatsApp foi aberto para o primeiro contato selecionado. " +
+              "Para os demais, repita o envio.",
+          );
+        }
       }
 
       function mostrarEnviosEngano() {
@@ -834,7 +898,7 @@
         contatos.forEach(function (contato, indice) {
           const botao = document.createElement("button");
 
-          botao.className = "botao-whatsapp";
+          botao.className = "botao-aviso-engano";
 
           botao.textContent = "Avisar " + contato.nome;
 
