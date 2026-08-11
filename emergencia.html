@@ -24,7 +24,7 @@
       header {
         background: #0b1f3a;
         color: white;
-        padding: 18px 15px;
+        padding: 14px 12px;
       }
 
       .logo-area {
@@ -35,109 +35,105 @@
       }
 
       .logo-area img {
-        height: 68px;
+        height: 58px;
       }
 
       .logo-area span {
-        font-size: 27px;
+        font-size: 24px;
         font-weight: bold;
       }
 
       .container {
-        max-width: 700px;
-        margin: 18px auto;
-        padding: 15px;
+        width: 100%;
+        max-width: 620px;
+        margin: 12px auto;
+        padding: 12px;
       }
 
       .voltar-topo {
         display: block;
         text-align: left;
-        margin-bottom: 12px;
+        margin-bottom: 10px;
         text-decoration: none;
         color: #0b1f3a;
-        font-size: 14px;
+        font-size: 13px;
         font-weight: bold;
       }
 
       .card {
         background: white;
-        border-radius: 20px;
-        padding: 24px;
+        border-radius: 18px;
+        padding: 18px;
         box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
       }
 
       .icone {
-        font-size: 38px;
-        margin-bottom: 8px;
+        font-size: 30px;
+        margin-bottom: 6px;
       }
 
       h2 {
-        margin-bottom: 8px;
-        font-size: 23px;
+        margin-bottom: 7px;
+        font-size: 20px;
       }
 
       p {
         color: #666;
-        line-height: 1.45;
-        margin-bottom: 18px;
-        font-size: 14px;
+        line-height: 1.4;
+        margin-bottom: 14px;
+        font-size: 13px;
       }
 
-      /* BOTÃO PRINCIPAL */
+      /* ALERTA PRINCIPAL */
 
       .botao-alerta {
-        width: 115px;
-        height: 115px;
+        width: 95px;
+        height: 95px;
         border-radius: 50%;
         border: none;
         background: #d90429;
         color: white;
-        font-size: 15px;
+        font-size: 13px;
         font-weight: bold;
         cursor: pointer;
         box-shadow: 0 8px 20px rgba(217, 4, 41, 0.3);
-        transition: 0.2s;
-      }
-
-      .botao-alerta:hover {
-        transform: scale(1.04);
       }
 
       /* CONFIRMAÇÃO */
 
       .confirmacao {
         display: none;
-        margin-top: 20px;
-        padding: 18px;
+        margin-top: 16px;
+        padding: 14px;
         background: #fff8f8;
         border: 1px solid #f0caca;
-        border-radius: 16px;
+        border-radius: 15px;
       }
 
       .confirmacao h3 {
-        margin-bottom: 10px;
-        font-size: 18px;
+        margin-bottom: 8px;
+        font-size: 16px;
       }
 
       .confirmacao p {
-        margin-bottom: 14px;
-        font-size: 13px;
+        font-size: 12px;
+        margin-bottom: 10px;
       }
 
       .botoes-confirmacao {
         display: flex;
-        gap: 10px;
-        justify-content: center;
+        gap: 8px;
       }
 
       .botao-cancelar,
       .botao-continuar {
+        flex: 1;
         border: none;
-        padding: 11px 18px;
-        border-radius: 30px;
+        padding: 10px;
+        border-radius: 25px;
         cursor: pointer;
+        font-size: 12px;
         font-weight: bold;
-        font-size: 13px;
       }
 
       .botao-cancelar {
@@ -150,92 +146,88 @@
         color: white;
       }
 
-      /* STATUS */
+      /* ALERTA ATIVO */
 
       .status {
         display: none;
-        margin-top: 20px;
-        padding: 16px;
-        border-radius: 16px;
+        margin-top: 14px;
+        padding: 13px;
+        border-radius: 15px;
         background: #f8f8f8;
         text-align: left;
       }
 
-      .status p {
-        margin-bottom: 9px;
+      .linha-status {
+        margin-bottom: 8px;
         color: #0b1f3a;
         font-weight: bold;
-        font-size: 13px;
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
+      .linha-status:last-child {
+        margin-bottom: 0;
       }
 
       .link-mapa {
         color: #0b1f3a;
         font-weight: bold;
-        font-size: 13px;
-      }
-
-      /* CONTATOS */
-
-      .lista-contatos {
-        margin-top: 8px;
-      }
-
-      .contato-alerta {
-        background: white;
-        border-radius: 12px;
-        padding: 10px;
-        margin-top: 7px;
-        border: 1px solid #ddd;
-      }
-
-      .contato-alerta strong {
-        display: block;
-        margin-bottom: 3px;
-        font-size: 13px;
-      }
-
-      .contato-alerta span {
-        color: #666;
         font-size: 12px;
       }
 
-      .sem-contatos {
-        color: #777;
-        font-weight: normal;
+      /* RESUMO DE CONTATOS */
+
+      .resumo-contatos {
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 11px;
+        padding: 10px;
+        margin-top: 8px;
+        font-size: 12px;
+        font-weight: bold;
+        color: #0b1f3a;
       }
 
       /* ACOMPANHAMENTO */
 
       .acoes-alerta {
         display: none;
-        margin-top: 16px;
-        padding: 15px;
-        border-radius: 15px;
+        margin-top: 12px;
+        padding: 12px;
+        border-radius: 14px;
         background: #eef4ff;
         border: 1px solid #cddaf3;
         text-align: center;
       }
 
       .acoes-alerta h3 {
-        margin-bottom: 7px;
-        font-size: 17px;
+        font-size: 15px;
+        margin-bottom: 4px;
       }
 
       .acoes-alerta p {
-        margin-bottom: 10px;
-        font-size: 12px;
+        font-size: 11px;
+        margin-bottom: 9px;
+      }
+
+      .botoes-acompanhamento {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
       }
 
       .botao-chat,
       .botao-acompanhar {
-        display: block;
-        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
         text-decoration: none;
-        padding: 11px 15px;
-        border-radius: 30px;
+        padding: 9px 8px;
+        border-radius: 25px;
         font-weight: bold;
-        font-size: 13px;
-        margin-top: 8px;
+        font-size: 11px;
+        text-align: center;
       }
 
       .botao-chat {
@@ -244,37 +236,51 @@
       }
 
       .botao-acompanhar {
-        background: #e1e9f5;
+        background: #dfe8f5;
         color: #0b1f3a;
       }
 
-      /* PRÉVIA */
+      /* ÁREA DA MENSAGEM */
 
       .previa {
         display: none;
-        margin-top: 16px;
-        padding: 15px;
+        margin-top: 12px;
+        padding: 12px;
         background: white;
-        border-radius: 15px;
+        border-radius: 14px;
         border: 1px solid #ddd;
       }
 
       .previa h3 {
-        margin-bottom: 10px;
         text-align: center;
-        font-size: 17px;
+        font-size: 15px;
+        margin-bottom: 9px;
+      }
+
+      .botao-ver-mensagem {
+        width: 100%;
+        border: 1px solid #d3d8e0;
+        background: #f5f7fb;
+        color: #0b1f3a;
+        padding: 10px;
+        border-radius: 25px;
+        font-size: 12px;
+        font-weight: bold;
+        cursor: pointer;
       }
 
       .mensagem-emergencia {
+        display: none;
         background: #f5f7fb;
-        border-radius: 12px;
-        padding: 14px;
-        line-height: 1.45;
+        border-radius: 11px;
+        padding: 12px;
+        line-height: 1.4;
         white-space: pre-line;
         color: #333;
         text-align: left;
-        font-size: 13px;
+        font-size: 12px;
         overflow-wrap: anywhere;
+        margin-top: 9px;
       }
 
       /* BOTÕES */
@@ -284,12 +290,12 @@
       .botao-engano {
         width: 100%;
         border: none;
-        padding: 11px;
-        border-radius: 30px;
+        padding: 10px;
+        border-radius: 25px;
         cursor: pointer;
-        font-size: 13px;
+        font-size: 12px;
         font-weight: bold;
-        margin-top: 10px;
+        margin-top: 8px;
       }
 
       .botao-copiar,
@@ -299,35 +305,35 @@
       }
 
       .botao-engano {
-        background: #f2f2f2;
+        background: #f5f5f5;
         color: #b91c1c;
         border: 1px solid #e0b4b4;
       }
 
-      /* WHATSAPP */
+      /* ENVIO */
 
       .envios-contatos,
       .envios-engano {
         display: none;
-        margin-top: 15px;
+        margin-top: 11px;
       }
 
       .envios-contatos h3,
       .envios-engano h3 {
         text-align: center;
-        margin-bottom: 8px;
-        font-size: 15px;
+        margin-bottom: 6px;
+        font-size: 13px;
       }
 
       .botao-whatsapp {
         width: 100%;
         border: none;
-        padding: 11px;
-        border-radius: 30px;
+        padding: 10px;
+        border-radius: 25px;
         cursor: pointer;
-        font-size: 13px;
+        font-size: 12px;
         font-weight: bold;
-        margin-top: 7px;
+        margin-top: 6px;
         background: #25d366;
         color: white;
       }
@@ -336,72 +342,15 @@
       .enviado {
         display: none;
         text-align: center;
-        margin-top: 8px;
+        margin-top: 7px;
         color: #1b5e20;
         font-weight: bold;
-        font-size: 12px;
+        font-size: 11px;
       }
 
-      /* CELULAR */
-
-      @media (max-width: 600px) {
-        header {
-          padding: 14px 12px;
-        }
-
-        .logo-area img {
-          height: 58px;
-        }
-
-        .logo-area span {
-          font-size: 24px;
-        }
-
-        .container {
-          margin: 12px auto;
-          padding: 12px;
-        }
-
-        .card {
-          padding: 18px;
-          border-radius: 18px;
-        }
-
-        .icone {
-          font-size: 30px;
-          margin-bottom: 6px;
-        }
-
-        h2 {
-          font-size: 20px;
-        }
-
-        p {
-          font-size: 13px;
-          margin-bottom: 14px;
-        }
-
-        .botao-alerta {
-          width: 95px;
-          height: 95px;
-          font-size: 13px;
-        }
-
-        .confirmacao {
-          padding: 14px;
-        }
-
-        .botoes-confirmacao {
-          flex-direction: column;
-        }
-
-        .botao-cancelar,
-        .botao-continuar {
-          width: 100%;
-        }
-
-        .status {
-          padding: 13px;
+      @media (max-width: 380px) {
+        .botoes-acompanhamento {
+          grid-template-columns: 1fr;
         }
       }
     </style>
@@ -412,7 +361,7 @@
       <h1 class="logo-area">
         <img src="imagens/logo.png" alt="Logo Guardião" />
 
-        <span> Guardião </span>
+        <span>Guardião</span>
       </h1>
     </header>
 
@@ -420,7 +369,7 @@
       <a href="painel.html" class="voltar-topo"> ← Voltar </a>
 
       <div class="card">
-        <!-- INÍCIO NORMAL DA EMERGÊNCIA -->
+        <!-- INÍCIO NORMAL -->
 
         <div id="inicioAlerta">
           <div class="icone">🚨</div>
@@ -443,25 +392,14 @@
         <div class="confirmacao" id="confirmacao">
           <h3>⚠️ Confirmar alerta</h3>
 
-          <p>
-            Você está prestes a iniciar um alerta de emergência. Seus contatos
-            de confiança serão preparados para receber o aviso.
-          </p>
+          <p>Você está prestes a iniciar um alerta de emergência.</p>
 
           <div class="botoes-confirmacao">
-            <button
-              class="botao-cancelar"
-              type="button"
-              onclick="cancelarAlerta()"
-            >
+            <button class="botao-cancelar" onclick="cancelarAlerta()">
               Cancelar
             </button>
 
-            <button
-              class="botao-continuar"
-              type="button"
-              onclick="continuarAlerta()"
-            >
+            <button class="botao-continuar" onclick="continuarAlerta()">
               Continuar
             </button>
           </div>
@@ -470,34 +408,45 @@
         <!-- ALERTA ATIVO -->
 
         <div class="status" id="statusAlerta">
-          <p>🔴 Alerta ativo</p>
+          <div class="linha-status">🔴 Alerta ativo</div>
 
-          <p id="localizacao">📍 Localização: aguardando...</p>
+          <div class="linha-status" id="localizacao">
+            📍 Localização: aguardando...
+          </div>
 
-          <p>👥 Contatos de confiança:</p>
-
-          <div class="lista-contatos" id="listaContatosAlerta"></div>
+          <div class="resumo-contatos" id="listaContatosAlerta">
+            👥 Verificando contatos...
+          </div>
 
           <!-- ACOMPANHAMENTO -->
 
           <div class="acoes-alerta" id="acoesAlerta">
             <h3>🛡️ Acompanhar emergência</h3>
 
-            <p>Acesse o chat ou acompanhe quem está indo ajudar.</p>
+            <p>Comunicação e acompanhamento do alerta.</p>
 
-            <a href="chat.html" class="botao-chat">
-              💬 Abrir chat de emergência
-            </a>
+            <div class="botoes-acompanhamento">
+              <a href="chat.html" class="botao-chat"> 💬 Chat </a>
 
-            <a href="alerta-ativo.html" class="botao-acompanhar">
-              🚗 Acompanhar alerta
-            </a>
+              <a href="alerta-ativo.html" class="botao-acompanhar">
+                🚗 Acompanhar
+              </a>
+            </div>
           </div>
 
-          <!-- PRÉVIA -->
+          <!-- ENVIO -->
 
           <div class="previa" id="previaMensagem">
-            <h3>🚨 Prévia da mensagem</h3>
+            <h3>🚨 Pedido de ajuda</h3>
+
+            <button
+              class="botao-ver-mensagem"
+              type="button"
+              id="botaoVerMensagem"
+              onclick="alternarMensagem()"
+            >
+              👁️ Ver mensagem completa
+            </button>
 
             <div class="mensagem-emergencia" id="mensagemEmergencia"></div>
 
@@ -519,15 +468,11 @@
               📤 Enviar alerta
             </button>
 
-            <!-- CONTATOS PARA ENVIO -->
-
             <div class="envios-contatos" id="enviosContatos">
               <h3>Escolha para quem enviar</h3>
 
               <div id="botoesContatos"></div>
             </div>
-
-            <!-- ENGANO -->
 
             <button
               class="botao-engano"
@@ -564,16 +509,7 @@
 
       let textoMensagem = "";
 
-      /*
-        Diz se a emergência veio
-        do ALERTA rápido do painel.
-    */
-
       let modoAlertaRapido = false;
-
-      /* =========================
-       PERFIL
-    ========================= */
 
       function obterPerfil() {
         return JSON.parse(localStorage.getItem(chavePerfil)) || {};
@@ -617,10 +553,6 @@
         return "";
       }
 
-      /* =========================
-       CONFIRMAÇÃO
-    ========================= */
-
       function mostrarConfirmacao() {
         document.getElementById("confirmacao").style.display = "block";
       }
@@ -639,10 +571,6 @@
         acionarAlerta();
       }
 
-      /* =========================
-       ACIONAR ALERTA
-    ========================= */
-
       function acionarAlerta() {
         const status = document.getElementById("statusAlerta");
 
@@ -656,15 +584,10 @@
 
         acoes.style.display = "block";
 
-        carregarContatosDoAlerta(lista);
-
-        /*
-            LOCALIZAÇÃO DESATIVADA
-        */
+        carregarResumoContatos(lista);
 
         if (!localizacaoEstaAtivada()) {
-          localizacao.textContent =
-            "📍 Localização: compartilhamento desativado nas configurações.";
+          localizacao.textContent = "📍 Localização não compartilhada.";
 
           localStorage.removeItem(chaveLocalizacao);
 
@@ -673,19 +596,15 @@
           return;
         }
 
-        /*
-            GEOLOCALIZAÇÃO NÃO SUPORTADA
-        */
-
         if (!navigator.geolocation) {
-          localizacao.textContent = "📍 Localização: não disponível.";
+          localizacao.textContent = "📍 Localização não disponível.";
 
           criarMensagem("Localização não disponível.");
 
           return;
         }
 
-        localizacao.textContent = "📍 Localização: obtendo localização...";
+        localizacao.textContent = "📍 Obtendo localização...";
 
         navigator.geolocation.getCurrentPosition(
           function (posicao) {
@@ -701,13 +620,9 @@
 
             const localizacaoAlerta = {
               latitude: latitude,
-
               longitude: longitude,
-
               coordenadas: coordenadas,
-
               linkMapa: linkMapa,
-
               horario: obterHoraAtual(),
             };
 
@@ -718,81 +633,48 @@
             );
 
             localizacao.innerHTML =
-              "📍 Localização: " +
+              "📍 " +
               coordenadas +
               "<br>" +
               "<a class='link-mapa' " +
               "href='" +
               linkMapa +
               "' " +
-              "target='_blank' " +
-              "rel='noopener noreferrer'>" +
-              "Abrir localização no mapa" +
+              "target='_blank'>" +
+              "Abrir no mapa" +
               "</a>";
 
             criarMensagem(linkMapa);
           },
 
           function () {
-            localizacao.textContent =
-              "📍 Localização: permissão não concedida.";
+            localizacao.textContent = "📍 Localização não disponível.";
 
             criarMensagem("Localização não disponível.");
           },
         );
       }
 
-      /* =========================
-       CONTATOS
-    ========================= */
+      /* RESUMO, SEM REPETIR OS CONTATOS */
 
-      function carregarContatosDoAlerta(lista) {
+      function carregarResumoContatos(lista) {
         const contatos = JSON.parse(localStorage.getItem(chaveContatos)) || [];
 
-        lista.innerHTML = "";
-
         if (contatos.length === 0) {
-          lista.innerHTML = `
-
-                <div class="contato-alerta">
-
-                    <span class="sem-contatos">
-
-                        Nenhum contato cadastrado.
-
-                    </span>
-
-                </div>
-
-            `;
+          lista.textContent = "👥 Nenhum contato de confiança cadastrado.";
 
           return;
         }
 
-        contatos.forEach(function (contato) {
-          const elemento = document.createElement("div");
+        if (contatos.length === 1) {
+          lista.textContent = "👥 1 contato de confiança cadastrado.";
 
-          elemento.className = "contato-alerta";
+          return;
+        }
 
-          const nome = document.createElement("strong");
-
-          nome.textContent = "🟢 " + contato.nome;
-
-          const telefone = document.createElement("span");
-
-          telefone.textContent = "📱 " + contato.telefone;
-
-          elemento.appendChild(nome);
-
-          elemento.appendChild(telefone);
-
-          lista.appendChild(elemento);
-        });
+        lista.textContent =
+          "👥 " + contatos.length + " contatos de confiança cadastrados.";
       }
-
-      /* =========================
-       MENSAGEM
-    ========================= */
 
       function criarMensagem(localizacaoTexto) {
         const contatos = JSON.parse(localStorage.getItem(chaveContatos)) || [];
@@ -844,17 +726,6 @@
 
         document.getElementById("previaMensagem").style.display = "block";
 
-        /*
-            NOVA MELHORIA
-
-            Se a pessoa acionou pelo botão
-            principal do painel, mostramos
-            imediatamente os contatos para envio.
-
-            Assim ela não precisa apertar
-            "Enviar alerta".
-        */
-
         if (modoAlertaRapido && contatos.length > 0) {
           mostrarEnvios();
         }
@@ -862,33 +733,39 @@
         modoAlertaRapido = false;
       }
 
-      /* =========================
-       COPIAR
-    ========================= */
+      /* ABRIR / FECHAR MENSAGEM */
 
-      function copiarMensagem() {
-        navigator.clipboard
+      function alternarMensagem() {
+        const mensagem = document.getElementById("mensagemEmergencia");
 
-          .writeText(textoMensagem)
+        const botao = document.getElementById("botaoVerMensagem");
 
-          .then(function () {
-            const aviso = document.getElementById("mensagemCopiada");
+        if (mensagem.style.display === "block") {
+          mensagem.style.display = "none";
 
-            aviso.style.display = "block";
+          botao.textContent = "👁️ Ver mensagem completa";
+        } else {
+          mensagem.style.display = "block";
 
-            setTimeout(
-              function () {
-                aviso.style.display = "none";
-              },
-
-              2500,
-            );
-          });
+          botao.textContent = "▲ Ocultar mensagem";
+        }
       }
 
-      /* =========================
-       MOSTRAR CONTATOS PARA ENVIO
-    ========================= */
+      function copiarMensagem() {
+        navigator.clipboard.writeText(textoMensagem).then(function () {
+          const aviso = document.getElementById("mensagemCopiada");
+
+          aviso.style.display = "block";
+
+          setTimeout(
+            function () {
+              aviso.style.display = "none";
+            },
+
+            2500,
+          );
+        });
+      }
 
       function mostrarEnvios() {
         const contatos = JSON.parse(localStorage.getItem(chaveContatos)) || [];
@@ -913,11 +790,7 @@
           botao.textContent = "💬 Enviar para " + contato.nome;
 
           botao.onclick = function () {
-            enviarParaContato(
-              indice,
-
-              textoMensagem,
-            );
+            enviarParaContato(indice, textoMensagem);
           };
 
           botoes.appendChild(botao);
@@ -925,10 +798,6 @@
 
         area.style.display = "block";
       }
-
-      /* =========================
-       ALERTA POR ENGANO
-    ========================= */
 
       function mostrarEnviosEngano() {
         const contatos = JSON.parse(localStorage.getItem(chaveContatos)) || [];
@@ -970,11 +839,7 @@
           botao.textContent = "Avisar " + contato.nome;
 
           botao.onclick = function () {
-            enviarParaContato(
-              indice,
-
-              textoEngano,
-            );
+            enviarParaContato(indice, textoEngano);
           };
 
           botoes.appendChild(botao);
@@ -982,10 +847,6 @@
 
         area.style.display = "block";
       }
-
-      /* =========================
-       WHATSAPP
-    ========================= */
 
       function enviarParaContato(indice, mensagemTexto) {
         const contatos = JSON.parse(localStorage.getItem(chaveContatos)) || [];
@@ -997,11 +858,6 @@
         let telefone = contatos[indice].telefone;
 
         telefone = telefone.replace(/\D/g, "");
-
-        /*
-            Se estiver no formato brasileiro
-            sem código do país, adiciona 55.
-        */
 
         if (telefone.length === 10 || telefone.length === 11) {
           telefone = "55" + telefone;
@@ -1026,25 +882,16 @@
         );
       }
 
-      /* =========================
-       HORÁRIO
-    ========================= */
-
       function obterHoraAtual() {
         return new Date().toLocaleTimeString(
           "pt-BR",
 
           {
             hour: "2-digit",
-
             minute: "2-digit",
           },
         );
       }
-
-      /* =========================
-       ESCONDER SEGUNDO ALERTA
-    ========================= */
 
       function esconderInicioAlerta() {
         const inicioAlerta = document.getElementById("inicioAlerta");
@@ -1060,33 +907,15 @@
         }
       }
 
-      /* =========================
-       ALERTA RÁPIDO
-    ========================= */
-
       function verificarInicioAutomatico() {
         const parametros = new URLSearchParams(window.location.search);
 
         const iniciarAutomaticamente = parametros.get("auto");
 
         if (iniciarAutomaticamente === "1") {
-          /*
-                Informa que o alerta veio
-                do botão principal.
-            */
-
           modoAlertaRapido = true;
 
-          /*
-                Esconde o segundo ALERTA.
-            */
-
           esconderInicioAlerta();
-
-          /*
-                Remove ?auto=1 da URL
-                sem atualizar a página.
-            */
 
           window.history.replaceState(
             {},
@@ -1096,18 +925,9 @@
             "emergencia.html",
           );
 
-          /*
-                Ativa a emergência
-                imediatamente.
-            */
-
           continuarAlerta();
         }
       }
-
-      /*
-        VERIFICA COMO A PÁGINA FOI ABERTA
-    */
 
       verificarInicioAutomatico();
     </script>
