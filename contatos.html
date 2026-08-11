@@ -49,8 +49,6 @@
         padding: 15px;
       }
 
-      /* VOLTAR */
-
       .voltar-topo {
         display: inline-block;
         margin-bottom: 14px;
@@ -63,8 +61,6 @@
       .voltar-topo:hover {
         text-decoration: underline;
       }
-
-      /* CARD */
 
       .card {
         background: white;
@@ -93,14 +89,11 @@
         font-size: 14px;
       }
 
-      /* CONTATOS */
-
       .contato {
         background: #f5f7fb;
         border-radius: 14px;
         padding: 13px;
         margin-top: 10px;
-
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -132,8 +125,6 @@
         font-size: 14px;
       }
 
-      /* LIXEIRA */
-
       .lixeira {
         border: none;
         background: transparent;
@@ -145,8 +136,6 @@
       .lixeira:hover {
         transform: scale(1.12);
       }
-
-      /* BOTÕES */
 
       .botao {
         width: 100%;
@@ -178,8 +167,6 @@
         margin-top: 10px;
       }
 
-      /* FORMULÁRIO */
-
       .formulario {
         display: none;
         margin-top: 20px;
@@ -206,10 +193,30 @@
         border-radius: 12px;
         font-size: 14px;
         outline: none;
+        transition: 0.2s;
       }
 
       .campo input:focus {
         border-color: #0b1f3a;
+      }
+
+      /* ERRO */
+
+      .campo input.erro {
+        border-color: #d90429;
+        background: #fffafa;
+      }
+
+      .mensagem-erro {
+        display: none;
+        margin-top: 5px;
+        color: #c62828;
+        font-size: 11px;
+        font-weight: bold;
+      }
+
+      .mensagem-erro.ativa {
+        display: block;
       }
 
       @media (max-width: 600px) {
@@ -280,7 +287,6 @@
     <header>
       <h1 class="logo-area">
         <img src="imagens/logo.png" alt="Logo Guardião" />
-
         <span>Guardião</span>
       </h1>
     </header>
@@ -305,11 +311,24 @@
         </button>
 
         <div class="formulario" id="formularioContato">
+          <!-- NOME -->
+
           <div class="campo">
             <label for="nomeContato"> Nome </label>
 
-            <input type="text" id="nomeContato" placeholder="Nome do contato" />
+            <input
+              type="text"
+              id="nomeContato"
+              placeholder="Nome do contato"
+              oninput="removerErro('nomeContato', 'erroNome')"
+            />
+
+            <span class="mensagem-erro" id="erroNome">
+              ⚠ Campo obrigatório
+            </span>
           </div>
+
+          <!-- TELEFONE -->
 
           <div class="campo">
             <label for="telefoneContato"> Telefone </label>
@@ -318,7 +337,12 @@
               type="tel"
               id="telefoneContato"
               placeholder="(11) 99999-9999"
+              oninput="removerErro('telefoneContato', 'erroTelefone')"
             />
+
+            <span class="mensagem-erro" id="erroTelefone">
+              ⚠ Campo obrigatório
+            </span>
           </div>
 
           <button class="botao" onclick="salvarContato()">
@@ -340,11 +364,7 @@
       }
 
       function salvarContatos(contatos) {
-        localStorage.setItem(
-          chaveContatos,
-
-          JSON.stringify(contatos),
-        );
+        localStorage.setItem(chaveContatos, JSON.stringify(contatos));
       }
 
       function carregarContatos() {
@@ -359,11 +379,11 @@
         if (contatos.length === 0) {
           lista.innerHTML = `
 
-                <p class="sem-contatos">
-                    Nenhum contato cadastrado.
-                </p>
+        <p class="sem-contatos">
+          Nenhum contato cadastrado.
+        </p>
 
-            `;
+      `;
 
           botaoAdicionar.textContent = "+ Adicionar contato";
 
@@ -377,29 +397,27 @@
 
           elemento.innerHTML = `
 
-                    <div class="informacoes-contato">
+          <div class="informacoes-contato">
 
-                        <strong>
-                            ${contato.nome}
-                        </strong>
+            <strong>
+              ${contato.nome}
+            </strong>
 
-                        <span>
-                            ${contato.telefone}
-                        </span>
+            <span>
+              ${contato.telefone}
+            </span>
 
-                    </div>
+          </div>
 
+          <button
+            class="lixeira"
+            onclick="removerContato(${indice})"
+            title="Excluir contato"
+          >
+            🗑️
+          </button>
 
-                    <button
-                        class="lixeira"
-                        onclick="removerContato(${indice})"
-                        title="Excluir contato">
-
-                        🗑️
-
-                    </button>
-
-                `;
+        `;
 
           lista.appendChild(elemento);
         });
@@ -408,6 +426,8 @@
       }
 
       function mostrarFormulario() {
+        limparErros();
+
         document.getElementById("formularioContato").style.display = "block";
 
         document.getElementById("botaoAdicionar").style.display = "none";
@@ -417,6 +437,8 @@
 
       function cancelarFormulario() {
         limparFormulario();
+
+        limparErros();
 
         document.getElementById("formularioContato").style.display = "none";
 
@@ -429,15 +451,61 @@
         document.getElementById("telefoneContato").value = "";
       }
 
+      function mostrarErro(campoId, erroId) {
+        document.getElementById(campoId).classList.add("erro");
+
+        document.getElementById(erroId).classList.add("ativa");
+      }
+
+      function removerErro(campoId, erroId) {
+        const campo = document.getElementById(campoId);
+
+        if (campo.value.trim() !== "") {
+          campo.classList.remove("erro");
+
+          document.getElementById(erroId).classList.remove("ativa");
+        }
+      }
+
+      function limparErros() {
+        document.getElementById("nomeContato").classList.remove("erro");
+
+        document.getElementById("telefoneContato").classList.remove("erro");
+
+        document.getElementById("erroNome").classList.remove("ativa");
+
+        document.getElementById("erroTelefone").classList.remove("ativa");
+      }
+
       function salvarContato() {
-        const nome = document.getElementById("nomeContato").value.trim();
+        const campoNome = document.getElementById("nomeContato");
 
-        const telefone = document
-          .getElementById("telefoneContato")
-          .value.trim();
+        const campoTelefone = document.getElementById("telefoneContato");
 
-        if (nome === "" || telefone === "") {
-          alert("Preencha o nome e o telefone do contato.");
+        const nome = campoNome.value.trim();
+
+        const telefone = campoTelefone.value.trim();
+
+        let formularioValido = true;
+
+        if (nome === "") {
+          mostrarErro("nomeContato", "erroNome");
+
+          formularioValido = false;
+        }
+
+        if (telefone === "") {
+          mostrarErro("telefoneContato", "erroTelefone");
+
+          formularioValido = false;
+        }
+
+        if (!formularioValido) {
+          if (nome === "") {
+            campoNome.focus();
+          } else {
+            campoTelefone.focus();
+          }
 
           return;
         }
@@ -446,12 +514,15 @@
 
         contatos.push({
           nome: nome,
+
           telefone: telefone,
         });
 
         salvarContatos(contatos);
 
         limparFormulario();
+
+        limparErros();
 
         document.getElementById("formularioContato").style.display = "none";
 
