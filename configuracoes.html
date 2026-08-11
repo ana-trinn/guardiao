@@ -99,6 +99,12 @@
             border-bottom: none;
         }
 
+        .item-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
         .item-info {
             flex: 1;
             min-width: 0;
@@ -128,8 +134,6 @@
             font-weight: bold;
             font-size: 18px;
         }
-
-        /* BARRA INFERIOR */
 
         .navbar {
             position: fixed;
@@ -243,26 +247,36 @@
     <div class="card">
 
 
-        <div class="item">
+        <!-- PERFIL -->
 
-            <div class="item-info">
+        <a
+            href="perfil.html"
+            class="item-link">
 
-                <div class="titulo">
-                    👤 Perfil
+            <div class="item">
+
+                <div class="item-info">
+
+                    <div class="titulo">
+                        👤 Perfil
+                    </div>
+
+                    <div class="descricao">
+                        Visualizar e editar seus dados.
+                    </div>
+
                 </div>
 
-                <div class="descricao">
-                    Visualizar seus dados.
+                <div class="seta">
+                    ›
                 </div>
 
             </div>
 
-            <div class="seta">
-                ›
-            </div>
+        </a>
 
-        </div>
 
+        <!-- NOTIFICAÇÕES -->
 
         <div class="item">
 
@@ -285,6 +299,8 @@
         </div>
 
 
+        <!-- LOCALIZAÇÃO -->
+
         <div class="item">
 
             <div class="item-info">
@@ -305,6 +321,8 @@
 
         </div>
 
+
+        <!-- SOBRE -->
 
         <div class="item">
 
