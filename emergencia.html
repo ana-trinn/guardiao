@@ -659,10 +659,11 @@
 
         if (
             perfil &&
-            perfil.nome
+            perfil.nome &&
+            perfil.nome.trim() !== ""
         ) {
 
-            return perfil.nome;
+            return perfil.nome.trim();
 
         }
 
