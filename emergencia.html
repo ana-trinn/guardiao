@@ -492,16 +492,13 @@
                 🔴 Alerta ativo
             </p>
 
-
             <p id="localizacao">
                 📍 Localização: aguardando...
             </p>
 
-
             <p>
                 👥 Contatos de confiança:
             </p>
-
 
             <div
                 class="lista-contatos"
@@ -520,7 +517,6 @@
                 <p>
                     Acesse o chat ou acompanhe quem está indo ajudar.
                 </p>
-
 
                 <a
                     href="chat.html"
@@ -549,7 +545,6 @@
                 <h3>
                     🚨 Prévia da mensagem
                 </h3>
-
 
                 <div
                     class="mensagem-emergencia"
@@ -687,7 +682,6 @@
         const configuracoes =
             obterConfiguracoes();
 
-
         return configuracoes.localizacao !== false;
 
     }
@@ -817,12 +811,6 @@
         );
 
 
-        /*
-            Se a preferência de localização
-            estiver desligada, o Guardião
-            não solicita o GPS.
-        */
-
         if (!localizacaoEstaAtivada()) {
 
             localizacao.textContent =
@@ -843,11 +831,6 @@
 
         }
 
-
-        /*
-            Se o navegador não oferecer
-            geolocalização.
-        */
 
         if (!navigator.geolocation) {
 
@@ -1476,6 +1459,67 @@
             );
 
     }
+
+
+    /*
+        INÍCIO AUTOMÁTICO DO ALERTA
+
+        Se a pessoa vier do botão principal
+        do painel com:
+
+        emergencia.html?auto=1
+
+        o alerta começa imediatamente.
+    */
+
+    function verificarInicioAutomatico() {
+
+        const parametros =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        const iniciarAutomaticamente =
+            parametros.get(
+                "auto"
+            );
+
+
+        if (
+            iniciarAutomaticamente === "1"
+        ) {
+
+            /*
+                Remove ?auto=1 da URL para
+                evitar iniciar novamente se
+                a página for atualizada.
+            */
+
+            window.history.replaceState(
+
+                {},
+
+                document.title,
+
+                "emergencia.html"
+
+            );
+
+
+            /*
+                Inicia o alerta sem mostrar
+                a etapa de confirmação.
+            */
+
+            continuarAlerta();
+
+        }
+
+    }
+
+
+    verificarInicioAutomatico();
 
 </script>
 
