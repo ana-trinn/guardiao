@@ -20,144 +20,113 @@
             font-family: Arial, Helvetica, sans-serif;
             background: #f5f7fb;
             color: #0b1f3a;
-            padding-bottom: 40px;
+            padding-bottom: 50px;
         }
 
         header {
             background: #0b1f3a;
             color: white;
             text-align: center;
-            padding: 18px 15px;
+            padding: 25px;
         }
 
         .logo-area {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
-        }
-
-        .logo-area img {
-            height: 68px;
-        }
-
-        .logo-area span {
-            font-size: 27px;
-            font-weight: bold;
+            gap: 5px;
         }
 
         .container {
             max-width: 700px;
-            margin: 18px auto;
-            padding: 15px;
-        }
-
-        .voltar-topo {
-            display: inline-block;
-            margin-bottom: 12px;
-            text-decoration: none;
-            color: #0b1f3a;
-            font-size: 14px;
-            font-weight: bold;
+            margin: 30px auto;
+            padding: 20px;
         }
 
         .card {
             background: white;
-            border-radius: 20px;
-            padding: 22px;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, .07);
+            border-radius: 22px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
         }
 
         .titulo-alerta {
             text-align: center;
             color: #d90429;
-            margin-bottom: 16px;
-            font-size: 22px;
+            margin-bottom: 20px;
         }
 
         .status-item {
             background: #f7f9fc;
-            border-radius: 14px;
-            padding: 13px;
-            margin-bottom: 9px;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 12px;
         }
 
         .status-item strong {
             display: block;
-            margin-bottom: 4px;
-            font-size: 14px;
+            margin-bottom: 5px;
         }
 
         .texto-secundario {
             color: #666;
-            font-size: 13px;
-            line-height: 1.4;
+            font-size: 14px;
         }
 
-        /* MAPA */
-
         .mapa-area {
-            margin-top: 9px;
+            margin-top: 12px;
         }
 
         .botao-mapa {
             display: inline-block;
-            width: 100%;
             text-decoration: none;
             background: #0b1f3a;
             color: white;
-            padding: 11px 15px;
+            padding: 11px 20px;
             border-radius: 25px;
             font-weight: bold;
-            font-size: 13px;
-            text-align: center;
         }
 
-        /* SELEÇÃO */
-
         .selecao-contato {
-            margin-top: 14px;
-            padding: 14px;
+            margin-top: 20px;
+            padding: 18px;
             background: #f7f9fc;
-            border-radius: 14px;
+            border-radius: 15px;
         }
 
         .selecao-contato label {
             display: block;
             font-weight: bold;
-            margin-bottom: 8px;
-            font-size: 13px;
+            margin-bottom: 10px;
         }
 
         .selecao-contato select {
             width: 100%;
             border: 1px solid #ccc;
-            border-radius: 11px;
-            padding: 11px;
-            font-size: 13px;
+            border-radius: 12px;
+            padding: 12px;
+            font-size: 15px;
             background: white;
             color: #0b1f3a;
         }
 
-        /* STATUS DOS CONTATOS */
-
         .ajudas-lista {
-            margin-top: 14px;
+            margin-top: 20px;
         }
 
         .ajuda-item {
             background: #eef8f0;
             border: 1px solid #cde8d3;
-            border-radius: 13px;
-            padding: 12px;
-            margin-bottom: 8px;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 10px;
         }
 
         .ajuda-item strong {
             display: block;
             color: #1b5e20;
-            margin-bottom: 4px;
-            font-size: 13px;
+            margin-bottom: 5px;
         }
 
         .aguardando {
@@ -169,25 +138,22 @@
             color: #8a6500;
         }
 
-        /* BOTÕES */
-
         .botoes {
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            margin-top: 14px;
+            gap: 12px;
+            margin-top: 20px;
         }
 
         .botao {
             border: none;
             border-radius: 30px;
-            padding: 12px 15px;
-            font-size: 13px;
+            padding: 14px 20px;
+            font-size: 15px;
             font-weight: bold;
             cursor: pointer;
             text-decoration: none;
             text-align: center;
-            width: 100%;
         }
 
         .botao-ajudar {
@@ -211,16 +177,13 @@
             border: 1px solid #e5bcbc;
         }
 
-        /* MENSAGENS */
-
         .mensagem {
             display: none;
-            margin-top: 10px;
-            padding: 11px;
-            border-radius: 13px;
+            margin-top: 15px;
+            padding: 14px;
+            border-radius: 15px;
             text-align: center;
             font-weight: bold;
-            font-size: 12px;
         }
 
         .mensagem-sucesso {
@@ -233,59 +196,27 @@
             color: #555;
         }
 
+        .voltar-area {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .voltar {
+            display: inline-block;
+            text-decoration: none;
+            color: #0b1f3a;
+            font-weight: bold;
+        }
+
         @media (max-width: 600px) {
 
-            header {
-                padding: 14px 12px;
-            }
-
-            .logo-area img {
-                height: 58px;
-            }
-
-            .logo-area span {
-                font-size: 24px;
-            }
-
             .container {
-                margin: 12px auto;
-                padding: 12px;
-            }
-
-            .voltar-topo {
-                font-size: 13px;
-                margin-bottom: 9px;
+                margin: 15px auto;
+                padding: 15px;
             }
 
             .card {
-                padding: 17px;
-                border-radius: 18px;
-            }
-
-            .titulo-alerta {
-                font-size: 19px;
-                margin-bottom: 12px;
-            }
-
-            .status-item {
-                padding: 11px;
-            }
-
-            .status-item strong {
-                font-size: 13px;
-            }
-
-            .texto-secundario {
-                font-size: 12px;
-            }
-
-            .selecao-contato {
-                padding: 11px;
-                margin-top: 11px;
-            }
-
-            .ajuda-item {
-                padding: 10px;
+                padding: 20px;
             }
 
         }
@@ -294,9 +225,7 @@
 
 </head>
 
-
 <body>
-
 
 <header>
 
@@ -304,11 +233,10 @@
 
         <img
             src="imagens/logo.png"
+            height="80"
             alt="Logo Guardião">
 
-        <span>
-            Guardião
-        </span>
+        <span>Guardião</span>
 
     </h1>
 
@@ -317,15 +245,6 @@
 
 <main class="container">
 
-    <a
-        href="painel.html"
-        class="voltar-topo">
-
-        ← Voltar
-
-    </a>
-
-
     <div class="card">
 
         <h2 class="titulo-alerta">
@@ -333,18 +252,26 @@
         </h2>
 
 
+        <!-- PESSOA QUE PEDIU AJUDA -->
+
         <div class="status-item">
 
             <strong>
                 🛡️ Pessoa que pediu ajuda
             </strong>
 
-            <span class="texto-secundario">
+            <span
+                class="texto-secundario"
+                id="nomePessoaAlerta">
+
                 Usuário do Guardião
+
             </span>
 
         </div>
 
+
+        <!-- LOCALIZAÇÃO -->
 
         <div class="status-item">
 
@@ -359,7 +286,6 @@
                 Carregando localização do alerta...
 
             </span>
-
 
             <div
                 class="mapa-area"
@@ -381,6 +307,8 @@
         </div>
 
 
+        <!-- CONTATOS -->
+
         <div class="status-item">
 
             <strong>
@@ -397,6 +325,8 @@
 
         </div>
 
+
+        <!-- QUEM ESTÁ RESPONDENDO -->
 
         <div class="selecao-contato">
 
@@ -484,6 +414,19 @@
 
     </div>
 
+
+    <div class="voltar-area">
+
+        <a
+            href="painel.html"
+            class="voltar">
+
+            ← Voltar ao painel
+
+        </a>
+
+    </div>
+
 </main>
 
 
@@ -497,17 +440,61 @@
         "ajudasGuardiao";
 
 
+    const chavePerfil =
+        "perfilGuardiao";
+
+
     let linkLocalizacao =
         "";
 
 
     function carregarDados() {
 
+        carregarPerfilNoAlerta();
+
         carregarContatos();
 
         carregarLocalizacaoDoAlerta();
 
         atualizarListaStatus();
+
+    }
+
+
+    // CARREGA O NOME DO PERFIL
+
+    function carregarPerfilNoAlerta() {
+
+        const perfil =
+            JSON.parse(
+                localStorage.getItem(
+                    chavePerfil
+                )
+            );
+
+
+        const elemento =
+            document.getElementById(
+                "nomePessoaAlerta"
+            );
+
+
+        if (
+            perfil &&
+            perfil.nome
+        ) {
+
+            elemento.textContent =
+                perfil.nome;
+
+        }
+
+        else {
+
+            elemento.textContent =
+                "Usuário do Guardião";
+
+        }
 
     }
 
@@ -535,9 +522,11 @@
 
 
         seletor.innerHTML = `
+
             <option value="">
                 Selecione um contato
             </option>
+
         `;
 
 
@@ -553,32 +542,36 @@
 
         quantidade.textContent =
             contatos.length === 1
+
                 ? "1 contato de confiança avisado."
+
                 : contatos.length +
                   " contatos de confiança avisados.";
 
 
-        contatos.forEach(function(contato) {
+        contatos.forEach(
+            function(contato) {
 
-            const opcao =
-                document.createElement(
-                    "option"
+                const opcao =
+                    document.createElement(
+                        "option"
+                    );
+
+
+                opcao.value =
+                    contato.nome;
+
+
+                opcao.textContent =
+                    contato.nome;
+
+
+                seletor.appendChild(
+                    opcao
                 );
 
-
-            opcao.value =
-                contato.nome;
-
-
-            opcao.textContent =
-                contato.nome;
-
-
-            seletor.appendChild(
-                opcao
-            );
-
-        });
+            }
+        );
 
     }
 
@@ -616,8 +609,10 @@
             elemento.textContent =
                 "Localização do alerta ainda não disponível.";
 
+
             mapaArea.style.display =
                 "none";
+
 
             return;
 
@@ -629,9 +624,13 @@
 
 
         elemento.innerHTML =
+
             localizacao.coordenadas +
+
             "<br>" +
+
             "Compartilhada às " +
+
             localizacao.horario;
 
 
@@ -711,8 +710,11 @@
         if (jaExiste) {
 
             alert(
+
                 nomeContato +
+
                 " já informou que está indo ajudar."
+
             );
 
             return;
@@ -768,17 +770,23 @@
             "block";
 
 
-        setTimeout(function() {
+        setTimeout(
+            function() {
 
-            document.getElementById(
-                "mensagemAjuda"
-            ).style.display =
-                "none";
+                document.getElementById(
+                    "mensagemAjuda"
+                ).style.display =
+                    "none";
 
-        }, 2500);
+            },
+
+            2500
+
+        );
 
 
-        seletor.value = "";
+        seletor.value =
+            "";
 
 
         atualizarListaStatus();
@@ -810,74 +818,83 @@
             );
 
 
-        area.innerHTML = "";
+        area.innerHTML =
+            "";
 
 
-        contatos.forEach(function(contato) {
+        contatos.forEach(
+            function(contato) {
 
-            const ajuda =
-                ajudas.find(
-                    function(item) {
+                const ajuda =
+                    ajudas.find(
+                        function(item) {
 
-                        return item.nome ===
-                            contato.nome;
+                            return item.nome ===
+                                contato.nome;
 
-                    }
+                        }
+                    );
+
+
+                const bloco =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                if (ajuda) {
+
+                    bloco.className =
+                        "ajuda-item";
+
+
+                    bloco.innerHTML = `
+
+                        <strong>
+                            🚗 ${contato.nome}
+                        </strong>
+
+                        <span class="texto-secundario">
+
+                            A caminho •
+                            ${ajuda.horario}
+
+                        </span>
+
+                    `;
+
+                }
+
+                else {
+
+                    bloco.className =
+                        "ajuda-item aguardando";
+
+
+                    bloco.innerHTML = `
+
+                        <strong>
+                            👀 ${contato.nome}
+                        </strong>
+
+                        <span class="texto-secundario">
+
+                            Ainda não informou
+                            se irá ajudar.
+
+                        </span>
+
+                    `;
+
+                }
+
+
+                area.appendChild(
+                    bloco
                 );
 
-
-            const bloco =
-                document.createElement(
-                    "div"
-                );
-
-
-            if (ajuda) {
-
-                bloco.className =
-                    "ajuda-item";
-
-
-                bloco.innerHTML = `
-
-                    <strong>
-                        🚗 ${contato.nome}
-                    </strong>
-
-                    <span class="texto-secundario">
-                        A caminho • ${ajuda.horario}
-                    </span>
-
-                `;
-
             }
-
-            else {
-
-                bloco.className =
-                    "ajuda-item aguardando";
-
-
-                bloco.innerHTML = `
-
-                    <strong>
-                        👀 ${contato.nome}
-                    </strong>
-
-                    <span class="texto-secundario">
-                        Ainda não informou se irá ajudar.
-                    </span>
-
-                `;
-
-            }
-
-
-            area.appendChild(
-                bloco
-            );
-
-        });
+        );
 
     }
 
@@ -897,13 +914,17 @@
 
         mensagens.push({
 
-            nome: "Sistema Guardião",
+            nome:
+                "Sistema Guardião",
 
-            texto: texto,
+            texto:
+                texto,
 
-            tipo: "recebida",
+            tipo:
+                "recebida",
 
-            hora: horario
+            hora:
+                horario
 
         });
 
@@ -1017,7 +1038,6 @@
     carregarDados();
 
 </script>
-
 
 </body>
 
