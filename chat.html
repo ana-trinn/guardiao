@@ -476,34 +476,75 @@
     const chaveChat =
         "mensagensChatGuardiao";
 
-    const nomeUsuario =
-        "Você — pediu ajuda";
+    const chavePerfil =
+        "perfilGuardiao";
+
+
+    function obterNomeUsuario() {
+
+        const perfil =
+            JSON.parse(
+                localStorage.getItem(
+                    chavePerfil
+                )
+            );
+
+
+        if (
+            perfil &&
+            perfil.nome
+        ) {
+
+            return perfil.nome +
+                " — pediu ajuda";
+
+        }
+
+
+        return "Você — pediu ajuda";
+
+    }
 
 
     function carregarMensagens() {
 
         const mensagens =
             JSON.parse(
-                localStorage.getItem(chaveChat)
+                localStorage.getItem(
+                    chaveChat
+                )
             ) || [];
+
 
         const area =
             document.getElementById(
                 "mensagensChat"
             );
 
-        area.innerHTML = "";
 
-        mensagens.forEach(function(item) {
+        area.innerHTML =
+            "";
 
-            adicionarMensagemNaTela(
-                item.texto,
-                item.tipo,
-                item.hora,
-                item.nome || nomeUsuario
-            );
 
-        });
+        mensagens.forEach(
+            function(item) {
+
+                adicionarMensagemNaTela(
+
+                    item.texto,
+
+                    item.tipo,
+
+                    item.hora,
+
+                    item.nome ||
+                    obterNomeUsuario()
+
+                );
+
+            }
+        );
+
 
         area.scrollTop =
             area.scrollHeight;
@@ -518,38 +559,64 @@
                 "campoMensagem"
             );
 
+
         const texto =
             campo.value.trim();
 
+
         if (texto === "") {
+
             return;
+
         }
+
 
         const hora =
             obterHoraAtual();
 
+
+        const nomeUsuario =
+            obterNomeUsuario();
+
+
         salvarMensagem({
 
             nome: nomeUsuario,
+
             texto: texto,
+
             tipo: "enviada",
+
             hora: hora
 
         });
 
+
         adicionarMensagemNaTela(
+
             texto,
+
             "enviada",
+
             hora,
+
             nomeUsuario
+
         );
 
-        campo.value = "";
+
+        campo.value =
+            "";
+
+
         campo.focus();
+
 
         document.getElementById(
             "painelEmojis"
-        ).style.display = "none";
+        ).style.display =
+            "none";
+
 
         rolarChat();
 
@@ -565,6 +632,7 @@
                 )
             ) || [];
 
+
         if (contatos.length === 0) {
 
             alert(
@@ -575,6 +643,7 @@
 
         }
 
+
         const contato =
             contatos[
                 Math.floor(
@@ -583,18 +652,27 @@
                 )
             ];
 
+
         const respostas = [
 
             "Estou indo até você. 🚗",
+
             "Onde você está agora? 📍",
+
             "Recebi seu alerta.",
+
             "Estou tentando falar com você.",
+
             "Fique onde está. Estou a caminho.",
+
             "Já estou chegando. 👍",
+
             "Você está bem?",
+
             "Vou pedir ajuda agora. 📞"
 
         ];
+
 
         const texto =
             respostas[
@@ -604,31 +682,45 @@
                 )
             ];
 
+
         const hora =
             obterHoraAtual();
+
 
         salvarMensagem({
 
             nome: contato.nome,
+
             texto: texto,
+
             tipo: "recebida",
+
             hora: hora
 
         });
 
+
         adicionarMensagemNaTela(
+
             texto,
+
             "recebida",
+
             hora,
+
             contato.nome
+
         );
+
 
         rolarChat();
 
     }
 
 
-    function salvarMensagem(mensagem) {
+    function salvarMensagem(
+        mensagem
+    ) {
 
         const mensagens =
             JSON.parse(
@@ -637,15 +729,20 @@
                 )
             ) || [];
 
+
         mensagens.push(
             mensagem
         );
 
+
         localStorage.setItem(
+
             chaveChat,
+
             JSON.stringify(
                 mensagens
             )
+
         );
 
     }
@@ -663,60 +760,78 @@
                 "mensagensChat"
             );
 
+
         const mensagem =
             document.createElement(
                 "div"
             );
 
+
         mensagem.className =
+
             "mensagem " +
+
             (
                 tipo === "recebida"
+
                     ? "mensagem-recebida"
+
                     : "mensagem-enviada"
             );
+
 
         const nomeElemento =
             document.createElement(
                 "span"
             );
 
+
         nomeElemento.className =
             "nome-remetente";
 
+
         nomeElemento.textContent =
             nome;
+
 
         const textoElemento =
             document.createElement(
                 "div"
             );
 
+
         textoElemento.textContent =
             texto;
+
 
         const horaElemento =
             document.createElement(
                 "span"
             );
 
+
         horaElemento.className =
             "hora";
 
+
         horaElemento.textContent =
             hora;
+
 
         mensagem.appendChild(
             nomeElemento
         );
 
+
         mensagem.appendChild(
             textoElemento
         );
 
+
         mensagem.appendChild(
             horaElemento
         );
+
 
         area.appendChild(
             mensagem
@@ -732,30 +847,41 @@
                 "painelEmojis"
             );
 
+
         painel.style.display =
+
             painel.style.display === "block"
+
                 ? "none"
+
                 : "block";
 
     }
 
 
-    function adicionarEmoji(emoji) {
+    function adicionarEmoji(
+        emoji
+    ) {
 
         const campo =
             document.getElementById(
                 "campoMensagem"
             );
 
+
         campo.value =
-            campo.value + emoji;
+            campo.value +
+            emoji;
+
 
         campo.focus();
 
     }
 
 
-    function verificarEnter(event) {
+    function verificarEnter(
+        event
+    ) {
 
         if (event.key === "Enter") {
 
@@ -770,11 +896,17 @@
 
         return new Date()
             .toLocaleTimeString(
+
                 "pt-BR",
+
                 {
+
                     hour: "2-digit",
+
                     minute: "2-digit"
+
                 }
+
             );
 
     }
@@ -786,6 +918,7 @@
             document.getElementById(
                 "mensagensChat"
             );
+
 
         area.scrollTop =
             area.scrollHeight;
@@ -800,17 +933,23 @@
                 "Deseja realmente apagar as mensagens deste chat?"
             );
 
+
         if (!confirmar) {
+
             return;
+
         }
+
 
         localStorage.removeItem(
             chaveChat
         );
 
+
         document.getElementById(
             "mensagensChat"
-        ).innerHTML = "";
+        ).innerHTML =
+            "";
 
     }
 
