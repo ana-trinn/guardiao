@@ -89,9 +89,7 @@
             justify-content: space-between;
             align-items: center;
             gap: 15px;
-
             padding: 15px 4px;
-
             border-bottom: 1px solid #eee;
         }
 
@@ -122,36 +120,80 @@
             line-height: 1.4;
         }
 
-        .status {
-            color: #198754;
-            font-weight: bold;
-            font-size: 13px;
-            white-space: nowrap;
-        }
-
         .seta {
             color: #0b1f3a;
-            font-weight: bold;
             font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* SWITCH */
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 46px;
+            height: 26px;
+            flex-shrink: 0;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            inset: 0;
+            background: #ccc;
+            border-radius: 30px;
+            transition: .25s;
+        }
+
+        .slider:before {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            left: 3px;
+            top: 3px;
+            background: white;
+            border-radius: 50%;
+            transition: .25s;
+        }
+
+        input:checked + .slider {
+            background: #1b5e20;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(20px);
+        }
+
+        .mensagem-salva {
+            display: none;
+            margin-top: 14px;
+            padding: 10px;
+            border-radius: 12px;
+            background: #eef8f0;
+            color: #1b5e20;
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
         }
 
         .navbar {
             position: fixed;
             bottom: 0;
             left: 0;
-
             width: 100%;
-
             background: white;
-
             display: flex;
             justify-content: space-around;
             align-items: center;
-
             padding: 8px 0 7px;
-
             box-shadow: 0 -4px 12px rgba(0, 0, 0, .08);
-
             z-index: 1000;
         }
 
@@ -169,34 +211,6 @@
             margin-bottom: 3px;
         }
 
-        @media (max-width: 600px) {
-
-            .container {
-                padding: 12px;
-            }
-
-            .card {
-                padding: 14px;
-            }
-
-            .item {
-                padding: 13px 2px;
-            }
-
-            .titulo {
-                font-size: 14px;
-            }
-
-            .descricao {
-                font-size: 11px;
-            }
-
-            .status {
-                font-size: 12px;
-            }
-
-        }
-
     </style>
 
 </head>
@@ -211,14 +225,11 @@
             src="imagens/logo.png"
             alt="Logo Guardião">
 
-        <span>
-            Guardião
-        </span>
+        <span>Guardião</span>
 
     </div>
 
 </header>
-
 
 <main class="container">
 
@@ -229,7 +240,6 @@
         ← Voltar
 
     </a>
-
 
     <div class="titulo-pagina">
 
@@ -243,9 +253,7 @@
 
     </div>
 
-
     <div class="card">
-
 
         <!-- PERFIL -->
 
@@ -275,7 +283,6 @@
 
         </a>
 
-
         <!-- NOTIFICAÇÕES -->
 
         <div class="item">
@@ -287,17 +294,23 @@
                 </div>
 
                 <div class="descricao">
-                    Alertas e avisos do Guardião.
+                    Ativar ou desativar avisos do Guardião.
                 </div>
 
             </div>
 
-            <div class="status">
-                Ativo
-            </div>
+            <label class="switch">
+
+                <input
+                    type="checkbox"
+                    id="configNotificacoes"
+                    onchange="salvarConfiguracoes()">
+
+                <span class="slider"></span>
+
+            </label>
 
         </div>
-
 
         <!-- LOCALIZAÇÃO -->
 
@@ -315,12 +328,18 @@
 
             </div>
 
-            <div class="status">
-                Ativo
-            </div>
+            <label class="switch">
+
+                <input
+                    type="checkbox"
+                    id="configLocalizacao"
+                    onchange="salvarConfiguracoes()">
+
+                <span class="slider"></span>
+
+            </label>
 
         </div>
-
 
         <!-- SOBRE -->
 
@@ -333,7 +352,7 @@
                 </div>
 
                 <div class="descricao">
-                    Versão 0.3 • Protótipo em desenvolvimento.
+                    Versão 0.4 • Protótipo em desenvolvimento.
                 </div>
 
             </div>
@@ -344,50 +363,149 @@
 
         </div>
 
+    </div>
+
+    <div
+        class="mensagem-salva"
+        id="mensagemSalva">
+
+        ✅ Preferências atualizadas.
 
     </div>
 
 </main>
 
-
 <nav class="navbar">
 
     <a href="painel.html">
-
         <span>🏠</span>
-
         Início
-
     </a>
-
 
     <a href="contatos.html">
-
         <span>👥</span>
-
         Contatos
-
     </a>
-
 
     <a href="emergencia.html">
-
         <span>🚨</span>
-
         Emergência
-
     </a>
 
-
     <a href="configuracoes.html">
-
         <span>⚙️</span>
-
         Config.
-
     </a>
 
 </nav>
+
+<script>
+
+    const chaveConfiguracoes =
+        "configuracoesGuardiao";
+
+
+    function carregarConfiguracoes() {
+
+        const configuracoes =
+            JSON.parse(
+                localStorage.getItem(
+                    chaveConfiguracoes
+                )
+            );
+
+
+        if (!configuracoes) {
+
+            document.getElementById(
+                "configNotificacoes"
+            ).checked = true;
+
+
+            document.getElementById(
+                "configLocalizacao"
+            ).checked = true;
+
+
+            salvarConfiguracoes(false);
+
+            return;
+
+        }
+
+
+        document.getElementById(
+            "configNotificacoes"
+        ).checked =
+            configuracoes.notificacoes !== false;
+
+
+        document.getElementById(
+            "configLocalizacao"
+        ).checked =
+            configuracoes.localizacao !== false;
+
+    }
+
+
+    function salvarConfiguracoes(
+        mostrarMensagem = true
+    ) {
+
+        const configuracoes = {
+
+            notificacoes:
+                document.getElementById(
+                    "configNotificacoes"
+                ).checked,
+
+            localizacao:
+                document.getElementById(
+                    "configLocalizacao"
+                ).checked
+
+        };
+
+
+        localStorage.setItem(
+
+            chaveConfiguracoes,
+
+            JSON.stringify(
+                configuracoes
+            )
+
+        );
+
+
+        if (!mostrarMensagem) {
+            return;
+        }
+
+
+        const mensagem =
+            document.getElementById(
+                "mensagemSalva"
+            );
+
+
+        mensagem.style.display =
+            "block";
+
+
+        setTimeout(function() {
+
+            mensagem.style.display =
+                "none";
+
+        }, 1800);
+
+    }
+
+
+    carregarConfiguracoes();
+
+</script>
 
 </body>
 
