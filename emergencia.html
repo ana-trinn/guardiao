@@ -456,7 +456,7 @@
 
             <p>
                 Você está prestes a iniciar um alerta de emergência.
-                Sua localização será compartilhada com seus contatos de confiança.
+                Seus contatos de confiança serão preparados para receber o aviso.
             </p>
 
 
@@ -650,6 +650,9 @@
     const chaveAjudas =
         "ajudasGuardiao";
 
+    const chaveConfiguracoes =
+        "configuracoesGuardiao";
+
 
     let textoMensagem = "";
 
@@ -661,6 +664,31 @@
                 chavePerfil
             )
         ) || {};
+
+    }
+
+
+    function obterConfiguracoes() {
+
+        return JSON.parse(
+            localStorage.getItem(
+                chaveConfiguracoes
+            )
+        ) || {
+            notificacoes: true,
+            localizacao: true
+        };
+
+    }
+
+
+    function localizacaoEstaAtivada() {
+
+        const configuracoes =
+            obterConfiguracoes();
+
+
+        return configuracoes.localizacao !== false;
 
     }
 
@@ -784,88 +812,42 @@
             "block";
 
 
-        const contatos =
-            JSON.parse(
-                localStorage.getItem(
-                    chaveContatos
-                )
-            ) || [];
+        carregarContatosDoAlerta(
+            lista
+        );
 
 
-        lista.innerHTML =
-            "";
+        /*
+            Se a preferência de localização
+            estiver desligada, o Guardião
+            não solicita o GPS.
+        */
+
+        if (!localizacaoEstaAtivada()) {
+
+            localizacao.textContent =
+                "📍 Localização: compartilhamento desativado nas configurações.";
 
 
-        if (contatos.length === 0) {
-
-            lista.innerHTML = `
-                <div class="contato-alerta">
-
-                    <span class="sem-contatos">
-                        Nenhum contato cadastrado.
-                    </span>
-
-                </div>
-            `;
-
-        }
-
-        else {
-
-            contatos.forEach(
-                function(contato) {
-
-                    const elemento =
-                        document.createElement(
-                            "div"
-                        );
-
-
-                    elemento.className =
-                        "contato-alerta";
-
-
-                    const nome =
-                        document.createElement(
-                            "strong"
-                        );
-
-
-                    nome.textContent =
-                        "🟢 " +
-                        contato.nome;
-
-
-                    const telefone =
-                        document.createElement(
-                            "span"
-                        );
-
-
-                    telefone.textContent =
-                        "📱 " +
-                        contato.telefone;
-
-
-                    elemento.appendChild(
-                        nome
-                    );
-
-
-                    elemento.appendChild(
-                        telefone
-                    );
-
-
-                    lista.appendChild(
-                        elemento
-                    );
-
-                }
+            localStorage.removeItem(
+                chaveLocalizacao
             );
 
+
+            criarMensagem(
+                "Localização não compartilhada."
+            );
+
+
+            return;
+
         }
 
+
+        /*
+            Se o navegador não oferecer
+            geolocalização.
+        */
 
         if (!navigator.geolocation) {
 
@@ -971,6 +953,95 @@
 
             }
 
+        );
+
+    }
+
+
+    function carregarContatosDoAlerta(
+        lista
+    ) {
+
+        const contatos =
+            JSON.parse(
+                localStorage.getItem(
+                    chaveContatos
+                )
+            ) || [];
+
+
+        lista.innerHTML =
+            "";
+
+
+        if (contatos.length === 0) {
+
+            lista.innerHTML = `
+                <div class="contato-alerta">
+
+                    <span class="sem-contatos">
+                        Nenhum contato cadastrado.
+                    </span>
+
+                </div>
+            `;
+
+
+            return;
+
+        }
+
+
+        contatos.forEach(
+            function(contato) {
+
+                const elemento =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                elemento.className =
+                    "contato-alerta";
+
+
+                const nome =
+                    document.createElement(
+                        "strong"
+                    );
+
+
+                nome.textContent =
+                    "🟢 " +
+                    contato.nome;
+
+
+                const telefone =
+                    document.createElement(
+                        "span"
+                    );
+
+
+                telefone.textContent =
+                    "📱 " +
+                    contato.telefone;
+
+
+                elemento.appendChild(
+                    nome
+                );
+
+
+                elemento.appendChild(
+                    telefone
+                );
+
+
+                lista.appendChild(
+                    elemento
+                );
+
+            }
         );
 
     }
