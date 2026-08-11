@@ -2,6 +2,7 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Guardião</title>
@@ -117,10 +118,12 @@
         background: #0b1f3a;
         color: white;
         text-decoration: none;
+        border: none;
         border-radius: 30px;
         padding: 14px 20px;
         font-size: 16px;
         font-weight: bold;
+        cursor: pointer;
       }
 
       .aviso {
@@ -238,7 +241,9 @@
             </div>
           </div>
 
-          <a href="painel.html" class="botao"> Entrar no Guardião </a>
+          <button type="button" class="botao" onclick="entrarNoGuardiao()">
+            Entrar no Guardião
+          </button>
 
           <p class="aviso">Protótipo demonstrativo em desenvolvimento.</p>
         </section>
@@ -246,5 +251,35 @@
 
       <footer>Guardião • Projeto em desenvolvimento</footer>
     </div>
+
+    <script>
+      const chaveBoasVindas = "guardiaoBoasVindasConcluida";
+
+      /*
+            Se a pessoa já entrou no Guardião
+            anteriormente, pula a apresentação.
+        */
+
+      function verificarBoasVindas() {
+        const jaEntrou = localStorage.getItem(chaveBoasVindas);
+
+        if (jaEntrou === "sim") {
+          window.location.replace("painel.html");
+        }
+      }
+
+      /*
+            Ao entrar pela primeira vez,
+            salva a escolha e abre o painel.
+        */
+
+      function entrarNoGuardiao() {
+        localStorage.setItem(chaveBoasVindas, "sim");
+
+        window.location.href = "painel.html";
+      }
+
+      verificarBoasVindas();
+    </script>
   </body>
 </html>
