@@ -86,8 +86,6 @@
             font-size: 14px;
         }
 
-        /* BOTÃO PRINCIPAL */
-
         .botao-alerta {
             width: 115px;
             height: 115px;
@@ -105,8 +103,6 @@
         .botao-alerta:hover {
             transform: scale(1.04);
         }
-
-        /* CONFIRMAÇÃO */
 
         .confirmacao {
             display: none;
@@ -153,8 +149,6 @@
             color: white;
         }
 
-        /* STATUS */
-
         .status {
             display: none;
             margin-top: 20px;
@@ -176,8 +170,6 @@
             font-weight: bold;
             font-size: 13px;
         }
-
-        /* CONTATOS */
 
         .lista-contatos {
             margin-top: 8px;
@@ -206,8 +198,6 @@
             color: #777;
             font-weight: normal;
         }
-
-        /* AÇÕES */
 
         .acoes-alerta {
             display: none;
@@ -251,8 +241,6 @@
             color: #0b1f3a;
         }
 
-        /* PRÉVIA */
-
         .previa {
             display: none;
             margin-top: 16px;
@@ -280,8 +268,6 @@
             word-break: break-word;
         }
 
-        /* BOTÕES */
-
         .botao-copiar,
         .botao-enviar,
         .botao-engano {
@@ -306,8 +292,6 @@
             color: #b91c1c;
             border: 1px solid #e0b4b4;
         }
-
-        /* WHATSAPP */
 
         .envios-contatos,
         .envios-engano {
@@ -652,17 +636,76 @@
 
     let textoMensagem = "";
 
-    let textoEngano =
-        "GUARDIÃO\n\n" +
-        "O alerta de emergência enviado anteriormente foi acionado por engano.\n\n" +
-        "Está tudo bem. Por favor, desconsidere o alerta anterior.";
+    const chavePerfil =
+        "perfilGuardiao";
+
+
+    function obterPerfil() {
+
+        return JSON.parse(
+            localStorage.getItem(
+                chavePerfil
+            )
+        );
+
+    }
+
+
+    function obterNomeUsuario() {
+
+        const perfil =
+            obterPerfil();
+
+
+        if (
+            perfil &&
+            perfil.nome
+        ) {
+
+            return perfil.nome;
+
+        }
+
+
+        return "";
+
+    }
+
+
+    function criarTextoEngano() {
+
+        const nome =
+            obterNomeUsuario();
+
+
+        if (nome !== "") {
+
+            return (
+                "GUARDIÃO\n\n" +
+                "O alerta de emergência de " +
+                nome +
+                " enviado anteriormente foi acionado por engano.\n\n" +
+                "Está tudo bem. Por favor, desconsidere o alerta anterior."
+            );
+
+        }
+
+
+        return (
+            "GUARDIÃO\n\n" +
+            "O alerta de emergência enviado anteriormente foi acionado por engano.\n\n" +
+            "Está tudo bem. Por favor, desconsidere o alerta anterior."
+        );
+
+    }
 
 
     function mostrarConfirmacao() {
 
         document.getElementById(
             "confirmacao"
-        ).style.display = "block";
+        ).style.display =
+            "block";
 
     }
 
@@ -671,7 +714,8 @@
 
         document.getElementById(
             "confirmacao"
-        ).style.display = "none";
+        ).style.display =
+            "none";
 
     }
 
@@ -680,7 +724,8 @@
 
         document.getElementById(
             "confirmacao"
-        ).style.display = "none";
+        ).style.display =
+            "none";
 
 
         localStorage.removeItem(
@@ -756,7 +801,9 @@
                 </div>
             `;
 
-        } else {
+        }
+
+        else {
 
             contatos.forEach(
                 function(contato) {
@@ -911,7 +958,25 @@
             ) || [];
 
 
-        let nomes = "";
+        const nomeUsuario =
+            obterNomeUsuario();
+
+
+        let linhaAjuda =
+            "Preciso de ajuda.";
+
+
+        if (nomeUsuario !== "") {
+
+            linhaAjuda =
+                nomeUsuario +
+                " precisa de ajuda.";
+
+        }
+
+
+        let nomes =
+            "";
 
 
         if (contatos.length > 0) {
@@ -928,7 +993,9 @@
                     )
                     .join("\n");
 
-        } else {
+        }
+
+        else {
 
             nomes =
                 "Nenhum contato cadastrado.";
@@ -938,7 +1005,8 @@
 
         textoMensagem =
             "🚨 ALERTA DE EMERGÊNCIA — GUARDIÃO\n\n" +
-            "Preciso de ajuda.\n\n" +
+            linhaAjuda +
+            "\n\n" +
             "📍 Minha localização:\n" +
             localizacaoTexto +
             "\n\n" +
@@ -1028,7 +1096,8 @@
             );
 
 
-        botoes.innerHTML = "";
+        botoes.innerHTML =
+            "";
 
 
         contatos.forEach(
@@ -1107,7 +1176,12 @@
             );
 
 
-        botoes.innerHTML = "";
+        const textoEngano =
+            criarTextoEngano();
+
+
+        botoes.innerHTML =
+            "";
 
 
         contatos.forEach(
