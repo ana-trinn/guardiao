@@ -84,6 +84,8 @@
         font-size: 13px;
       }
 
+      /* BOTÃO DE ALERTA */
+
       .botao-alerta {
         width: 95px;
         height: 95px;
@@ -96,6 +98,8 @@
         cursor: pointer;
         box-shadow: 0 8px 20px rgba(217, 4, 41, 0.3);
       }
+
+      /* CONFIRMAÇÃO */
 
       .confirmacao {
         display: none;
@@ -142,6 +146,8 @@
         color: white;
       }
 
+      /* STATUS */
+
       .status {
         display: none;
         margin-top: 14px;
@@ -175,6 +181,8 @@
         font-weight: bold;
         color: #0b1f3a;
       }
+
+      /* ACOMPANHAMENTO */
 
       .acoes-alerta {
         display: none;
@@ -226,6 +234,8 @@
         color: #0b1f3a;
       }
 
+      /* PEDIDO DE AJUDA */
+
       .previa {
         display: none;
         margin-top: 12px;
@@ -238,8 +248,10 @@
       .previa h3 {
         text-align: center;
         font-size: 15px;
-        margin-bottom: 9px;
+        margin-bottom: 10px;
       }
+
+      /* VER MENSAGEM */
 
       .botao-ver-mensagem {
         width: 100%;
@@ -267,55 +279,87 @@
         margin-top: 9px;
       }
 
-      .botao-copiar,
-      .botao-enviar,
-      .botao-engano {
+      /* COPIAR FICA ESCONDIDO */
+
+      .area-copiar {
+        display: none;
+      }
+
+      .botao-copiar {
         width: 100%;
         border: none;
-        padding: 10px;
+        padding: 9px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 11px;
+        font-weight: bold;
+        margin-top: 8px;
+        background: #e8eef7;
+        color: #0b1f3a;
+      }
+
+      /* ENVIAR */
+
+      .botao-enviar {
+        width: 100%;
+        border: none;
+        padding: 11px;
         border-radius: 25px;
         cursor: pointer;
         font-size: 12px;
         font-weight: bold;
-        margin-top: 8px;
-      }
-
-      .botao-copiar,
-      .botao-enviar {
+        margin-top: 9px;
         background: #0b1f3a;
         color: white;
       }
 
+      /* ENGANO */
+
       .botao-engano {
-        background: #f5f5f5;
-        color: #b91c1c;
+        width: 100%;
         border: 1px solid #e0b4b4;
+        padding: 10px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 11px;
+        font-weight: bold;
+        margin-top: 8px;
+        background: #fff8f8;
+        color: #b91c1c;
       }
+
+      /* CONTATOS DE ENVIO */
 
       .envios-contatos,
       .envios-engano {
         display: none;
         margin-top: 11px;
+        padding-top: 8px;
+        border-top: 1px solid #eee;
       }
 
       .envios-contatos h3,
       .envios-engano h3 {
         text-align: center;
         margin-bottom: 6px;
-        font-size: 13px;
+        font-size: 12px;
       }
 
       .botao-whatsapp {
         width: 100%;
         border: none;
-        padding: 10px;
+        padding: 9px;
         border-radius: 25px;
         cursor: pointer;
-        font-size: 12px;
+        font-size: 11px;
         font-weight: bold;
         margin-top: 6px;
-        background: #0b1f3a;
-        color: white;
+        background: #e8eef7;
+        color: #0b1f3a;
+      }
+
+      .botao-whatsapp:hover {
+        background: #dbe5f2;
       }
 
       .copiado,
@@ -341,7 +385,7 @@
       <h1 class="logo-area">
         <img src="imagens/logo.png" alt="Logo Guardião" />
 
-        <span>Guardião</span>
+        <span> Guardião </span>
       </h1>
     </header>
 
@@ -349,6 +393,8 @@
       <a href="painel.html" class="voltar-topo"> ← Voltar </a>
 
       <div class="card">
+        <!-- INÍCIO -->
+
         <div id="inicioAlerta">
           <div class="icone">🚨</div>
 
@@ -364,6 +410,8 @@
             ALERTA
           </button>
         </div>
+
+        <!-- CONFIRMAÇÃO -->
 
         <div class="confirmacao" id="confirmacao">
           <h3>⚠️ Confirmar alerta</h3>
@@ -381,6 +429,8 @@
           </div>
         </div>
 
+        <!-- ALERTA ATIVO -->
+
         <div class="status" id="statusAlerta">
           <div class="linha-status">🔴 Alerta ativo</div>
 
@@ -391,6 +441,8 @@
           <div class="resumo-contatos" id="listaContatosAlerta">
             👥 Verificando contatos...
           </div>
+
+          <!-- ACOMPANHAMENTO -->
 
           <div class="acoes-alerta" id="acoesAlerta">
             <h3>🛡️ Acompanhar emergência</h3>
@@ -406,8 +458,12 @@
             </div>
           </div>
 
+          <!-- PEDIDO DE AJUDA -->
+
           <div class="previa" id="previaMensagem">
             <h3>🚨 Pedido de ajuda</h3>
+
+            <!-- 1 - VER MENSAGEM -->
 
             <button
               class="botao-ver-mensagem"
@@ -420,15 +476,23 @@
 
             <div class="mensagem-emergencia" id="mensagemEmergencia"></div>
 
-            <button
-              class="botao-copiar"
-              type="button"
-              onclick="copiarMensagem()"
-            >
-              📋 Copiar mensagem
-            </button>
+            <!-- COPIAR SÓ APARECE COM A MENSAGEM -->
 
-            <div class="copiado" id="mensagemCopiada">✅ Mensagem copiada!</div>
+            <div class="area-copiar" id="areaCopiar">
+              <button
+                class="botao-copiar"
+                type="button"
+                onclick="copiarMensagem()"
+              >
+                📋 Copiar mensagem
+              </button>
+
+              <div class="copiado" id="mensagemCopiada">
+                ✅ Mensagem copiada!
+              </div>
+            </div>
+
+            <!-- 2 - ENVIAR -->
 
             <button
               class="botao-enviar"
@@ -443,6 +507,8 @@
 
               <div id="botoesContatos"></div>
             </div>
+
+            <!-- 3 - ENGANO -->
 
             <button
               class="botao-engano"
@@ -590,9 +656,13 @@
 
             const localizacaoAlerta = {
               latitude: latitude,
+
               longitude: longitude,
+
               coordenadas: coordenadas,
+
               linkMapa: linkMapa,
+
               horario: obterHoraAtual(),
             };
 
@@ -646,10 +716,10 @@
       }
 
       /*
-        MENSAGEM DO ALERTA
+        MENSAGEM DO WHATSAPP
 
         Os nomes dos outros contatos
-        NÃO são enviados no WhatsApp.
+        não aparecem na mensagem.
     */
 
       function criarMensagem(localizacaoTexto) {
@@ -694,17 +764,30 @@
         modoAlertaRapido = false;
       }
 
+      /*
+        ABRIR / FECHAR MENSAGEM
+
+        Também mostra ou esconde
+        o botão Copiar.
+    */
+
       function alternarMensagem() {
         const mensagem = document.getElementById("mensagemEmergencia");
 
         const botao = document.getElementById("botaoVerMensagem");
 
+        const areaCopiar = document.getElementById("areaCopiar");
+
         if (mensagem.style.display === "block") {
           mensagem.style.display = "none";
+
+          areaCopiar.style.display = "none";
 
           botao.textContent = "👁️ Ver mensagem completa";
         } else {
           mensagem.style.display = "block";
+
+          areaCopiar.style.display = "block";
 
           botao.textContent = "▲ Ocultar mensagem";
         }
@@ -739,6 +822,17 @@
 
         const botoes = document.getElementById("botoesContatos");
 
+        /*
+            Se já estiver aberto,
+            clicar novamente fecha.
+        */
+
+        if (area.style.display === "block") {
+          area.style.display = "none";
+
+          return;
+        }
+
         botoes.innerHTML = "";
 
         contatos.forEach(function (contato, indice) {
@@ -756,6 +850,8 @@
         });
 
         area.style.display = "block";
+
+        document.getElementById("enviosEngano").style.display = "none";
       }
 
       function mostrarEnviosEngano() {
@@ -770,6 +866,12 @@
         const area = document.getElementById("enviosEngano");
 
         const botoes = document.getElementById("botoesEngano");
+
+        if (area.style.display === "block") {
+          area.style.display = "none";
+
+          return;
+        }
 
         const nomeUsuario = obterNomeUsuario();
 
@@ -805,6 +907,8 @@
         });
 
         area.style.display = "block";
+
+        document.getElementById("enviosContatos").style.display = "none";
       }
 
       function enviarParaContato(indice, mensagemTexto) {
