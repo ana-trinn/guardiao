@@ -20,7 +20,7 @@
             font-family: Arial, Helvetica, sans-serif;
             background: #f5f7fb;
             color: #0b1f3a;
-            padding-bottom: 90px;
+            padding-bottom: 100px;
         }
 
         header {
@@ -28,10 +28,6 @@
             color: white;
             text-align: center;
             padding: 18px 15px;
-        }
-
-        header h1 {
-            font-size: 27px;
         }
 
         .logo-area {
@@ -45,8 +41,14 @@
             height: 68px;
         }
 
+        .logo-area span {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
         .container {
-            max-width: 760px;
+            width: 100%;
+            max-width: 700px;
             margin: 18px auto;
             padding: 15px;
         }
@@ -54,50 +56,46 @@
         .card {
             background: white;
             border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 14px;
+            padding: 22px;
+            margin-bottom: 16px;
             text-align: center;
             box-shadow: 0 6px 18px rgba(0, 0, 0, .07);
         }
 
-        .card-boas-vindas {
-            padding: 16px 18px;
-        }
-
         .icone {
-            font-size: 34px;
-            margin-bottom: 7px;
+            font-size: 38px;
+            margin-bottom: 8px;
         }
 
         h2 {
             margin-bottom: 8px;
-            font-size: 21px;
+            font-size: 22px;
         }
 
         p {
             color: #666;
-            line-height: 1.4;
-            margin-bottom: 14px;
+            line-height: 1.45;
+            margin-bottom: 16px;
             font-size: 14px;
         }
 
         /* EMERGÊNCIA */
 
         .card-emergencia {
-            border: 1px solid #f1d3d8;
+            border: 1px solid #f1cccc;
         }
 
         .emergencia {
-            width: 95px;
-            height: 95px;
+            width: 105px;
+            height: 105px;
             border-radius: 50%;
             border: none;
             background: #d90429;
             color: white;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 14px;
             font-weight: bold;
-            box-shadow: 0 8px 18px rgba(217, 4, 41, .30);
+            box-shadow: 0 8px 20px rgba(217, 4, 41, .30);
             transition: .2s;
         }
 
@@ -105,33 +103,36 @@
             transform: scale(1.05);
         }
 
-        /* BOTÃO AZUL */
+        /* CARDS INFERIORES */
 
-        .botao {
-            background: #0b1f3a;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: bold;
-        }
-
-        .botao:hover {
-            transform: scale(1.03);
-        }
-
-        /* GRID DOS CARDS MENORES */
-
-        .grid-cards {
+        .grade {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 14px;
         }
 
-        .grid-cards .card {
+        .grade .card {
             margin-bottom: 0;
+        }
+
+        .botao {
+            width: 100%;
+            background: #0b1f3a;
+            color: white;
+            border: none;
+            padding: 12px 15px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .botao:hover {
+            transform: scale(1.02);
+        }
+
+        a {
+            text-decoration: none;
         }
 
         /* BARRA INFERIOR */
@@ -145,8 +146,8 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
-            padding: 10px 0 8px;
-            box-shadow: 0 -4px 12px rgba(0, 0, 0, .1);
+            padding: 8px 0 7px;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, .08);
             z-index: 1000;
         }
 
@@ -154,13 +155,13 @@
             text-decoration: none;
             color: #0b1f3a;
             text-align: center;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: bold;
         }
 
         .navbar span {
             display: block;
-            font-size: 21px;
+            font-size: 20px;
             margin-bottom: 3px;
         }
 
@@ -174,7 +175,7 @@
                 height: 58px;
             }
 
-            header h1 {
+            .logo-area span {
                 font-size: 24px;
             }
 
@@ -184,69 +185,47 @@
             }
 
             .card {
-                padding: 16px;
+                padding: 18px;
                 border-radius: 18px;
-                margin-bottom: 10px;
-            }
-
-            .card-boas-vindas {
-                padding: 13px 15px;
             }
 
             .icone {
-                font-size: 28px;
-                margin-bottom: 5px;
+                font-size: 30px;
             }
 
             h2 {
-                font-size: 19px;
-                margin-bottom: 6px;
+                font-size: 20px;
             }
 
             p {
                 font-size: 13px;
-                margin-bottom: 11px;
             }
 
             .emergencia {
-                width: 82px;
-                height: 82px;
-                font-size: 11px;
+                width: 95px;
+                height: 95px;
+                font-size: 13px;
             }
 
-            .grid-cards {
-                grid-template-columns: 1fr 1fr;
+            .grade {
                 gap: 10px;
             }
 
-            .grid-cards .icone {
-                font-size: 25px;
+            .grade .card {
+                padding: 15px 10px;
             }
 
-            .grid-cards h2 {
-                font-size: 16px;
+            .grade .icone {
+                font-size: 28px;
             }
 
-            .grid-cards p {
+            .grade h2 {
+                font-size: 17px;
+            }
+
+            .grade p {
                 font-size: 12px;
-            }
-
-            .grid-cards .botao {
-                width: 100%;
-                padding: 10px 8px;
-                font-size: 12px;
-            }
-
-            .navbar {
-                padding: 8px 0 7px;
-            }
-
-            .navbar span {
-                font-size: 20px;
-            }
-
-            .navbar a {
-                font-size: 11px;
+                min-height: 52px;
             }
 
         }
@@ -257,6 +236,7 @@
 
 <body>
 
+
 <header>
 
     <h1 class="logo-area">
@@ -265,7 +245,9 @@
             src="imagens/logo.png"
             alt="Logo Guardião">
 
-        <span>Guardião</span>
+        <span>
+            Guardião
+        </span>
 
     </h1>
 
@@ -277,7 +259,7 @@
 
     <!-- BOAS-VINDAS -->
 
-    <div class="card card-boas-vindas">
+    <div class="card">
 
         <div class="icone">
             👋
@@ -310,10 +292,21 @@
             Pressione em caso de necessidade.
         </p>
 
-        <a href="emergencia.html">
 
-            <button class="emergencia">
+        <!--
+            IMPORTANTE:
+            auto=1 indica que o alerta deve
+            começar automaticamente.
+        -->
+
+        <a href="emergencia.html?auto=1">
+
+            <button
+                class="emergencia"
+                type="button">
+
                 ALERTA
+
             </button>
 
         </a>
@@ -321,10 +314,12 @@
     </div>
 
 
-    <!-- CARDS MENORES -->
+    <!-- CARDS INFERIORES -->
 
-    <div class="grid-cards">
+    <div class="grade">
 
+
+        <!-- CONTATOS -->
 
         <div class="card">
 
@@ -342,14 +337,20 @@
 
             <a href="contatos.html">
 
-                <button class="botao">
+                <button
+                    class="botao"
+                    type="button">
+
                     Ver contatos
+
                 </button>
 
             </a>
 
         </div>
 
+
+        <!-- CONFIGURAÇÕES -->
 
         <div class="card">
 
@@ -367,20 +368,24 @@
 
             <a href="configuracoes.html">
 
-                <button class="botao">
+                <button
+                    class="botao"
+                    type="button">
+
                     Abrir
+
                 </button>
 
             </a>
 
         </div>
 
-
     </div>
-
 
 </main>
 
+
+<!-- BARRA INFERIOR -->
 
 <nav class="navbar">
 
@@ -403,6 +408,12 @@
     </a>
 
 
+    <!--
+        Aqui NÃO usamos auto=1.
+        Abrir Emergência pelo menu
+        não dispara nenhum alerta.
+    -->
+
     <a href="emergencia.html">
 
         <span>🚨</span>
@@ -422,6 +433,7 @@
 
 
 </nav>
+
 
 </body>
 
