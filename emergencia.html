@@ -86,6 +86,8 @@
             font-size: 14px;
         }
 
+        /* BOTÃO PRINCIPAL */
+
         .botao-alerta {
             width: 115px;
             height: 115px;
@@ -103,6 +105,8 @@
         .botao-alerta:hover {
             transform: scale(1.04);
         }
+
+        /* CONFIRMAÇÃO */
 
         .confirmacao {
             display: none;
@@ -149,6 +153,8 @@
             color: white;
         }
 
+        /* STATUS */
+
         .status {
             display: none;
             margin-top: 20px;
@@ -170,6 +176,8 @@
             font-weight: bold;
             font-size: 13px;
         }
+
+        /* CONTATOS */
 
         .lista-contatos {
             margin-top: 8px;
@@ -198,6 +206,8 @@
             color: #777;
             font-weight: normal;
         }
+
+        /* ACOMPANHAMENTO */
 
         .acoes-alerta {
             display: none;
@@ -241,6 +251,8 @@
             color: #0b1f3a;
         }
 
+        /* PRÉVIA */
+
         .previa {
             display: none;
             margin-top: 16px;
@@ -268,6 +280,8 @@
             overflow-wrap: anywhere;
         }
 
+        /* BOTÕES */
+
         .botao-copiar,
         .botao-enviar,
         .botao-engano {
@@ -292,6 +306,8 @@
             color: #b91c1c;
             border: 1px solid #e0b4b4;
         }
+
+        /* WHATSAPP */
 
         .envios-contatos,
         .envios-engano {
@@ -328,6 +344,8 @@
             font-weight: bold;
             font-size: 12px;
         }
+
+        /* CELULAR */
 
         @media (max-width: 600px) {
 
@@ -398,6 +416,7 @@
 
 <body>
 
+
 <header>
 
     <h1 class="logo-area">
@@ -406,7 +425,9 @@
             src="imagens/logo.png"
             alt="Logo Guardião">
 
-        <span>Guardião</span>
+        <span>
+            Guardião
+        </span>
 
     </h1>
 
@@ -414,6 +435,7 @@
 
 
 <main class="container">
+
 
     <a
         href="painel.html"
@@ -427,13 +449,7 @@
     <div class="card">
 
 
-        <!--
-            Esta área aparece quando a pessoa
-            entra normalmente em Emergência.
-
-            Quando vier do ALERTA do painel,
-            ela será escondida automaticamente.
-        -->
+        <!-- INÍCIO NORMAL DA EMERGÊNCIA -->
 
         <div id="inicioAlerta">
 
@@ -449,6 +465,7 @@
                 Pressione o botão abaixo para iniciar um alerta.
             </p>
 
+
             <button
                 class="botao-alerta"
                 type="button"
@@ -460,6 +477,8 @@
 
         </div>
 
+
+        <!-- CONFIRMAÇÃO -->
 
         <div
             class="confirmacao"
@@ -473,6 +492,7 @@
                 Você está prestes a iniciar um alerta de emergência.
                 Seus contatos de confiança serão preparados para receber o aviso.
             </p>
+
 
             <div class="botoes-confirmacao">
 
@@ -500,27 +520,35 @@
         </div>
 
 
+        <!-- ALERTA ATIVO -->
+
         <div
             class="status"
             id="statusAlerta">
+
 
             <p>
                 🔴 Alerta ativo
             </p>
 
+
             <p id="localizacao">
                 📍 Localização: aguardando...
             </p>
 
+
             <p>
                 👥 Contatos de confiança:
             </p>
+
 
             <div
                 class="lista-contatos"
                 id="listaContatosAlerta">
             </div>
 
+
+            <!-- ACOMPANHAMENTO -->
 
             <div
                 class="acoes-alerta"
@@ -534,6 +562,7 @@
                     Acesse o chat ou acompanhe quem está indo ajudar.
                 </p>
 
+
                 <a
                     href="chat.html"
                     class="botao-chat">
@@ -541,6 +570,7 @@
                     💬 Abrir chat de emergência
 
                 </a>
+
 
                 <a
                     href="alerta-ativo.html"
@@ -553,13 +583,17 @@
             </div>
 
 
+            <!-- PRÉVIA -->
+
             <div
                 class="previa"
                 id="previaMensagem">
 
+
                 <h3>
                     🚨 Prévia da mensagem
                 </h3>
+
 
                 <div
                     class="mensagem-emergencia"
@@ -596,6 +630,8 @@
                 </button>
 
 
+                <!-- CONTATOS PARA ENVIO -->
+
                 <div
                     class="envios-contatos"
                     id="enviosContatos">
@@ -604,10 +640,13 @@
                         Escolha para quem enviar
                     </h3>
 
-                    <div id="botoesContatos"></div>
+                    <div id="botoesContatos">
+                    </div>
 
                 </div>
 
+
+                <!-- ENGANO -->
 
                 <button
                     class="botao-engano"
@@ -627,7 +666,8 @@
                         Avisar que está tudo bem
                     </h3>
 
-                    <div id="botoesEngano"></div>
+                    <div id="botoesEngano">
+                    </div>
 
                 </div>
 
@@ -640,6 +680,7 @@
 
                 </div>
 
+
             </div>
 
         </div>
@@ -651,17 +692,22 @@
 
 <script>
 
+
     const chavePerfil =
         "perfilGuardiao";
+
 
     const chaveContatos =
         "contatosGuardiao";
 
+
     const chaveLocalizacao =
         "localizacaoAlertaGuardiao";
 
+
     const chaveAjudas =
         "ajudasGuardiao";
+
 
     const chaveConfiguracoes =
         "configuracoesGuardiao";
@@ -670,29 +716,52 @@
     let textoMensagem = "";
 
 
+    /*
+        Diz se a emergência veio
+        do ALERTA rápido do painel.
+    */
+
+    let modoAlertaRapido =
+        false;
+
+
+
+    /* =========================
+       PERFIL
+    ========================= */
+
+
     function obterPerfil() {
 
         return JSON.parse(
+
             localStorage.getItem(
                 chavePerfil
             )
+
         ) || {};
 
     }
 
 
+
     function obterConfiguracoes() {
 
         return JSON.parse(
+
             localStorage.getItem(
                 chaveConfiguracoes
             )
+
         ) || {
+
             notificacoes: true,
             localizacao: true
+
         };
 
     }
+
 
 
     function localizacaoEstaAtivada() {
@@ -700,9 +769,11 @@
         const configuracoes =
             obterConfiguracoes();
 
+
         return configuracoes.localizacao !== false;
 
     }
+
 
 
     function obterNomeUsuario() {
@@ -712,8 +783,10 @@
 
 
         if (
+
             perfil.nome &&
             perfil.nome.trim() !== ""
+
         ) {
 
             return perfil.nome.trim();
@@ -726,6 +799,7 @@
     }
 
 
+
     function obterInformacaoEmergencia() {
 
         const perfil =
@@ -733,8 +807,10 @@
 
 
         if (
+
             perfil.informacaoEmergencia &&
             perfil.informacaoEmergencia.trim() !== ""
+
         ) {
 
             return perfil.informacaoEmergencia.trim();
@@ -747,6 +823,12 @@
     }
 
 
+
+    /* =========================
+       CONFIRMAÇÃO
+    ========================= */
+
+
     function mostrarConfirmacao() {
 
         document.getElementById(
@@ -757,6 +839,7 @@
     }
 
 
+
     function cancelarAlerta() {
 
         document.getElementById(
@@ -765,6 +848,7 @@
             "none";
 
     }
+
 
 
     function continuarAlerta() {
@@ -790,7 +874,14 @@
     }
 
 
+
+    /* =========================
+       ACIONAR ALERTA
+    ========================= */
+
+
     function acionarAlerta() {
+
 
         const status =
             document.getElementById(
@@ -829,7 +920,15 @@
         );
 
 
-        if (!localizacaoEstaAtivada()) {
+
+        /*
+            LOCALIZAÇÃO DESATIVADA
+        */
+
+
+        if (
+            !localizacaoEstaAtivada()
+        ) {
 
             localizacao.textContent =
                 "📍 Localização: compartilhamento desativado nas configurações.";
@@ -850,7 +949,15 @@
         }
 
 
-        if (!navigator.geolocation) {
+
+        /*
+            GEOLOCALIZAÇÃO NÃO SUPORTADA
+        */
+
+
+        if (
+            !navigator.geolocation
+        ) {
 
             localizacao.textContent =
                 "📍 Localização: não disponível.";
@@ -866,13 +973,17 @@
         }
 
 
+
         localizacao.textContent =
             "📍 Localização: obtendo localização...";
 
 
+
         navigator.geolocation.getCurrentPosition(
 
+
             function(posicao) {
+
 
                 const latitude =
                     posicao.coords.latitude;
@@ -888,11 +999,13 @@
                     longitude.toFixed(5);
 
 
+
                 const linkMapa =
                     "https://www.google.com/maps?q=" +
                     latitude +
                     "," +
                     longitude;
+
 
 
                 const localizacaoAlerta = {
@@ -910,6 +1023,7 @@
                 };
 
 
+
                 localStorage.setItem(
 
                     chaveLocalizacao,
@@ -921,18 +1035,28 @@
                 );
 
 
+
                 localizacao.innerHTML =
+
                     "📍 Localização: " +
                     coordenadas +
+
                     "<br>" +
+
                     "<a class='link-mapa' " +
+
                     "href='" +
                     linkMapa +
                     "' " +
+
                     "target='_blank' " +
+
                     "rel='noopener noreferrer'>" +
+
                     "Abrir localização no mapa" +
+
                     "</a>";
+
 
 
                 criarMensagem(
@@ -942,7 +1066,9 @@
             },
 
 
+
             function() {
+
 
                 localizacao.textContent =
                     "📍 Localização: permissão não concedida.";
@@ -954,20 +1080,30 @@
 
             }
 
+
         );
 
     }
+
+
+
+    /* =========================
+       CONTATOS
+    ========================= */
 
 
     function carregarContatosDoAlerta(
         lista
     ) {
 
+
         const contatos =
             JSON.parse(
+
                 localStorage.getItem(
                     chaveContatos
                 )
+
             ) || [];
 
 
@@ -975,16 +1111,24 @@
             "";
 
 
-        if (contatos.length === 0) {
+
+        if (
+            contatos.length === 0
+        ) {
+
 
             lista.innerHTML = `
+
                 <div class="contato-alerta">
 
                     <span class="sem-contatos">
+
                         Nenhum contato cadastrado.
+
                     </span>
 
                 </div>
+
             `;
 
 
@@ -993,8 +1137,11 @@
         }
 
 
+
         contatos.forEach(
+
             function(contato) {
+
 
                 const elemento =
                     document.createElement(
@@ -1004,6 +1151,7 @@
 
                 elemento.className =
                     "contato-alerta";
+
 
 
                 const nome =
@@ -1017,6 +1165,7 @@
                     contato.nome;
 
 
+
                 const telefone =
                     document.createElement(
                         "span"
@@ -1026,6 +1175,7 @@
                 telefone.textContent =
                     "📱 " +
                     contato.telefone;
+
 
 
                 elemento.appendChild(
@@ -1043,36 +1193,52 @@
                 );
 
             }
+
         );
 
     }
+
+
+
+    /* =========================
+       MENSAGEM
+    ========================= */
 
 
     function criarMensagem(
         localizacaoTexto
     ) {
 
+
         const contatos =
             JSON.parse(
+
                 localStorage.getItem(
                     chaveContatos
                 )
+
             ) || [];
+
 
 
         const nomeUsuario =
             obterNomeUsuario();
 
 
+
         const informacaoEmergencia =
             obterInformacaoEmergencia();
+
 
 
         let linhaAjuda =
             "Preciso de ajuda.";
 
 
-        if (nomeUsuario !== "") {
+
+        if (
+            nomeUsuario !== ""
+        ) {
 
             linhaAjuda =
                 nomeUsuario +
@@ -1081,8 +1247,10 @@
         }
 
 
+
         let blocoInformacao =
             "";
+
 
 
         if (
@@ -1090,29 +1258,41 @@
         ) {
 
             blocoInformacao =
+
                 "ℹ️ Informação importante:\n" +
+
                 informacaoEmergencia +
+
                 "\n\n";
 
         }
+
 
 
         let nomes =
             "";
 
 
-        if (contatos.length > 0) {
+
+        if (
+            contatos.length > 0
+        ) {
+
 
             nomes =
                 contatos
+
                     .map(
+
                         function(contato) {
 
                             return "• " +
                                 contato.nome;
 
                         }
+
                     )
+
                     .join("\n");
 
         }
@@ -1125,16 +1305,27 @@
         }
 
 
+
         textoMensagem =
+
             "🚨 ALERTA DE EMERGÊNCIA — GUARDIÃO\n\n" +
+
             linhaAjuda +
+
             "\n\n" +
+
             blocoInformacao +
+
             "📍 Minha localização:\n" +
+
             localizacaoTexto +
+
             "\n\n" +
+
             "👥 Contatos de confiança:\n" +
+
             nomes;
+
 
 
         document.getElementById(
@@ -1143,22 +1334,64 @@
             textoMensagem;
 
 
+
         document.getElementById(
             "previaMensagem"
         ).style.display =
             "block";
 
+
+
+        /*
+            NOVA MELHORIA
+
+            Se a pessoa acionou pelo botão
+            principal do painel, mostramos
+            imediatamente os contatos para envio.
+
+            Assim ela não precisa apertar
+            "Enviar alerta".
+        */
+
+
+        if (
+
+            modoAlertaRapido &&
+            contatos.length > 0
+
+        ) {
+
+            mostrarEnvios();
+
+        }
+
+
+
+        modoAlertaRapido =
+            false;
+
     }
+
+
+
+    /* =========================
+       COPIAR
+    ========================= */
 
 
     function copiarMensagem() {
 
+
         navigator.clipboard
+
             .writeText(
                 textoMensagem
             )
+
             .then(
+
                 function() {
+
 
                     const aviso =
                         document.getElementById(
@@ -1171,29 +1404,43 @@
 
 
                     setTimeout(
+
                         function() {
 
                             aviso.style.display =
                                 "none";
 
                         },
+
                         2500
+
                     );
 
                 }
+
             );
 
     }
 
 
+
+    /* =========================
+       MOSTRAR CONTATOS PARA ENVIO
+    ========================= */
+
+
     function mostrarEnvios() {
+
 
         const contatos =
             JSON.parse(
+
                 localStorage.getItem(
                     chaveContatos
                 )
+
             ) || [];
+
 
 
         if (
@@ -1204,9 +1451,11 @@
                 "Nenhum contato de confiança foi cadastrado."
             );
 
+
             return;
 
         }
+
 
 
         const area =
@@ -1221,12 +1470,19 @@
             );
 
 
+
         botoes.innerHTML =
             "";
 
 
+
         contatos.forEach(
-            function(contato, indice) {
+
+            function(
+                contato,
+                indice
+            ) {
+
 
                 const botao =
                     document.createElement(
@@ -1243,15 +1499,21 @@
                     contato.nome;
 
 
+
                 botao.onclick =
+
                     function() {
 
                         enviarParaContato(
+
                             indice,
+
                             textoMensagem
+
                         );
 
                     };
+
 
 
                 botoes.appendChild(
@@ -1259,7 +1521,9 @@
                 );
 
             }
+
         );
+
 
 
         area.style.display =
@@ -1268,14 +1532,24 @@
     }
 
 
+
+    /* =========================
+       ALERTA POR ENGANO
+    ========================= */
+
+
     function mostrarEnviosEngano() {
+
 
         const contatos =
             JSON.parse(
+
                 localStorage.getItem(
                     chaveContatos
                 )
+
             ) || [];
+
 
 
         if (
@@ -1286,9 +1560,11 @@
                 "Nenhum contato de confiança foi cadastrado."
             );
 
+
             return;
 
         }
+
 
 
         const area =
@@ -1307,33 +1583,52 @@
             obterNomeUsuario();
 
 
+
         let textoEngano =
+
             "GUARDIÃO\n\n" +
+
             "O alerta de emergência enviado anteriormente " +
+
             "foi acionado por engano.\n\n" +
+
             "Está tudo bem. Por favor, desconsidere o alerta anterior.";
+
 
 
         if (
             nomeUsuario !== ""
         ) {
 
+
             textoEngano =
+
                 "GUARDIÃO\n\n" +
+
                 "O alerta de emergência de " +
+
                 nomeUsuario +
+
                 " enviado anteriormente foi acionado por engano.\n\n" +
+
                 "Está tudo bem. Por favor, desconsidere o alerta anterior.";
 
         }
+
 
 
         botoes.innerHTML =
             "";
 
 
+
         contatos.forEach(
-            function(contato, indice) {
+
+            function(
+                contato,
+                indice
+            ) {
+
 
                 const botao =
                     document.createElement(
@@ -1350,15 +1645,21 @@
                     contato.nome;
 
 
+
                 botao.onclick =
+
                     function() {
 
                         enviarParaContato(
+
                             indice,
+
                             textoEngano
+
                         );
 
                     };
+
 
 
                 botoes.appendChild(
@@ -1366,7 +1667,9 @@
                 );
 
             }
+
         );
+
 
 
         area.style.display =
@@ -1375,17 +1678,27 @@
     }
 
 
+
+    /* =========================
+       WHATSAPP
+    ========================= */
+
+
     function enviarParaContato(
         indice,
         mensagemTexto
     ) {
 
+
         const contatos =
             JSON.parse(
+
                 localStorage.getItem(
                     chaveContatos
                 )
+
             ) || [];
+
 
 
         if (
@@ -1397,8 +1710,10 @@
         }
 
 
+
         let telefone =
             contatos[indice].telefone;
+
 
 
         telefone =
@@ -1408,9 +1723,18 @@
             );
 
 
+
+        /*
+            Se estiver no formato brasileiro
+            sem código do país, adiciona 55.
+        */
+
+
         if (
+
             telefone.length === 10 ||
             telefone.length === 11
+
         ) {
 
             telefone =
@@ -1420,17 +1744,24 @@
         }
 
 
+
         const mensagem =
             encodeURIComponent(
                 mensagemTexto
             );
 
 
+
         const link =
+
             "https://wa.me/" +
+
             telefone +
+
             "?text=" +
+
             mensagem;
+
 
 
         window.open(
@@ -1439,39 +1770,56 @@
         );
 
 
+
         const aviso =
             document.getElementById(
                 "mensagemEnviada"
             );
 
 
+
         aviso.style.display =
             "block";
 
 
+
         setTimeout(
+
             function() {
 
                 aviso.style.display =
                     "none";
 
             },
+
             3000
+
         );
 
     }
 
 
+
+    /* =========================
+       HORÁRIO
+    ========================= */
+
+
     function obterHoraAtual() {
 
+
         return new Date()
+
             .toLocaleTimeString(
 
                 "pt-BR",
 
                 {
+
                     hour: "2-digit",
+
                     minute: "2-digit"
+
                 }
 
             );
@@ -1479,11 +1827,14 @@
     }
 
 
-    /*
-        ESCONDE A PARTE REPETIDA DO ALERTA
-    */
+
+    /* =========================
+       ESCONDER SEGUNDO ALERTA
+    ========================= */
+
 
     function esconderInicioAlerta() {
+
 
         const inicioAlerta =
             document.getElementById(
@@ -1497,7 +1848,10 @@
             );
 
 
-        if (inicioAlerta) {
+
+        if (
+            inicioAlerta
+        ) {
 
             inicioAlerta.style.display =
                 "none";
@@ -1505,7 +1859,10 @@
         }
 
 
-        if (confirmacao) {
+
+        if (
+            confirmacao
+        ) {
 
             confirmacao.style.display =
                 "none";
@@ -1515,21 +1872,20 @@
     }
 
 
-    /*
-        ALERTA RÁPIDO
 
-        Se entrar por:
-        emergencia.html?auto=1
+    /* =========================
+       ALERTA RÁPIDO
+    ========================= */
 
-        inicia direto.
-    */
 
     function verificarInicioAutomatico() {
+
 
         const parametros =
             new URLSearchParams(
                 window.location.search
             );
+
 
 
         const iniciarAutomaticamente =
@@ -1538,22 +1894,37 @@
             );
 
 
+
         if (
             iniciarAutomaticamente === "1"
         ) {
 
+
             /*
-                Primeiro escondemos o segundo
-                ALERTA e a confirmação.
+                Informa que o alerta veio
+                do botão principal.
             */
+
+
+            modoAlertaRapido =
+                true;
+
+
+
+            /*
+                Esconde o segundo ALERTA.
+            */
+
 
             esconderInicioAlerta();
 
 
+
             /*
-                Depois retiramos ?auto=1
-                da barra de endereço.
+                Remove ?auto=1 da URL
+                sem atualizar a página.
             */
+
 
             window.history.replaceState(
 
@@ -1566,9 +1937,12 @@
             );
 
 
+
             /*
-                Agora ativa diretamente.
+                Ativa a emergência
+                imediatamente.
             */
+
 
             continuarAlerta();
 
@@ -1577,9 +1951,17 @@
     }
 
 
+
+    /*
+        VERIFICA COMO A PÁGINA FOI ABERTA
+    */
+
+
     verificarInicioAutomatico();
 
+
 </script>
+
 
 </body>
 
