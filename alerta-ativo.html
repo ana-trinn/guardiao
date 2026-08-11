@@ -2,6 +2,7 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Guardião - Alerta Ativo</title>
@@ -17,62 +18,109 @@
         font-family: Arial, Helvetica, sans-serif;
         background: #f5f7fb;
         color: #0b1f3a;
-        padding-bottom: 50px;
+        padding-bottom: 40px;
       }
 
       header {
         background: #0b1f3a;
         color: white;
         text-align: center;
-        padding: 25px;
+        padding: 14px 12px;
       }
 
       .logo-area {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 5px;
+        gap: 4px;
+      }
+
+      .logo-area img {
+        height: 58px;
+      }
+
+      .logo-area span {
+        font-size: 24px;
+        font-weight: bold;
       }
 
       .container {
-        max-width: 700px;
-        margin: 30px auto;
-        padding: 20px;
+        width: 100%;
+        max-width: 620px;
+        margin: 12px auto;
+        padding: 14px;
+      }
+
+      .voltar-topo {
+        display: inline-block;
+        margin-bottom: 12px;
+        color: #0b1f3a;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: bold;
       }
 
       .card {
         background: white;
-        border-radius: 22px;
-        padding: 25px;
-        margin-bottom: 20px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        border-radius: 18px;
+        padding: 18px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
       }
 
-      .titulo-alerta {
+      .topo-alerta {
         text-align: center;
-        color: #d90429;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
       }
 
-      .status-item {
-        background: #f7f9fc;
-        border-radius: 15px;
-        padding: 15px;
+      .topo-alerta h2 {
+        color: #d90429;
+        font-size: 20px;
+        margin-bottom: 5px;
+      }
+
+      .topo-alerta p {
+        color: #666;
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
+      .resumo-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
         margin-bottom: 12px;
       }
 
-      .status-item strong {
+      .resumo-item {
+        background: #f7f9fc;
+        border-radius: 13px;
+        padding: 12px;
+      }
+
+      .resumo-item strong {
         display: block;
+        font-size: 12px;
         margin-bottom: 5px;
       }
 
       .texto-secundario {
         color: #666;
-        font-size: 14px;
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
+      .pessoa-alerta {
+        grid-column: 1 / -1;
+      }
+
+      .pessoa-alerta span {
+        color: #0b1f3a;
+        font-weight: bold;
+        font-size: 15px;
       }
 
       .mapa-area {
-        margin-top: 12px;
+        margin-top: 8px;
       }
 
       .botao-mapa {
@@ -80,106 +128,64 @@
         text-decoration: none;
         background: #0b1f3a;
         color: white;
-        padding: 11px 20px;
-        border-radius: 25px;
+        padding: 8px 12px;
+        border-radius: 22px;
+        font-size: 11px;
         font-weight: bold;
       }
 
-      .selecao-contato {
-        margin-top: 20px;
-        padding: 18px;
-        background: #f7f9fc;
-        border-radius: 15px;
+      .responder-area {
+        margin-top: 12px;
+        padding: 14px;
+        background: #eef4ff;
+        border: 1px solid #d3def2;
+        border-radius: 14px;
       }
 
-      .selecao-contato label {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 10px;
-      }
-
-      .selecao-contato select {
-        width: 100%;
-        border: 1px solid #ccc;
-        border-radius: 12px;
-        padding: 12px;
+      .responder-area h3 {
+        text-align: center;
         font-size: 15px;
-        background: white;
-        color: #0b1f3a;
-      }
-
-      .ajudas-lista {
-        margin-top: 20px;
-      }
-
-      .ajuda-item {
-        background: #eef8f0;
-        border: 1px solid #cde8d3;
-        border-radius: 15px;
-        padding: 15px;
-        margin-bottom: 10px;
-      }
-
-      .ajuda-item strong {
-        display: block;
-        color: #1b5e20;
         margin-bottom: 5px;
       }
 
-      .aguardando {
-        background: #fffaf0;
-        border: 1px solid #f3dfaa;
-      }
-
-      .aguardando strong {
-        color: #8a6500;
-      }
-
-      .botoes {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        margin-top: 20px;
-      }
-
-      .botao {
-        border: none;
-        border-radius: 30px;
-        padding: 14px 20px;
-        font-size: 15px;
-        font-weight: bold;
-        cursor: pointer;
-        text-decoration: none;
+      .responder-area p {
         text-align: center;
+        color: #666;
+        font-size: 11px;
+        margin-bottom: 10px;
+      }
+
+      .responder-area select {
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 11px;
+        padding: 10px;
+        font-size: 12px;
+        background: white;
+        color: #0b1f3a;
+        outline: none;
       }
 
       .botao-ajudar {
+        width: 100%;
+        border: none;
+        border-radius: 25px;
+        padding: 11px;
+        margin-top: 9px;
         background: #1b5e20;
         color: white;
-      }
-
-      .botao-chat {
-        background: #0b1f3a;
-        color: white;
-      }
-
-      .botao-localizacao {
-        background: #eef2f7;
-        color: #0b1f3a;
-      }
-
-      .botao-encerrar {
-        background: #fff1f1;
-        color: #b91c1c;
-        border: 1px solid #e5bcbc;
+        font-size: 12px;
+        font-weight: bold;
+        cursor: pointer;
       }
 
       .mensagem {
         display: none;
-        margin-top: 15px;
-        padding: 14px;
-        border-radius: 15px;
+        margin-top: 10px;
+        padding: 10px;
+        border-radius: 11px;
         text-align: center;
+        font-size: 11px;
         font-weight: bold;
       }
 
@@ -193,26 +199,110 @@
         color: #555;
       }
 
-      .voltar-area {
-        text-align: center;
-        margin-top: 25px;
+      .status-contatos {
+        margin-top: 14px;
       }
 
-      .voltar {
-        display: inline-block;
-        text-decoration: none;
-        color: #0b1f3a;
+      .status-contatos h3 {
+        font-size: 14px;
+        margin-bottom: 8px;
+      }
+
+      .ajuda-item {
+        background: #eef8f0;
+        border: 1px solid #cde8d3;
+        border-radius: 12px;
+        padding: 11px;
+        margin-bottom: 7px;
+      }
+
+      .ajuda-item strong {
+        display: block;
+        color: #1b5e20;
+        font-size: 12px;
+        margin-bottom: 3px;
+      }
+
+      .aguardando {
+        background: #fffaf0;
+        border: 1px solid #f3dfaa;
+      }
+
+      .aguardando strong {
+        color: #8a6500;
+      }
+
+      .acoes-principais {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-top: 15px;
+      }
+
+      .botao {
+        border: none;
+        border-radius: 25px;
+        padding: 11px 8px;
+        font-size: 11px;
         font-weight: bold;
+        cursor: pointer;
+        text-decoration: none;
+        text-align: center;
       }
 
-      @media (max-width: 600px) {
-        .container {
-          margin: 15px auto;
-          padding: 15px;
+      .botao-chat {
+        background: #0b1f3a;
+        color: white;
+      }
+
+      .botao-localizacao {
+        background: #e8eef7;
+        color: #0b1f3a;
+      }
+
+      .botao-encerrar {
+        grid-column: 1 / -1;
+        background: #fff1f1;
+        color: #b91c1c;
+        border: 1px solid #e5bcbc;
+      }
+
+      .alerta-encerrado {
+        display: none;
+        margin-top: 15px;
+        padding: 14px;
+        border-radius: 13px;
+        background: #f2f2f2;
+        text-align: center;
+      }
+
+      .alerta-encerrado strong {
+        display: block;
+        color: #333;
+        font-size: 13px;
+        margin-bottom: 4px;
+      }
+
+      .alerta-encerrado span {
+        color: #666;
+        font-size: 11px;
+      }
+
+      @media (max-width: 420px) {
+        .resumo-grid {
+          grid-template-columns: 1fr;
         }
 
-        .card {
-          padding: 20px;
+        .pessoa-alerta {
+          grid-column: auto;
+        }
+
+        .acoes-principais {
+          grid-template-columns: 1fr;
+        }
+
+        .botao-encerrar {
+          grid-column: auto;
         }
       }
     </style>
@@ -221,83 +311,99 @@
   <body>
     <header>
       <h1 class="logo-area">
-        <img src="imagens/logo.png" height="80" alt="Logo Guardião" />
+        <img src="imagens/logo.png" alt="Logo Guardião" />
 
-        <span>Guardião</span>
+        <span> Guardião </span>
       </h1>
     </header>
 
     <main class="container">
+      <a href="emergencia.html" class="voltar-topo"> ← Voltar </a>
+
       <div class="card">
-        <h2 class="titulo-alerta">🔴 Alerta em andamento</h2>
+        <div class="topo-alerta">
+          <h2>🔴 Alerta em andamento</h2>
 
-        <!-- PESSOA QUE PEDIU AJUDA -->
-
-        <div class="status-item">
-          <strong> 🛡️ Pessoa que pediu ajuda </strong>
-
-          <span class="texto-secundario" id="nomePessoaAlerta">
-            Usuário do Guardião
-          </span>
+          <p>Acompanhe quem está respondendo e mantenha a comunicação ativa.</p>
         </div>
 
-        <!-- LOCALIZAÇÃO -->
+        <div class="resumo-grid">
+          <!-- PESSOA -->
 
-        <div class="status-item">
-          <strong> 📍 Localização compartilhada </strong>
+          <div class="resumo-item pessoa-alerta">
+            <strong> 🛡️ Pessoa que pediu ajuda </strong>
 
-          <span class="texto-secundario" id="statusLocalizacao">
-            Carregando localização do alerta...
-          </span>
+            <span id="nomePessoaAlerta"> Usuário do Guardião </span>
+          </div>
 
-          <div class="mapa-area" id="mapaArea" style="display: none">
-            <a href="#" target="_blank" id="linkMapa" class="botao-mapa">
-              📍 Abrir localização no mapa
-            </a>
+          <!-- LOCALIZAÇÃO -->
+
+          <div class="resumo-item">
+            <strong> 📍 Localização </strong>
+
+            <span class="texto-secundario" id="statusLocalizacao">
+              Carregando...
+            </span>
+
+            <div class="mapa-area" id="mapaArea" style="display: none">
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                id="linkMapa"
+                class="botao-mapa"
+              >
+                Abrir mapa
+              </a>
+            </div>
+          </div>
+
+          <!-- CONTATOS -->
+
+          <div class="resumo-item">
+            <strong> 👥 Contatos </strong>
+
+            <span class="texto-secundario" id="quantidadeContatos">
+              Verificando...
+            </span>
           </div>
         </div>
 
-        <!-- CONTATOS -->
+        <!-- RESPONDER -->
 
-        <div class="status-item">
-          <strong> 👥 Contatos avisados </strong>
+        <div class="responder-area" id="responderArea">
+          <h3>🚗 Estou indo ajudar</h3>
 
-          <span class="texto-secundario" id="quantidadeContatos">
-            Verificando contatos...
-          </span>
-        </div>
-
-        <!-- QUEM ESTÁ RESPONDENDO -->
-
-        <div class="selecao-contato">
-          <label for="contatoRespondendo">
-            Quem está respondendo ao alerta?
-          </label>
+          <p>Selecione seu nome para registrar a resposta.</p>
 
           <select id="contatoRespondendo">
             <option value="">Selecione um contato</option>
           </select>
-        </div>
 
-        <div class="botoes">
-          <button class="botao botao-ajudar" onclick="aceitarAjuda()">
-            🚗 Estou indo ajudar
+          <button class="botao-ajudar" onclick="aceitarAjuda()">
+            Confirmar que estou a caminho
           </button>
         </div>
 
         <div class="mensagem mensagem-sucesso" id="mensagemAjuda">
-          ✅ Informação registrada.
+          ✅ Resposta registrada.
         </div>
 
-        <div class="ajudas-lista" id="listaStatusContatos"></div>
+        <!-- STATUS -->
 
-        <div class="botoes">
-          <a href="chat.html" class="botao botao-chat">
-            💬 Abrir chat de emergência
-          </a>
+        <div class="status-contatos">
+          <h3>👥 Situação dos contatos</h3>
+
+          <div id="listaStatusContatos"></div>
+        </div>
+
+        <!-- AÇÕES -->
+
+        <div class="acoes-principais" id="acoesPrincipais">
+          <a href="chat.html" class="botao botao-chat"> 💬 Chat </a>
 
           <button class="botao botao-localizacao" onclick="abrirLocalizacao()">
-            📍 Ver localização
+            📍 Localização
           </button>
 
           <button class="botao botao-encerrar" onclick="encerrarAlerta()">
@@ -305,13 +411,15 @@
           </button>
         </div>
 
+        <div class="alerta-encerrado" id="alertaEncerrado">
+          <strong> ✅ Alerta encerrado </strong>
+
+          <span> Esta ocorrência foi finalizada. </span>
+        </div>
+
         <div class="mensagem mensagem-encerrado" id="mensagemEncerrado">
           Alerta encerrado.
         </div>
-      </div>
-
-      <div class="voltar-area">
-        <a href="painel.html" class="voltar"> ← Voltar ao painel </a>
       </div>
     </main>
 
@@ -321,6 +429,10 @@
       const chaveAjudas = "ajudasGuardiao";
 
       const chavePerfil = "perfilGuardiao";
+
+      const chaveContatos = "contatosGuardiao";
+
+      const chaveLocalizacao = "localizacaoAlertaGuardiao";
 
       let linkLocalizacao = "";
 
@@ -334,46 +446,43 @@
         atualizarListaStatus();
       }
 
-      // CARREGA O NOME DO PERFIL
-
       function carregarPerfilNoAlerta() {
         const perfil = JSON.parse(localStorage.getItem(chavePerfil));
 
         const elemento = document.getElementById("nomePessoaAlerta");
 
-        if (perfil && perfil.nome) {
-          elemento.textContent = perfil.nome;
+        if (perfil && perfil.nome && perfil.nome.trim() !== "") {
+          elemento.textContent = perfil.nome.trim();
         } else {
           elemento.textContent = "Usuário do Guardião";
         }
       }
 
       function carregarContatos() {
-        const contatos =
-          JSON.parse(localStorage.getItem("contatosGuardiao")) || [];
+        const contatos = JSON.parse(localStorage.getItem(chaveContatos)) || [];
 
         const quantidade = document.getElementById("quantidadeContatos");
 
         const seletor = document.getElementById("contatoRespondendo");
 
         seletor.innerHTML = `
-
             <option value="">
                 Selecione um contato
             </option>
-
         `;
 
         if (contatos.length === 0) {
           quantidade.textContent = "Nenhum contato cadastrado.";
+
+          seletor.disabled = true;
 
           return;
         }
 
         quantidade.textContent =
           contatos.length === 1
-            ? "1 contato de confiança avisado."
-            : contatos.length + " contatos de confiança avisados.";
+            ? "1 contato cadastrado."
+            : contatos.length + " contatos cadastrados.";
 
         contatos.forEach(function (contato) {
           const opcao = document.createElement("option");
@@ -393,12 +502,10 @@
 
         const linkMapaElemento = document.getElementById("linkMapa");
 
-        const localizacao = JSON.parse(
-          localStorage.getItem("localizacaoAlertaGuardiao"),
-        );
+        const localizacao = JSON.parse(localStorage.getItem(chaveLocalizacao));
 
         if (!localizacao) {
-          elemento.textContent = "Localização do alerta ainda não disponível.";
+          elemento.textContent = "Não disponível.";
 
           mapaArea.style.display = "none";
 
@@ -408,10 +515,7 @@
         linkLocalizacao = localizacao.linkMapa;
 
         elemento.innerHTML =
-          localizacao.coordenadas +
-          "<br>" +
-          "Compartilhada às " +
-          localizacao.horario;
+          localizacao.coordenadas + "<br>" + "às " + localizacao.horario;
 
         linkMapaElemento.href = localizacao.linkMapa;
 
@@ -475,14 +579,16 @@
           horario,
         );
 
-        document.getElementById("mensagemAjuda").style.display = "block";
+        const mensagem = document.getElementById("mensagemAjuda");
+
+        mensagem.style.display = "block";
 
         setTimeout(
           function () {
-            document.getElementById("mensagemAjuda").style.display = "none";
+            mensagem.style.display = "none";
           },
 
-          2500,
+          2200,
         );
 
         seletor.value = "";
@@ -491,8 +597,7 @@
       }
 
       function atualizarListaStatus() {
-        const contatos =
-          JSON.parse(localStorage.getItem("contatosGuardiao")) || [];
+        const contatos = JSON.parse(localStorage.getItem(chaveContatos)) || [];
 
         const ajudas = JSON.parse(localStorage.getItem(chaveAjudas)) || [];
 
@@ -500,7 +605,40 @@
 
         area.innerHTML = "";
 
-        contatos.forEach(function (contato) {
+        if (contatos.length === 0) {
+          area.innerHTML = `
+
+                <div class="ajuda-item aguardando">
+
+                    <strong>
+                        Nenhum contato
+                    </strong>
+
+                    <span class="texto-secundario">
+                        Cadastre contatos de confiança para acompanhar respostas.
+                    </span>
+
+                </div>
+
+            `;
+
+          return;
+        }
+
+        /*
+            Primeiro mostra quem já
+            confirmou ajuda.
+        */
+
+        const ordenados = [...contatos].sort(function (a, b) {
+          const ajudaA = ajudas.some((item) => item.nome === a.nome);
+
+          const ajudaB = ajudas.some((item) => item.nome === b.nome);
+
+          return Number(ajudaB) - Number(ajudaA);
+        });
+
+        ordenados.forEach(function (contato) {
           const ajuda = ajudas.find(function (item) {
             return item.nome === contato.nome;
           });
@@ -517,10 +655,7 @@
                         </strong>
 
                         <span class="texto-secundario">
-
-                            A caminho •
-                            ${ajuda.horario}
-
+                            A caminho • ${ajuda.horario}
                         </span>
 
                     `;
@@ -534,10 +669,7 @@
                         </strong>
 
                         <span class="texto-secundario">
-
-                            Ainda não informou
-                            se irá ajudar.
-
+                            Aguardando resposta.
                         </span>
 
                     `;
@@ -573,6 +705,7 @@
 
           {
             hour: "2-digit",
+
             minute: "2-digit",
           },
         );
@@ -597,27 +730,25 @@
 
         localStorage.removeItem("ajudaGuardiao");
 
-        localStorage.removeItem("localizacaoAlertaGuardiao");
+        localStorage.removeItem(chaveLocalizacao);
+
+        document.getElementById("responderArea").style.display = "none";
+
+        document.getElementById("listaStatusContatos").style.display = "none";
+
+        document.getElementById("acoesPrincipais").style.display = "none";
+
+        document.getElementById("alertaEncerrado").style.display = "block";
 
         document.getElementById("mensagemEncerrado").style.display = "block";
 
-        document.getElementById("listaStatusContatos").innerHTML = `
+        setTimeout(
+          function () {
+            document.getElementById("mensagemEncerrado").style.display = "none";
+          },
 
-            <div class="ajuda-item">
-
-                <strong>
-                    ✅ Alerta encerrado
-                </strong>
-
-                <span class="texto-secundario">
-                    Esta ocorrência foi finalizada.
-                </span>
-
-            </div>
-
-        `;
-
-        document.getElementById("contatoRespondendo").disabled = true;
+          2000,
+        );
       }
 
       carregarDados();
