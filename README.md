@@ -2,6 +2,10 @@
 
 O **Guardião** é um protótipo de aplicação web voltado à segurança pessoal, criado para facilitar o envio de pedidos de ajuda para contatos de confiança em situações de emergência.
 
+Link: https://ana-trinn.github.io/guardiao/
+
+<img width="1049" height="671" alt="image" src="https://github.com/user-attachments/assets/48407379-758f-48f2-88db-cdf3c5370871" />
+
 
 ## Funcionalidades
 
