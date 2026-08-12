@@ -107,6 +107,7 @@
         font-size: 14px;
         font-family: Arial, Helvetica, sans-serif;
         outline: none;
+        transition: 0.2s;
       }
 
       .campo textarea {
@@ -123,6 +124,34 @@
         color: #777;
         font-size: 11px;
         font-weight: normal;
+      }
+
+      /* ERROS */
+
+      .campo input.erro {
+        border-color: #d90429;
+        background: #fffafa;
+      }
+
+      .mensagem-erro {
+        display: none;
+        margin-top: 5px;
+        color: #c62828;
+        font-size: 11px;
+        font-weight: bold;
+      }
+
+      .mensagem-erro.ativa {
+        display: block;
+      }
+
+      /* AJUDA */
+
+      .ajuda-campo {
+        margin-top: 5px;
+        color: #777;
+        font-size: 11px;
+        line-height: 1.4;
       }
 
       .botao {
@@ -149,6 +178,24 @@
         font-size: 12px;
         font-weight: bold;
       }
+
+      @media (max-width: 600px) {
+        .container {
+          padding: 12px;
+        }
+
+        .card {
+          padding: 18px;
+        }
+
+        .icone {
+          font-size: 30px;
+        }
+
+        h2 {
+          font-size: 20px;
+        }
+      }
     </style>
   </head>
 
@@ -157,7 +204,7 @@
       <div class="logo-area">
         <img src="imagens/logo.png" alt="Logo Guardião" />
 
-        <span>Guardião</span>
+        <span> Guardião </span>
       </div>
     </header>
 
@@ -174,11 +221,22 @@
           quem iniciou um alerta.
         </p>
 
+        <!-- NOME -->
+
         <div class="campo">
           <label for="nomeUsuario"> Nome </label>
 
-          <input type="text" id="nomeUsuario" placeholder="Digite seu nome" />
+          <input
+            type="text"
+            id="nomeUsuario"
+            placeholder="Digite seu nome"
+            oninput="removerErro('nomeUsuario', 'erroNome')"
+          />
+
+          <span class="mensagem-erro" id="erroNome"> ⚠ Campo obrigatório </span>
         </div>
+
+        <!-- TELEFONE -->
 
         <div class="campo">
           <label for="telefoneUsuario"> Telefone </label>
@@ -187,8 +245,15 @@
             type="tel"
             id="telefoneUsuario"
             placeholder="(11) 99999-9999"
+            oninput="removerErro('telefoneUsuario', 'erroTelefone')"
           />
+
+          <span class="mensagem-erro" id="erroTelefone">
+            ⚠ Campo obrigatório
+          </span>
         </div>
+
+        <!-- INFORMAÇÃO DE EMERGÊNCIA -->
 
         <div class="campo">
           <label for="informacaoEmergencia">
@@ -199,8 +264,12 @@
 
           <textarea
             id="informacaoEmergencia"
-            placeholder="Ex.: informação importante que você queira disponibilizar durante um alerta."
+            placeholder="Ex.: estou sendo seguida, preciso de ajuda para chegar a um local seguro..."
           ></textarea>
+
+          <div class="ajuda-campo">
+            Essa informação poderá aparecer na mensagem de emergência.
+          </div>
         </div>
 
         <button class="botao" onclick="salvarPerfil()">Salvar perfil</button>
@@ -230,19 +299,69 @@
           perfil.informacaoEmergencia || "";
       }
 
-      function salvarPerfil() {
-        const nome = document.getElementById("nomeUsuario").value.trim();
+      function mostrarErro(campoId, erroId) {
+        document.getElementById(campoId).classList.add("erro");
 
-        const telefone = document
-          .getElementById("telefoneUsuario")
-          .value.trim();
+        document.getElementById(erroId).classList.add("ativa");
+      }
+
+      function removerErro(campoId, erroId) {
+        const campo = document.getElementById(campoId);
+
+        if (campo.value.trim() !== "") {
+          campo.classList.remove("erro");
+
+          document.getElementById(erroId).classList.remove("ativa");
+        }
+      }
+
+      function limparErros() {
+        document.getElementById("nomeUsuario").classList.remove("erro");
+
+        document.getElementById("telefoneUsuario").classList.remove("erro");
+
+        document.getElementById("erroNome").classList.remove("ativa");
+
+        document.getElementById("erroTelefone").classList.remove("ativa");
+      }
+
+      function salvarPerfil() {
+        const campoNome = document.getElementById("nomeUsuario");
+
+        const campoTelefone = document.getElementById("telefoneUsuario");
+
+        const nome = campoNome.value.trim();
+
+        const telefone = campoTelefone.value.trim();
 
         const informacaoEmergencia = document
           .getElementById("informacaoEmergencia")
           .value.trim();
 
+        let formularioValido = true;
+
+        /* VALIDAR NOME */
+
         if (nome === "") {
-          alert("Digite seu nome.");
+          mostrarErro("nomeUsuario", "erroNome");
+
+          formularioValido = false;
+        }
+
+        /* VALIDAR TELEFONE */
+
+        if (telefone === "") {
+          mostrarErro("telefoneUsuario", "erroTelefone");
+
+          formularioValido = false;
+        }
+
+        if (!formularioValido) {
+          if (nome === "") {
+            campoNome.focus();
+          } else {
+            campoTelefone.focus();
+          }
 
           return;
         }
@@ -261,13 +380,19 @@
           JSON.stringify(perfil),
         );
 
+        limparErros();
+
         const mensagem = document.getElementById("mensagemSucesso");
 
         mensagem.style.display = "block";
 
-        setTimeout(function () {
-          mensagem.style.display = "none";
-        }, 2500);
+        setTimeout(
+          function () {
+            mensagem.style.display = "none";
+          },
+
+          2500,
+        );
       }
 
       carregarPerfil();
