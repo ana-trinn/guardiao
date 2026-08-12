@@ -126,6 +126,10 @@
         cursor: pointer;
       }
 
+      .botao:hover {
+        opacity: 0.95;
+      }
+
       .aviso {
         margin-top: 13px;
         color: #7a8492;
@@ -253,33 +257,9 @@
     </div>
 
     <script>
-      const chaveBoasVindas = "guardiaoBoasVindasConcluida";
-
-      /*
-            Se a pessoa já entrou no Guardião
-            anteriormente, pula a apresentação.
-        */
-
-      function verificarBoasVindas() {
-        const jaEntrou = localStorage.getItem(chaveBoasVindas);
-
-        if (jaEntrou === "sim") {
-          window.location.replace("painel.html");
-        }
-      }
-
-      /*
-            Ao entrar pela primeira vez,
-            salva a escolha e abre o painel.
-        */
-
       function entrarNoGuardiao() {
-        localStorage.setItem(chaveBoasVindas, "sim");
-
         window.location.href = "painel.html";
       }
-
-      verificarBoasVindas();
     </script>
   </body>
 </html>
