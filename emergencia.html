@@ -84,8 +84,6 @@
         font-size: 13px;
       }
 
-      /* ALERTA */
-
       .botao-alerta {
         width: 95px;
         height: 95px;
@@ -98,8 +96,6 @@
         cursor: pointer;
         box-shadow: 0 8px 20px rgba(217, 4, 41, 0.3);
       }
-
-      /* CONFIRMAÇÃO */
 
       .confirmacao {
         display: none;
@@ -146,8 +142,6 @@
         color: white;
       }
 
-      /* STATUS */
-
       .status {
         display: none;
         margin-top: 14px;
@@ -181,8 +175,6 @@
         font-weight: bold;
         color: #0b1f3a;
       }
-
-      /* ACOMPANHAMENTO */
 
       .acoes-alerta {
         display: none;
@@ -233,8 +225,6 @@
         background: #dfe8f5;
         color: #0b1f3a;
       }
-
-      /* PEDIDO */
 
       .previa {
         display: none;
@@ -413,8 +403,6 @@
         font-weight: bold;
       }
 
-      /* ENGANO */
-
       .botao-whatsapp {
         width: 100%;
         border: none;
@@ -532,7 +520,7 @@
             </div>
           </div>
 
-          <!-- PEDIDO -->
+          <!-- PEDIDO DE AJUDA -->
 
           <div class="previa" id="previaMensagem">
             <h3>🚨 Pedido de ajuda</h3>
@@ -638,6 +626,15 @@
 
       const chaveConfiguracoes = "configuracoesGuardiao";
 
+      /*
+    NOVA CHAVE
+
+    Guarda quais contatos devem
+    receber os pedidos de ajuda.
+  */
+
+      const chaveContatosSelecionados = "contatosSelecionadosGuardiao";
+
       let textoMensagem = "";
 
       let modoAlertaRapido = false;
@@ -650,6 +647,7 @@
         return (
           JSON.parse(localStorage.getItem(chaveConfiguracoes)) || {
             notificacoes: true,
+
             localizacao: true,
           }
         );
@@ -682,6 +680,60 @@
         }
 
         return "";
+      }
+
+      /*
+    NORMALIZA O TELEFONE.
+
+    Usamos o telefone como identificação
+    do contato porque é mais seguro do
+    que salvar apenas o índice da lista.
+  */
+
+      function normalizarTelefone(telefone) {
+        return String(telefone || "").replace(/\D/g, "");
+      }
+
+      /*
+    LÊ OS CONTATOS SELECIONADOS.
+  */
+
+      function obterContatosSelecionados() {
+        return (
+          JSON.parse(localStorage.getItem(chaveContatosSelecionados)) || []
+        );
+      }
+
+      /*
+    SALVA OS CONTATOS MARCADOS.
+  */
+
+      function salvarSelecaoContatos() {
+        const contatos = JSON.parse(localStorage.getItem(chaveContatos)) || [];
+
+        const checkboxes = Array.from(
+          document.querySelectorAll(".checkbox-contato:checked"),
+        );
+
+        const selecionados = checkboxes
+          .map(function (checkbox) {
+            const indice = Number(checkbox.value);
+
+            if (!contatos[indice]) {
+              return null;
+            }
+
+            return normalizarTelefone(contatos[indice].telefone);
+          })
+          .filter(function (telefone) {
+            return telefone;
+          });
+
+        localStorage.setItem(
+          chaveContatosSelecionados,
+
+          JSON.stringify(selecionados),
+        );
       }
 
       function mostrarConfirmacao() {
@@ -891,8 +943,8 @@
       }
 
       /*
-        ABRIR ÁREA DE ENVIO
-    */
+    ABRIR A SELEÇÃO
+  */
 
       function mostrarEnvios() {
         const contatos = JSON.parse(localStorage.getItem(chaveContatos)) || [];
@@ -917,11 +969,14 @@
       }
 
       /*
-        CRIA OS CHECKBOXES
-    */
+    CRIA OS CHECKBOXES E CARREGA
+    O QUE JÁ FOI SALVO.
+  */
 
       function montarSelecaoContatos(contatos) {
         const lista = document.getElementById("listaSelecaoContatos");
+
+        const selecionadosSalvos = obterContatosSelecionados();
 
         lista.innerHTML = "";
 
@@ -938,7 +993,20 @@
 
           checkbox.value = indice;
 
-          checkbox.onchange = atualizarSelecionarTodos;
+          const telefoneContato = normalizarTelefone(contato.telefone);
+
+          /*
+          Se o telefone estiver salvo,
+          o contato já aparece marcado.
+        */
+
+          checkbox.checked = selecionadosSalvos.includes(telefoneContato);
+
+          checkbox.onchange = function () {
+            salvarSelecaoContatos();
+
+            atualizarSelecionarTodos();
+          };
 
           const nome = document.createElement("span");
 
@@ -951,14 +1019,14 @@
           lista.appendChild(label);
         });
 
-        document.getElementById("selecionarTodos").checked = false;
+        atualizarSelecionarTodos();
 
         document.getElementById("avisoSelecao").style.display = "none";
       }
 
       /*
-        SELECIONAR TODOS
-    */
+    SELECIONAR TODOS
+  */
 
       function alternarTodosContatos() {
         const selecionarTodos =
@@ -970,13 +1038,19 @@
           checkbox.checked = selecionarTodos;
         });
 
+        /*
+      Agora a escolha também
+      é salva automaticamente.
+    */
+
+        salvarSelecaoContatos();
+
         document.getElementById("avisoSelecao").style.display = "none";
       }
 
       /*
-        ATUALIZA O CHECKBOX
-        "SELECIONAR TODOS"
-    */
+    ATUALIZA "SELECIONAR TODOS"
+  */
 
       function atualizarSelecionarTodos() {
         const checkboxes = Array.from(
@@ -995,8 +1069,9 @@
       }
 
       /*
-        ENVIA AOS CONTATOS MARCADOS
-    */
+    ENVIA PARA OS CONTATOS
+    QUE ESTIVEREM MARCADOS.
+  */
 
       function enviarSelecionados() {
         const selecionados = Array.from(
@@ -1009,14 +1084,15 @@
           return;
         }
 
+        /*
+      Garante que a seleção atual
+      esteja salva antes do envio.
+    */
+
+        salvarSelecaoContatos();
+
         selecionados.forEach(function (checkbox, posicao) {
           const indice = Number(checkbox.value);
-
-          /*
-                    Pequeno intervalo entre
-                    as tentativas de abrir
-                    as conversas.
-                */
 
           setTimeout(
             function () {
@@ -1027,10 +1103,6 @@
           );
         });
       }
-
-      /*
-        ENVIO POR ENGANO
-    */
 
       function mostrarEnviosEngano() {
         const contatos = JSON.parse(localStorage.getItem(chaveContatos)) || [];
