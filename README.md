@@ -2,7 +2,6 @@
 
 O **Guardião** é um protótipo de aplicação web voltado à segurança pessoal, criado para facilitar o envio de pedidos de ajuda para contatos de confiança em situações de emergência.
 
-**Projeto em desenvolvimento.**
 
 ## Funcionalidades
 
