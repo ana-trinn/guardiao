@@ -20,6 +20,10 @@
         padding-bottom: 40px;
       }
 
+      body.modal-aberto {
+        overflow: hidden;
+      }
+
       header {
         background: #0b1f3a;
         color: white;
@@ -89,11 +93,14 @@
         font-size: 14px;
       }
 
+      /* CONTATOS */
+
       .contato {
         background: #f5f7fb;
         border-radius: 14px;
         padding: 13px;
         margin-top: 10px;
+
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -125,22 +132,29 @@
         font-size: 14px;
       }
 
-      /* X DE EXCLUIR */
+      /* X PARA EXCLUIR */
 
       .botao-excluir {
         border: none;
         background: transparent;
         color: #b91c1c;
-        font-size: 24px;
-        font-weight: bold;
-        cursor: pointer;
+
         width: 36px;
         height: 36px;
+
         border-radius: 50%;
+
+        font-size: 24px;
+        font-weight: bold;
+
         display: flex;
         align-items: center;
         justify-content: center;
+
         flex-shrink: 0;
+
+        cursor: pointer;
+
         transition: 0.2s;
       }
 
@@ -148,16 +162,25 @@
         background: #fff0f0;
       }
 
+      /* BOTÕES */
+
       .botao {
         width: 100%;
+
         background: #0b1f3a;
         color: white;
+
         border: none;
+
         padding: 13px;
+
         border-radius: 30px;
+
         cursor: pointer;
+
         font-size: 14px;
         font-weight: bold;
+
         margin-top: 16px;
       }
 
@@ -167,22 +190,56 @@
 
       .botao-secundario {
         width: 100%;
+
         background: white;
         color: #0b1f3a;
+
         border: 2px solid #0b1f3a;
+
         padding: 12px;
+
         border-radius: 30px;
+
         cursor: pointer;
+
         font-size: 14px;
         font-weight: bold;
+
         margin-top: 10px;
       }
 
+      /* FORMULÁRIO */
+
       .formulario {
-        display: none;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+
+        margin-top: 0;
+        padding-top: 0;
+
+        border-top: 1px solid transparent;
+
+        pointer-events: none;
+
+        transition:
+          max-height 0.35s ease,
+          opacity 0.25s ease,
+          margin-top 0.35s ease,
+          padding-top 0.35s ease,
+          border-color 0.35s ease;
+      }
+
+      .formulario.ativo {
+        max-height: 500px;
+        opacity: 1;
+
         margin-top: 20px;
         padding-top: 20px;
-        border-top: 1px solid #e5e5e5;
+
+        border-top-color: #e5e5e5;
+
+        pointer-events: auto;
       }
 
       .campo {
@@ -192,18 +249,26 @@
 
       .campo label {
         display: block;
+
         margin-bottom: 6px;
+
         font-weight: bold;
         font-size: 13px;
       }
 
       .campo input {
         width: 100%;
+
         padding: 12px;
+
         border: 1px solid #ccc;
+
         border-radius: 12px;
-        font-size: 14px;
+
+        font-size: 16px;
+
         outline: none;
+
         transition: 0.2s;
       }
 
@@ -211,7 +276,7 @@
         border-color: #0b1f3a;
       }
 
-      /* ERRO */
+      /* ERROS */
 
       .campo input.erro {
         border-color: #d90429;
@@ -220,8 +285,11 @@
 
       .mensagem-erro {
         display: none;
+
         margin-top: 5px;
+
         color: #c62828;
+
         font-size: 11px;
         font-weight: bold;
       }
@@ -230,16 +298,22 @@
         display: block;
       }
 
-      /* MODAL */
+      /* MODAL DE EXCLUSÃO */
 
       .modal-fundo {
         display: none;
+
         position: fixed;
+
         inset: 0;
+
         background: rgba(11, 31, 58, 0.45);
+
         align-items: center;
         justify-content: center;
+
         padding: 20px;
+
         z-index: 2000;
       }
 
@@ -250,10 +324,15 @@
       .modal {
         width: 100%;
         max-width: 360px;
+
         background: white;
+
         border-radius: 18px;
+
         padding: 22px;
+
         text-align: center;
+
         box-shadow: 0 12px 35px rgba(0, 0, 0, 0.18);
       }
 
@@ -269,8 +348,10 @@
 
       .modal p {
         color: #666;
+
         font-size: 13px;
         line-height: 1.45;
+
         margin-bottom: 18px;
       }
 
@@ -281,16 +362,22 @@
 
       .modal-botoes {
         display: grid;
+
         grid-template-columns: 1fr 1fr;
+
         gap: 8px;
       }
 
       .modal-cancelar,
       .modal-excluir {
         border: none;
+
         border-radius: 25px;
+
         padding: 11px;
+
         cursor: pointer;
+
         font-size: 12px;
         font-weight: bold;
       }
@@ -304,6 +391,8 @@
         background: #d90429;
         color: white;
       }
+
+      /* CELULAR */
 
       @media (max-width: 600px) {
         header {
@@ -365,6 +454,11 @@
           padding: 12px;
           font-size: 13px;
         }
+
+        .modal {
+          max-width: 330px;
+          padding: 20px;
+        }
       }
     </style>
   </head>
@@ -373,6 +467,7 @@
     <header>
       <h1 class="logo-area">
         <img src="imagens/logo.png" alt="Logo Guardião" />
+
         <span>Guardião</span>
       </h1>
     </header>
@@ -392,9 +487,16 @@
 
         <div id="listaContatos"></div>
 
-        <button class="botao" id="botaoAdicionar" onclick="mostrarFormulario()">
+        <button
+          class="botao"
+          id="botaoAdicionar"
+          type="button"
+          onclick="mostrarFormulario()"
+        >
           + Adicionar contato
         </button>
+
+        <!-- FORMULÁRIO -->
 
         <div class="formulario" id="formularioContato">
           <div class="campo">
@@ -427,11 +529,15 @@
             </span>
           </div>
 
-          <button class="botao" onclick="salvarContato()">
+          <button class="botao" type="button" onclick="salvarContato()">
             Salvar contato
           </button>
 
-          <button class="botao-secundario" onclick="cancelarFormulario()">
+          <button
+            class="botao-secundario"
+            type="button"
+            onclick="cancelarFormulario()"
+          >
             Cancelar
           </button>
         </div>
@@ -482,13 +588,19 @@
 
       let indiceParaExcluir = null;
 
+      /* OBTER CONTATOS */
+
       function obterContatos() {
         return JSON.parse(localStorage.getItem(chaveContatos)) || [];
       }
 
+      /* SALVAR CONTATOS */
+
       function salvarContatos(contatos) {
         localStorage.setItem(chaveContatos, JSON.stringify(contatos));
       }
+
+      /* CARREGAR CONTATOS */
 
       function carregarContatos() {
         const contatos = obterContatos();
@@ -517,7 +629,6 @@
           elemento.className = "contato";
 
           elemento.innerHTML = `
-
               <div class="informacoes-contato">
 
                 <strong>
@@ -539,7 +650,6 @@
               >
                 ×
               </button>
-
             `;
 
           lista.appendChild(elemento);
@@ -548,25 +658,40 @@
         botaoAdicionar.textContent = "+ Adicionar outro contato";
       }
 
+      /* ABRIR FORMULÁRIO */
+
       function mostrarFormulario() {
         limparErros();
 
-        document.getElementById("formularioContato").style.display = "block";
+        const formulario = document.getElementById("formularioContato");
+
+        formulario.classList.add("ativo");
 
         document.getElementById("botaoAdicionar").style.display = "none";
 
-        document.getElementById("nomeContato").focus();
+        /*
+          Pequeno atraso para o navegador
+          iniciar a animação antes do foco.
+        */
+
+        setTimeout(function () {
+          document.getElementById("nomeContato").focus();
+        }, 250);
       }
+
+      /* CANCELAR FORMULÁRIO */
 
       function cancelarFormulario() {
         limparFormulario();
 
         limparErros();
 
-        document.getElementById("formularioContato").style.display = "none";
+        document.getElementById("formularioContato").classList.remove("ativo");
 
         document.getElementById("botaoAdicionar").style.display = "block";
       }
+
+      /* LIMPAR FORMULÁRIO */
 
       function limparFormulario() {
         document.getElementById("nomeContato").value = "";
@@ -574,11 +699,15 @@
         document.getElementById("telefoneContato").value = "";
       }
 
+      /* MOSTRAR ERRO */
+
       function mostrarErro(campoId, erroId) {
         document.getElementById(campoId).classList.add("erro");
 
         document.getElementById(erroId).classList.add("ativa");
       }
+
+      /* REMOVER ERRO */
 
       function removerErro(campoId, erroId) {
         const campo = document.getElementById(campoId);
@@ -590,6 +719,8 @@
         }
       }
 
+      /* LIMPAR ERROS */
+
       function limparErros() {
         document.getElementById("nomeContato").classList.remove("erro");
 
@@ -599,6 +730,8 @@
 
         document.getElementById("erroTelefone").classList.remove("ativa");
       }
+
+      /* SALVAR NOVO CONTATO */
 
       function salvarContato() {
         const campoNome = document.getElementById("nomeContato");
@@ -637,7 +770,6 @@
 
         contatos.push({
           nome: nome,
-
           telefone: telefone,
         });
 
@@ -647,14 +779,14 @@
 
         limparErros();
 
-        document.getElementById("formularioContato").style.display = "none";
+        document.getElementById("formularioContato").classList.remove("ativo");
 
         document.getElementById("botaoAdicionar").style.display = "block";
 
         carregarContatos();
       }
 
-      /* ABRIR MODAL */
+      /* ABRIR CONFIRMAÇÃO DE EXCLUSÃO */
 
       function abrirModalExcluir(indice) {
         const contatos = obterContatos();
@@ -669,15 +801,21 @@
           contatos[indice].nome;
 
         document.getElementById("modalExcluir").classList.add("ativo");
+
+        document.body.classList.add("modal-aberto");
       }
 
-      /* FECHAR MODAL */
+      /* FECHAR CONFIRMAÇÃO */
 
       function fecharModalExcluir() {
         document.getElementById("modalExcluir").classList.remove("ativo");
 
+        document.body.classList.remove("modal-aberto");
+
         indiceParaExcluir = null;
       }
+
+      /* FECHAR AO TOCAR FORA */
 
       function fecharModalPeloFundo(event) {
         if (event.target.id === "modalExcluir") {
@@ -703,8 +841,8 @@
         }
 
         /*
-          Também retiramos o telefone
-          da lista de destinatários salvos.
+          Remove também o contato
+          da seleção salva.
         */
 
         const telefoneNormalizado = String(contato.telefone || "").replace(
@@ -723,9 +861,12 @@
 
         localStorage.setItem(
           chaveContatosSelecionados,
-
           JSON.stringify(selecionadosAtualizados),
         );
+
+        /*
+          Remove o contato da lista.
+        */
 
         contatos.splice(indiceParaExcluir, 1);
 
