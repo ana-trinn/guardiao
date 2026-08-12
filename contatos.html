@@ -125,16 +125,27 @@
         font-size: 14px;
       }
 
-      .lixeira {
+      /* X DE EXCLUIR */
+
+      .botao-excluir {
         border: none;
         background: transparent;
-        font-size: 20px;
+        color: #b91c1c;
+        font-size: 24px;
+        font-weight: bold;
         cursor: pointer;
-        padding: 5px;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: 0.2s;
       }
 
-      .lixeira:hover {
-        transform: scale(1.12);
+      .botao-excluir:hover {
+        background: #fff0f0;
       }
 
       .botao {
@@ -217,6 +228,81 @@
 
       .mensagem-erro.ativa {
         display: block;
+      }
+
+      /* MODAL */
+
+      .modal-fundo {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(11, 31, 58, 0.45);
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        z-index: 2000;
+      }
+
+      .modal-fundo.ativo {
+        display: flex;
+      }
+
+      .modal {
+        width: 100%;
+        max-width: 360px;
+        background: white;
+        border-radius: 18px;
+        padding: 22px;
+        text-align: center;
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.18);
+      }
+
+      .modal-icone {
+        font-size: 30px;
+        margin-bottom: 8px;
+      }
+
+      .modal h3 {
+        font-size: 18px;
+        margin-bottom: 8px;
+      }
+
+      .modal p {
+        color: #666;
+        font-size: 13px;
+        line-height: 1.45;
+        margin-bottom: 18px;
+      }
+
+      .modal-nome {
+        color: #0b1f3a;
+        font-weight: bold;
+      }
+
+      .modal-botoes {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .modal-cancelar,
+      .modal-excluir {
+        border: none;
+        border-radius: 25px;
+        padding: 11px;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: bold;
+      }
+
+      .modal-cancelar {
+        background: #eef2f7;
+        color: #0b1f3a;
+      }
+
+      .modal-excluir {
+        background: #d90429;
+        color: white;
       }
 
       @media (max-width: 600px) {
@@ -311,8 +397,6 @@
         </button>
 
         <div class="formulario" id="formularioContato">
-          <!-- NOME -->
-
           <div class="campo">
             <label for="nomeContato"> Nome </label>
 
@@ -327,8 +411,6 @@
               ⚠ Campo obrigatório
             </span>
           </div>
-
-          <!-- TELEFONE -->
 
           <div class="campo">
             <label for="telefoneContato"> Telefone </label>
@@ -356,8 +438,49 @@
       </div>
     </main>
 
+    <!-- MODAL DE EXCLUSÃO -->
+
+    <div
+      class="modal-fundo"
+      id="modalExcluir"
+      onclick="fecharModalPeloFundo(event)"
+    >
+      <div class="modal">
+        <div class="modal-icone">⚠️</div>
+
+        <h3>Excluir contato?</h3>
+
+        <p>
+          <span class="modal-nome" id="nomeContatoExcluir"></span>
+          será removido dos seus contatos de confiança.
+        </p>
+
+        <div class="modal-botoes">
+          <button
+            class="modal-cancelar"
+            type="button"
+            onclick="fecharModalExcluir()"
+          >
+            Cancelar
+          </button>
+
+          <button
+            class="modal-excluir"
+            type="button"
+            onclick="confirmarExclusao()"
+          >
+            Excluir
+          </button>
+        </div>
+      </div>
+    </div>
+
     <script>
       const chaveContatos = "contatosGuardiao";
+
+      const chaveContatosSelecionados = "contatosSelecionadosGuardiao";
+
+      let indiceParaExcluir = null;
 
       function obterContatos() {
         return JSON.parse(localStorage.getItem(chaveContatos)) || [];
@@ -378,12 +501,10 @@
 
         if (contatos.length === 0) {
           lista.innerHTML = `
-
-        <p class="sem-contatos">
-          Nenhum contato cadastrado.
-        </p>
-
-      `;
+            <p class="sem-contatos">
+              Nenhum contato cadastrado.
+            </p>
+          `;
 
           botaoAdicionar.textContent = "+ Adicionar contato";
 
@@ -397,27 +518,29 @@
 
           elemento.innerHTML = `
 
-          <div class="informacoes-contato">
+              <div class="informacoes-contato">
 
-            <strong>
-              ${contato.nome}
-            </strong>
+                <strong>
+                  ${contato.nome}
+                </strong>
 
-            <span>
-              ${contato.telefone}
-            </span>
+                <span>
+                  ${contato.telefone}
+                </span>
 
-          </div>
+              </div>
 
-          <button
-            class="lixeira"
-            onclick="removerContato(${indice})"
-            title="Excluir contato"
-          >
-            🗑️
-          </button>
+              <button
+                class="botao-excluir"
+                type="button"
+                onclick="abrirModalExcluir(${indice})"
+                title="Excluir ${contato.nome}"
+                aria-label="Excluir ${contato.nome}"
+              >
+                ×
+              </button>
 
-        `;
+            `;
 
           lista.appendChild(elemento);
         });
@@ -531,26 +654,84 @@
         carregarContatos();
       }
 
-      function removerContato(indice) {
+      /* ABRIR MODAL */
+
+      function abrirModalExcluir(indice) {
         const contatos = obterContatos();
 
         if (!contatos[indice]) {
           return;
         }
 
-        const confirmar = confirm(
-          "Deseja excluir " +
-            contatos[indice].nome +
-            " dos seus contatos de confiança?",
-        );
+        indiceParaExcluir = indice;
 
-        if (!confirmar) {
+        document.getElementById("nomeContatoExcluir").textContent =
+          contatos[indice].nome;
+
+        document.getElementById("modalExcluir").classList.add("ativo");
+      }
+
+      /* FECHAR MODAL */
+
+      function fecharModalExcluir() {
+        document.getElementById("modalExcluir").classList.remove("ativo");
+
+        indiceParaExcluir = null;
+      }
+
+      function fecharModalPeloFundo(event) {
+        if (event.target.id === "modalExcluir") {
+          fecharModalExcluir();
+        }
+      }
+
+      /* CONFIRMAR EXCLUSÃO */
+
+      function confirmarExclusao() {
+        if (indiceParaExcluir === null) {
           return;
         }
 
-        contatos.splice(indice, 1);
+        const contatos = obterContatos();
+
+        const contato = contatos[indiceParaExcluir];
+
+        if (!contato) {
+          fecharModalExcluir();
+
+          return;
+        }
+
+        /*
+          Também retiramos o telefone
+          da lista de destinatários salvos.
+        */
+
+        const telefoneNormalizado = String(contato.telefone || "").replace(
+          /\D/g,
+          "",
+        );
+
+        const selecionados =
+          JSON.parse(localStorage.getItem(chaveContatosSelecionados)) || [];
+
+        const selecionadosAtualizados = selecionados.filter(
+          function (telefone) {
+            return telefone !== telefoneNormalizado;
+          },
+        );
+
+        localStorage.setItem(
+          chaveContatosSelecionados,
+
+          JSON.stringify(selecionadosAtualizados),
+        );
+
+        contatos.splice(indiceParaExcluir, 1);
 
         salvarContatos(contatos);
+
+        fecharModalExcluir();
 
         carregarContatos();
       }
