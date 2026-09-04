@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Cadastro | Guardião</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <main class="container">
+      <div class="simbolo">🛡️</div>
+
+      <h1>Crie seu perfil</h1>
+
+      <p>Preencha seus dados básicos para configurar sua rede de proteção.</p>
+
+      <form id="formCadastro">
+        <div class="campo">
+          <label for="nome">Nome</label>
+
+          <input
+            type="text"
+            id="nome"
+            name="nome"
+            placeholder="Digite seu nome"
+            required
+          />
+        </div>
+
+        <div class="campo">
+          <label for="telefone">Telefone</label>
+
+          <input
+            type="tel"
+            id="telefone"
+            name="telefone"
+            placeholder="(00) 00000-0000"
+            required
+          />
+        </div>
+
+        <div class="campo">
+          <label for="nascimento">Nascimento</label>
+
+          <input type="date" id="nascimento" name="nascimento" />
+        </div>
+
+        <button type="submit">Continuar</button>
+      </form>
+
+      <p id="mensagemCadastro"></p>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
