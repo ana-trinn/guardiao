@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Contatos | Guardião</title>
 
     <link rel="stylesheet" href="style.css" />
@@ -20,7 +19,6 @@
       <form id="formContato">
         <div class="campo">
           <label for="nomeContato">Nome</label>
-
           <input
             type="text"
             id="nomeContato"
@@ -31,7 +29,6 @@
 
         <div class="campo">
           <label for="telefoneContato">Telefone</label>
-
           <input
             type="tel"
             id="telefoneContato"
@@ -42,27 +39,26 @@
 
         <div class="campo">
           <label for="relacaoContato">Relação</label>
-
           <select id="relacaoContato">
             <option value="">Selecione</option>
-
             <option value="Família">Família</option>
-
             <option value="Amigo(a)">Amigo(a)</option>
-
             <option value="Parceiro(a)">Parceiro(a)</option>
-
             <option value="Outro">Outro</option>
           </select>
         </div>
 
-        <button type="submit">Adicionar contato</button>
+        <button type="submit" class="botao-principal">Salvar contatos</button>
       </form>
 
       <section class="lista-contatos">
-        <h2>Seus contatos</h2>
+        <button type="button" id="toggleContatos" class="toggle-contatos">
+          Meus contatos (0) ▼
+        </button>
 
-        <div id="listaContatos"></div>
+        <div id="areaContatos" class="area-contatos escondido">
+          <div id="listaContatos"></div>
+        </div>
       </section>
 
       <a href="emergencia.html" class="link-botao">
