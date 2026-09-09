@@ -6,145 +6,69 @@
 
 body {
   min-height: 100vh;
-
   font-family: Arial, Helvetica, sans-serif;
-
   background-color: #f4f7fb;
-
   color: #1f2937;
-
   display: flex;
   justify-content: center;
-  align-items: center;
-
-  padding: 20px;
+  align-items: flex-start;
+  padding: 16px;
 }
 
 .container {
   width: 100%;
-  max-width: 420px;
-
+  max-width: 360px;
   background-color: #ffffff;
-
-  padding: 30px 25px;
-
-  border-radius: 20px;
-
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-
+  padding: 24px 20px;
+  border-radius: 18px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
   text-align: center;
+  margin: 10px auto;
 }
 
 .simbolo {
-  font-size: 45px;
-
+  font-size: 34px;
   margin-bottom: 8px;
 }
 
 h1 {
   color: #1e3a8a;
-
-  font-size: 28px;
-
-  margin-bottom: 10px;
+  font-size: 26px;
+  margin-bottom: 8px;
 }
 
 h2 {
   color: #1e3a8a;
-
   font-size: 18px;
-
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 p {
   color: #555555;
-
-  font-size: 15px;
-
+  font-size: 14px;
   line-height: 1.5;
-
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .slogan {
-  margin-bottom: 25px;
-}
-
-form {
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 15px;
-
-  margin-top: 20px;
-}
-
-.campo {
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 6px;
-
-  text-align: left;
-}
-
-label {
-  color: #1e3a8a;
-
-  font-size: 14px;
-
-  font-weight: bold;
-}
-
-input,
-select {
-  width: 100%;
-
-  padding: 11px 12px;
-
-  border: 1px solid #cccccc;
-
-  border-radius: 8px;
-
-  font-size: 15px;
-
-  background-color: #ffffff;
-}
-
-input:focus,
-select:focus {
-  outline: 2px solid #1e3a8a;
-
-  border-color: transparent;
+  margin-bottom: 24px;
 }
 
 button {
   width: 100%;
-
-  background-color: #dc2626;
-
-  color: white;
-
+  background-color: #e85d6c;
+  color: #ffffff;
   border: none;
-
   padding: 12px 18px;
-
-  border-radius: 9px;
-
+  border-radius: 10px;
   font-size: 15px;
-
   font-weight: bold;
-
   cursor: pointer;
-
   transition: 0.2s;
 }
 
 button:hover {
-  background-color: #b91c1c;
+  background-color: #d94c5c;
 }
 
 button:active {
@@ -153,106 +77,150 @@ button:active {
 
 .link-botao {
   display: block;
-
   text-decoration: none;
 }
 
-.lista-contatos {
-  margin-top: 28px;
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 18px;
+}
 
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   text-align: left;
 }
 
-.lista-contatos h2 {
+label {
+  color: #1e3a8a;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: #ffffff;
+}
+
+input:focus,
+select:focus {
+  outline: 2px solid #1e3a8a;
+  border-color: transparent;
+}
+
+.lista-contatos {
+  margin-top: 22px;
+  text-align: left;
+}
+
+.toggle-contatos {
+  width: 100%;
+  background-color: #eef3ff;
+  color: #1e3a8a;
+  border: 1px solid #dbe3f0;
+  padding: 11px 14px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: left;
   margin-bottom: 12px;
+}
+
+.toggle-contatos:hover {
+  background-color: #e3ebff;
+}
+
+.area-contatos {
+  max-height: 240px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.escondido {
+  display: none;
 }
 
 .card-contato {
   background-color: #f7f8fc;
-
-  border: 1px solid #e5e7eb;
-
+  border: 1px solid #dbe3f0;
   border-radius: 12px;
-
   padding: 12px;
-
   margin-bottom: 10px;
-
   display: flex;
-
   flex-direction: column;
-
-  gap: 4px;
+  gap: 3px;
 }
 
 .card-contato strong {
   color: #1e3a8a;
-
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .card-contato span {
   color: #444444;
-
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .card-contato small {
   color: #777777;
-
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .botao-excluir {
   width: auto;
-
   align-self: flex-end;
-
-  margin-top: 7px;
-
+  margin-top: 8px;
   padding: 6px 12px;
-
   font-size: 12px;
-
-  border-radius: 6px;
+  border-radius: 7px;
+  background-color: #e85d6c;
 }
 
 .botao-continuar {
-  margin-top: 18px;
+  margin-top: 14px;
 }
 
 .sem-contatos {
   text-align: center;
-
+  font-size: 13px;
   color: #777777;
-
-  font-size: 14px;
-
-  margin-top: 10px;
 }
 
 #mensagemCadastro {
-  margin-top: 15px;
-
-  color: #15803d;
-
+  margin-top: 12px;
+  font-size: 13px;
+  color: #16a34a;
   font-weight: bold;
 }
 
 @media (max-width: 480px) {
-  body {
-    padding: 12px;
-  }
-
   .container {
-    padding: 25px 18px;
+    max-width: 340px;
+    padding: 22px 18px;
   }
 
   h1 {
-    font-size: 25px;
+    font-size: 24px;
   }
 
-  .simbolo {
-    font-size: 40px;
+  h2 {
+    font-size: 17px;
+  }
+
+  p {
+    font-size: 13px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 11px 16px;
   }
 }

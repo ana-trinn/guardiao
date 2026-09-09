@@ -1,16 +1,13 @@
-// ========================================
+// =====================================
 // CADASTRO DO USUÁRIO
-// ========================================
+// =====================================
 
 const formCadastro = document.getElementById("formCadastro");
 
 if (formCadastro) {
   const nome = document.getElementById("nome");
-
   const telefone = document.getElementById("telefone");
-
   const nascimento = document.getElementById("nascimento");
-
   const mensagemCadastro = document.getElementById("mensagemCadastro");
 
   const cadastroSalvo = localStorage.getItem("cadastroGuardiao");
@@ -19,9 +16,7 @@ if (formCadastro) {
     const dados = JSON.parse(cadastroSalvo);
 
     nome.value = dados.nome || "";
-
     telefone.value = dados.telefone || "";
-
     nascimento.value = dados.nascimento || "";
   }
 
@@ -29,10 +24,8 @@ if (formCadastro) {
     event.preventDefault();
 
     const dadosUsuario = {
-      nome: nome.value.trim(),
-
-      telefone: telefone.value.trim(),
-
+      nome: nome.value,
+      telefone: telefone.value,
       nascimento: nascimento.value,
     };
 
@@ -48,118 +41,111 @@ if (formCadastro) {
   });
 }
 
-// ========================================
+// =====================================
 // CONTATOS DE CONFIANÇA
-// ========================================
+// =====================================
 
 const formContato = document.getElementById("formContato");
-
 const listaContatos = document.getElementById("listaContatos");
+const toggleContatos = document.getElementById("toggleContatos");
+const areaContatos = document.getElementById("areaContatos");
 
 if (formContato && listaContatos) {
   let contatos = JSON.parse(localStorage.getItem("contatosGuardiao")) || [];
+  let contatosAbertos = false;
 
-  function salvarContatos() {
-    localStorage.setItem("contatosGuardiao", JSON.stringify(contatos));
+  function atualizarBotaoContatos() {
+    if (toggleContatos) {
+      toggleContatos.textContent = contatosAbertos
+        ? `Meus contatos (${contatos.length}) ▲`
+        : `Meus contatos (${contatos.length}) ▼`;
+    }
   }
 
   function mostrarContatos() {
     listaContatos.innerHTML = "";
 
     if (contatos.length === 0) {
-      const mensagem = document.createElement("p");
+      listaContatos.innerHTML =
+        "<p class='sem-contatos'>Nenhum contato cadastrado.</p>";
+    } else {
+      contatos.forEach(function (contato, indice) {
+        const card = document.createElement("div");
+        card.classList.add("card-contato");
 
-      mensagem.textContent = "Nenhum contato cadastrado.";
+        const nome = document.createElement("strong");
+        nome.textContent = contato.nome;
 
-      mensagem.classList.add("sem-contatos");
+        const telefone = document.createElement("span");
+        telefone.textContent = contato.telefone;
 
-      listaContatos.appendChild(mensagem);
+        const relacao = document.createElement("small");
+        relacao.textContent = contato.relacao
+          ? contato.relacao
+          : "Contato de confiança";
 
-      return;
+        const botaoExcluir = document.createElement("button");
+        botaoExcluir.textContent = "Excluir";
+        botaoExcluir.classList.add("botao-excluir");
+
+        botaoExcluir.addEventListener("click", function () {
+          contatos.splice(indice, 1);
+
+          localStorage.setItem("contatosGuardiao", JSON.stringify(contatos));
+
+          mostrarContatos();
+        });
+
+        card.appendChild(nome);
+        card.appendChild(telefone);
+        card.appendChild(relacao);
+        card.appendChild(botaoExcluir);
+
+        listaContatos.appendChild(card);
+      });
     }
 
-    contatos.forEach(function (contato, indice) {
-      const card = document.createElement("div");
-
-      card.classList.add("card-contato");
-
-      const nomeContato = document.createElement("strong");
-
-      nomeContato.textContent = contato.nome || "Contato";
-
-      const telefoneContato = document.createElement("span");
-
-      telefoneContato.textContent = contato.telefone || "";
-
-      const relacaoContato = document.createElement("small");
-
-      relacaoContato.textContent = contato.relacao || "Contato de confiança";
-
-      const botaoExcluir = document.createElement("button");
-
-      botaoExcluir.type = "button";
-
-      botaoExcluir.textContent = "Excluir";
-
-      botaoExcluir.classList.add("botao-excluir");
-
-      botaoExcluir.addEventListener("click", function () {
-        const confirmar = confirm("Deseja excluir este contato?");
-
-        if (!confirmar) {
-          return;
-        }
-
-        contatos.splice(indice, 1);
-
-        salvarContatos();
-
-        mostrarContatos();
-      });
-
-      card.appendChild(nomeContato);
-
-      card.appendChild(telefoneContato);
-
-      card.appendChild(relacaoContato);
-
-      card.appendChild(botaoExcluir);
-
-      listaContatos.appendChild(card);
-    });
+    atualizarBotaoContatos();
   }
 
   formContato.addEventListener("submit", function (event) {
     event.preventDefault();
 
     const nome = document.getElementById("nomeContato").value.trim();
-
     const telefone = document.getElementById("telefoneContato").value.trim();
-
     const relacao = document.getElementById("relacaoContato").value;
 
     if (!nome || !telefone) {
-      alert("Preencha o nome e o telefone.");
-
       return;
     }
 
     const novoContato = {
       nome: nome,
-
       telefone: telefone,
-
-      relacao: relacao || "Contato de confiança",
+      relacao: relacao,
     };
 
     contatos.push(novoContato);
 
-    salvarContatos();
+    localStorage.setItem("contatosGuardiao", JSON.stringify(contatos));
 
     formContato.reset();
-
     mostrarContatos();
   });
+
+  if (toggleContatos && areaContatos) {
+    toggleContatos.addEventListener("click", function () {
+      contatosAbertos = !contatosAbertos;
+
+      if (contatosAbertos) {
+        areaContatos.classList.remove("escondido");
+      } else {
+        areaContatos.classList.add("escondido");
+      }
+
+      atualizarBotaoContatos();
+    });
+  }
 
   mostrarContatos();
 }
