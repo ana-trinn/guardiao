@@ -194,13 +194,6 @@ select:focus {
   color: #777777;
 }
 
-#mensagemCadastro {
-  margin-top: 12px;
-  font-size: 13px;
-  color: #16a34a;
-  font-weight: bold;
-}
-
 @media (max-width: 480px) {
   .container {
     max-width: 340px;
