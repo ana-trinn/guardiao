@@ -24,11 +24,13 @@ Link: https://ana-trinn.github.io/guardiao/
 HTML • CSS • JavaScript • LocalStorage • Geolocation API • Git/GitHub
 
 ## Como funciona
+## Como funciona
 
 O usuário cadastra seus contatos de confiança e escolhe quem poderá receber seus alertas.
 
-Ao acionar uma emergência, o Guardião obtém a localização do dispositivo e prepara uma mensagem de ajuda para envio aos contatos selecionados.
+Ao acionar uma emergência, o Guardião pode obter a localização do dispositivo, preparar uma mensagem de ajuda e permitir o envio aos contatos selecionados pelo WhatsApp.
 
+O protótipo também permite acompanhar o alerta e utilizar um chat demonstrativo durante a situação de emergência.
 ## Próximos passos
 
 - Implementação de banco de dados
