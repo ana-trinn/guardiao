@@ -1,47 +1,4 @@
 // =====================================
-// CADASTRO DO USUÁRIO
-// =====================================
-
-const formCadastro = document.getElementById("formCadastro");
-
-if (formCadastro) {
-  const nome = document.getElementById("nome");
-  const telefone = document.getElementById("telefone");
-  const nascimento = document.getElementById("nascimento");
-  const mensagemCadastro = document.getElementById("mensagemCadastro");
-
-  const cadastroSalvo = localStorage.getItem("cadastroGuardiao");
-
-  if (cadastroSalvo) {
-    const dados = JSON.parse(cadastroSalvo);
-
-    nome.value = dados.nome || "";
-    telefone.value = dados.telefone || "";
-    nascimento.value = dados.nascimento || "";
-  }
-
-  formCadastro.addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    const dadosUsuario = {
-      nome: nome.value,
-      telefone: telefone.value,
-      nascimento: nascimento.value,
-    };
-
-    localStorage.setItem("cadastroGuardiao", JSON.stringify(dadosUsuario));
-
-    if (mensagemCadastro) {
-      mensagemCadastro.textContent = "Cadastro salvo com sucesso!";
-    }
-
-    setTimeout(function () {
-      window.location.href = "contatos.html";
-    }, 700);
-  });
-}
-
-// =====================================
 // CONTATOS DE CONFIANÇA
 // =====================================
 
