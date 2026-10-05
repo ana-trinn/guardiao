@@ -17,42 +17,42 @@
         font-family: Arial, Helvetica, sans-serif;
         background: #f5f7fb;
         color: #0b1f3a;
-        padding-bottom: 85px;
+        padding-bottom: 58px;
       }
 
       header {
         background: #0b1f3a;
         color: white;
         text-align: center;
-        padding: 14px 12px;
+        padding: 10px 12px;
       }
 
       .logo-area {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 4px;
+        gap: 2px;
       }
 
       .logo-area img {
-        height: 58px;
+        height: 50px;
       }
 
       .logo-area span {
-        font-size: 24px;
+        font-size: 21px;
         font-weight: bold;
       }
 
       .container {
         width: 100%;
-        max-width: 620px;
-        margin: 12px auto;
-        padding: 12px;
+        max-width: 520px;
+        margin: 4px auto;
+        padding: 6px 10px;
       }
 
       .voltar-topo {
         display: inline-block;
-        margin-bottom: 10px;
+        margin-bottom: 6px;
         color: #0b1f3a;
         text-decoration: none;
         font-size: 13px;
@@ -61,32 +61,32 @@
 
       .titulo-pagina {
         text-align: center;
-        margin-bottom: 13px;
+        margin-bottom: 9px;
       }
 
       .titulo-pagina h2 {
-        font-size: 20px;
-        margin-bottom: 4px;
+        font-size: 19px;
+        margin-bottom: 2px;
       }
 
       .titulo-pagina p {
         color: #666;
-        font-size: 12px;
+        font-size: 11px;
       }
 
       .card {
         background: white;
-        border-radius: 18px;
-        padding: 10px 15px;
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+        border-radius: 16px;
+        padding: 5px 13px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
       }
 
       .item {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 12px;
-        padding: 14px 3px;
+        gap: 10px;
+        padding: 10px 2px;
         border-bottom: 1px solid #eee;
       }
 
@@ -107,19 +107,19 @@
 
       .titulo {
         font-weight: bold;
-        font-size: 14px;
+        font-size: 13px;
       }
 
       .descricao {
         color: #666;
-        font-size: 11px;
-        margin-top: 4px;
-        line-height: 1.4;
+        font-size: 10px;
+        margin-top: 2px;
+        line-height: 1.3;
       }
 
       .seta {
         color: #0b1f3a;
-        font-size: 18px;
+        font-size: 17px;
         font-weight: bold;
         flex-shrink: 0;
       }
@@ -129,8 +129,8 @@
       .switch {
         position: relative;
         display: inline-block;
-        width: 44px;
-        height: 24px;
+        width: 42px;
+        height: 23px;
         flex-shrink: 0;
       }
 
@@ -152,8 +152,8 @@
       .slider:before {
         content: "";
         position: absolute;
-        width: 18px;
-        height: 18px;
+        width: 17px;
+        height: 17px;
         left: 3px;
         top: 3px;
         background: white;
@@ -167,18 +167,30 @@
       }
 
       input:checked + .slider:before {
-        transform: translateX(20px);
+        transform: translateX(19px);
       }
 
       .mensagem-salva {
         display: none;
-        margin-top: 12px;
-        padding: 9px;
-        border-radius: 11px;
+        margin-top: 8px;
+        padding: 8px;
+        border-radius: 10px;
         background: #eef8f0;
         color: #1b5e20;
         text-align: center;
-        font-size: 11px;
+        font-size: 10px;
+        font-weight: bold;
+      }
+
+      .mensagem-aviso {
+        display: none;
+        margin-top: 8px;
+        padding: 8px;
+        border-radius: 10px;
+        background: #fff4e5;
+        color: #8a4b08;
+        text-align: center;
+        font-size: 10px;
         font-weight: bold;
       }
 
@@ -186,18 +198,18 @@
 
       .sobre-box {
         display: none;
-        margin-top: 12px;
-        padding: 12px;
-        border-radius: 13px;
+        margin-top: 8px;
+        padding: 10px;
+        border-radius: 12px;
         background: #eef2f7;
         color: #0b1f3a;
-        font-size: 11px;
-        line-height: 1.5;
+        font-size: 10px;
+        line-height: 1.4;
       }
 
       .sobre-box strong {
         display: block;
-        margin-bottom: 5px;
+        margin-bottom: 4px;
         font-size: 12px;
       }
 
@@ -212,7 +224,7 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
-        padding: 8px 0 7px;
+        padding: 6px 0 5px;
         box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
         z-index: 1000;
       }
@@ -221,27 +233,27 @@
         text-decoration: none;
         color: #0b1f3a;
         text-align: center;
-        font-size: 11px;
+        font-size: 10px;
         font-weight: bold;
       }
 
       .navbar span {
         display: block;
-        font-size: 20px;
-        margin-bottom: 3px;
+        font-size: 18px;
+        margin-bottom: 2px;
       }
 
       @media (max-width: 480px) {
         .container {
-          padding: 10px 12px;
+          padding: 7px 10px;
         }
 
         .card {
-          padding: 8px 13px;
+          padding: 4px 11px;
         }
 
         .item {
-          padding: 13px 2px;
+          padding: 9px 2px;
         }
 
         .titulo {
@@ -259,28 +271,23 @@
     <header>
       <div class="logo-area">
         <img src="imagens/logo.png" alt="Logo Guardião" />
-
-        <span> Guardião </span>
+        <span>Guardião</span>
       </div>
     </header>
 
     <main class="container">
-      <a href="painel.html" class="voltar-topo"> ← Voltar </a>
+      <a href="painel.html" class="voltar-topo">← Voltar</a>
 
       <div class="titulo-pagina">
         <h2>⚙️ Configurações</h2>
-
         <p>Ajuste as preferências do Guardião.</p>
       </div>
 
       <div class="card">
-        <!-- PERFIL -->
-
         <a href="perfil.html" class="item-link">
           <div class="item">
             <div class="item-info">
               <div class="titulo">👤 Perfil</div>
-
               <div class="descricao">Visualizar e editar seus dados.</div>
             </div>
 
@@ -288,33 +295,30 @@
           </div>
         </a>
 
-        <!-- NOTIFICAÇÕES -->
-
         <div class="item">
           <div class="item-info">
             <div class="titulo">🔔 Notificações</div>
-
-            <div class="descricao">Ativar ou desativar avisos do Guardião.</div>
+            <div class="descricao">
+              Ativar ou desativar avisos do Guardião.
+            </div>
           </div>
 
           <label class="switch">
             <input
               type="checkbox"
               id="configNotificacoes"
-              onchange="salvarConfiguracoes()"
+              onchange="alterarNotificacoes()"
             />
-
             <span class="slider"></span>
           </label>
         </div>
 
-        <!-- LOCALIZAÇÃO -->
-
         <div class="item">
           <div class="item-info">
             <div class="titulo">📍 Compartilhar localização</div>
-
-            <div class="descricao">Permitir localização durante um alerta.</div>
+            <div class="descricao">
+              Permitir localização durante um alerta.
+            </div>
           </div>
 
           <label class="switch">
@@ -323,17 +327,13 @@
               id="configLocalizacao"
               onchange="salvarConfiguracoes()"
             />
-
             <span class="slider"></span>
           </label>
         </div>
 
-        <!-- SOBRE -->
-
         <div class="item" onclick="alternarSobre()" style="cursor: pointer">
           <div class="item-info">
             <div class="titulo">🛡️ Sobre o Guardião</div>
-
             <div class="descricao">
               Versão 0.4 • Protótipo em desenvolvimento.
             </div>
@@ -344,7 +344,7 @@
       </div>
 
       <div class="sobre-box" id="sobreBox">
-        <strong> 🛡️ Guardião </strong>
+        <strong>🛡️ Guardião</strong>
 
         Protótipo de aplicação web voltado à segurança pessoal e ao envio de
         pedidos de ajuda para contatos de confiança.
@@ -358,6 +358,8 @@
       <div class="mensagem-salva" id="mensagemSalva">
         ✅ Preferências atualizadas.
       </div>
+
+      <div class="mensagem-aviso" id="mensagemAviso"></div>
     </main>
 
     <nav class="navbar">
@@ -386,37 +388,94 @@
       const chaveConfiguracoes = "configuracoesGuardiao";
 
       function carregarConfiguracoes() {
-        const configuracoes = JSON.parse(
-          localStorage.getItem(chaveConfiguracoes),
-        );
-
-        if (!configuracoes) {
-          document.getElementById("configNotificacoes").checked = true;
-
-          document.getElementById("configLocalizacao").checked = true;
-
-          salvarConfiguracoes(false);
-
-          return;
-        }
+        const configuracoes =
+          JSON.parse(localStorage.getItem(chaveConfiguracoes)) || {
+            notificacoes: true,
+            localizacao: true,
+          };
 
         document.getElementById("configNotificacoes").checked =
           configuracoes.notificacoes !== false;
 
         document.getElementById("configLocalizacao").checked =
           configuracoes.localizacao !== false;
+
+        localStorage.setItem(
+          chaveConfiguracoes,
+          JSON.stringify(configuracoes),
+        );
+      }
+
+      async function alterarNotificacoes() {
+        const botao = document.getElementById("configNotificacoes");
+
+        if (!botao.checked) {
+          salvarConfiguracoes();
+          return;
+        }
+
+        if (!("Notification" in window)) {
+          botao.checked = false;
+          salvarConfiguracoes(false);
+
+          mostrarAviso(
+            "Este navegador não oferece suporte às notificações.",
+          );
+
+          return;
+        }
+
+        if (Notification.permission === "granted") {
+          salvarConfiguracoes();
+          return;
+        }
+
+        if (Notification.permission === "denied") {
+          botao.checked = false;
+          salvarConfiguracoes(false);
+
+          mostrarAviso(
+            "As notificações estão bloqueadas no navegador. Será necessário liberá-las nas permissões do navegador.",
+          );
+
+          return;
+        }
+
+        try {
+          const permissao = await Notification.requestPermission();
+
+          if (permissao === "granted") {
+            botao.checked = true;
+            salvarConfiguracoes();
+
+            mostrarAviso("Notificações permitidas com sucesso.");
+          } else {
+            botao.checked = false;
+            salvarConfiguracoes(false);
+
+            mostrarAviso("A permissão para notificações não foi concedida.");
+          }
+        } catch (erro) {
+          botao.checked = false;
+          salvarConfiguracoes(false);
+
+          mostrarAviso(
+            "Não foi possível solicitar a permissão de notificações.",
+          );
+        }
       }
 
       function salvarConfiguracoes(mostrarMensagem = true) {
         const configuracoes = {
-          notificacoes: document.getElementById("configNotificacoes").checked,
+          notificacoes:
+            document.getElementById("configNotificacoes").checked,
 
-          localizacao: document.getElementById("configLocalizacao").checked,
+          localizacao:
+            document.getElementById("configLocalizacao").checked,
         };
 
         localStorage.setItem(
           chaveConfiguracoes,
-
           JSON.stringify(configuracoes),
         );
 
@@ -428,27 +487,31 @@
 
         mensagem.style.display = "block";
 
-        setTimeout(
-          function () {
-            mensagem.style.display = "none";
-          },
+        setTimeout(function () {
+          mensagem.style.display = "none";
+        }, 1800);
+      }
 
-          1800,
-        );
+      function mostrarAviso(texto) {
+        const aviso = document.getElementById("mensagemAviso");
+
+        aviso.textContent = texto;
+        aviso.style.display = "block";
+
+        setTimeout(function () {
+          aviso.style.display = "none";
+        }, 3500);
       }
 
       function alternarSobre() {
         const sobre = document.getElementById("sobreBox");
-
         const seta = document.getElementById("setaSobre");
 
         if (sobre.style.display === "block") {
           sobre.style.display = "none";
-
           seta.textContent = "›";
         } else {
           sobre.style.display = "block";
-
           seta.textContent = "⌄";
         }
       }
